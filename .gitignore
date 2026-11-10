@@ -33,9 +33,10 @@ htmlcov/
 .tox/
 
 # Runtime / generated
-logs/
+logs/*
+!logs/.gitkeep
 *.pid
-artifacts/
+artifacts/*
 !artifacts/.gitkeep
 data/foundation.sqlite3
 data/knowledge.db
