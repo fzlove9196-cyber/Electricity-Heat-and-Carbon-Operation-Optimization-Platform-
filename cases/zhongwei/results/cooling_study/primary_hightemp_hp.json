@@ -1,0 +1,108 @@
+{
+ "ok": true,
+ "kind": "sweep",
+ "params": [
+  "dcs.*.cooling_mode"
+ ],
+ "rows": [
+  {
+   "label": "cooling_mode=风冷-冷冻水",
+   "x": [
+    "风冷-冷冻水"
+   ],
+   "raw": [
+    "air_chw"
+   ],
+   "ok": true,
+   "pue": 1.1024,
+   "wue_l_kwh": 0.615,
+   "water_m3": 2485.1,
+   "cooling_mwh": 211.1,
+   "dc_elec_mwh": 4696.2,
+   "energy_cost_cny": -3580931.0,
+   "total_cost_cny": -3647638.0,
+   "emissions_t": 2359.07,
+   "heat_delivered_mwh": 656.9,
+   "heat_cost_cny_gj": 25.2,
+   "terminal_margin_k": -16.5,
+   "boost_mwh": 31.35,
+   "heat_net_carbon_t": 112.96,
+   "heat_verdict": "有条件可行",
+   "hp_cop": "2.71-2.8",
+   "t_src_c": 32.0,
+   "tin_max_c": 27.0,
+   "thermal_safe": true,
+   "coolant_margin_k": 99,
+   "curtail_mwh": 0.0,
+   "solve_s": 0.086,
+   "warnings": [],
+   "wall_s": 0.23
+  },
+  {
+   "label": "cooling_mode=液冷-冷板",
+   "x": [
+    "液冷-冷板"
+   ],
+   "raw": [
+    "liquid_cold_plate"
+   ],
+   "ok": true,
+   "pue": 1.0788,
+   "wue_l_kwh": 0.047,
+   "water_m3": 189.4,
+   "cooling_mwh": 115.68,
+   "dc_elec_mwh": 4801.1,
+   "energy_cost_cny": -3526221.0,
+   "total_cost_cny": -3667214.0,
+   "emissions_t": 2037.67,
+   "heat_delivered_mwh": 1784.66,
+   "heat_cost_cny_gj": 35.3,
+   "terminal_margin_k": -16.5,
+   "boost_mwh": 244.54,
+   "heat_net_carbon_t": 399.84,
+   "heat_verdict": "有条件可行",
+   "hp_cop": "3.68-3.87",
+   "t_src_c": 50.0,
+   "tin_max_c": 42.0,
+   "thermal_safe": true,
+   "coolant_margin_k": 3.0,
+   "curtail_mwh": 0.0,
+   "solve_s": 0.086,
+   "warnings": [],
+   "wall_s": 0.24
+  },
+  {
+   "label": "cooling_mode=液冷-单相浸没",
+   "x": [
+    "液冷-单相浸没"
+   ],
+   "raw": [
+    "liquid_immersion"
+   ],
+   "ok": true,
+   "pue": 1.0695,
+   "wue_l_kwh": 0.013,
+   "water_m3": 53.0,
+   "cooling_mwh": 79.32,
+   "dc_elec_mwh": 4730.3,
+   "energy_cost_cny": -3543628.0,
+   "total_cost_cny": -3687565.0,
+   "emissions_t": 1979.11,
+   "heat_delivered_mwh": 1835.4,
+   "heat_cost_cny_gj": 33.2,
+   "terminal_margin_k": -16.5,
+   "boost_mwh": 255.55,
+   "heat_net_carbon_t": 437.94,
+   "heat_verdict": "有条件可行",
+   "hp_cop": "4.09-4.33",
+   "t_src_c": 55.0,
+   "tin_max_c": 45.0,
+   "thermal_safe": true,
+   "coolant_margin_k": 3.0,
+   "curtail_mwh": 0.0,
+   "solve_s": 0.085,
+   "warnings": [],
+   "wall_s": 0.23
+  }
+ ]
+}

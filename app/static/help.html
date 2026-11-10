@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>使用帮助 · 数据中心协同仿真优化平台</title>
+<link rel="stylesheet" href="/static/help.css">
+</head>
+<body>
+<header id="hTop">
+  <button id="hMenu" class="h-icon" title="目录" aria-label="打开目录">☰</button>
+  <a id="hBrand" href="/help">📘 使用帮助</a>
+  <div id="hSearchBox">
+    <input id="hSearch" type="search" placeholder="搜索标题、章节、关键词或参数名（按 / 聚焦）" autocomplete="off" aria-label="搜索帮助">
+    <div id="hResults" role="listbox" hidden></div>
+  </div>
+  <a id="hBack" class="h-btn" href="/" title="回到产品当前功能（会话保留）">← 返回产品</a>
+  <button id="hClose" class="h-btn" hidden title="关闭帮助（Esc）">✕ 关闭</button>
+</header>
+<div id="hWrap">
+  <nav id="hToc" aria-label="帮助目录"></nav>
+  <main id="hMain">
+    <div id="hCrumb"></div>
+    <article id="hArticle"><p class="h-muted">正在加载…</p></article>
+    <div id="hPager"></div>
+    <footer class="h-foot">本手册随产品本地提供，不访问外网、不调用大模型；内容依据 2026-11-10 代码整理，截图标注了拍摄日期。</footer>
+  </main>
+  <aside id="hOnPage" aria-label="本页目录"></aside>
+</div>
+<script src="/static/vendor/marked.min.js"></script>
+<script src="/static/help.js"></script>
+</body>
+</html>

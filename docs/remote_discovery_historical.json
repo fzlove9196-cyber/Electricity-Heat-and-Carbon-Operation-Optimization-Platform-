@@ -1,0 +1,29 @@
+{
+  "application_path": "/workspace/sim-agent",
+  "known_remote_url": null,
+  "status": "本地应用未登记Git仓库；本轮窄范围未识别已知远程地址",
+  "checks": [
+    {
+      "command": "git -C /workspace/sim-agent rev-parse --show-toplevel",
+      "result": "fatal: not a git repository"
+    },
+    {
+      "command": "git -C /workspace/sim-agent config --get-regexp '^remote\\..*\\.url$'",
+      "result": "no registered remote URL"
+    },
+    {
+      "command": "inspect /workspace/sim-agent/.git",
+      "result": "does not exist"
+    },
+    {
+      "command": "check existing REPORT.zh.md, manifest.json, protocol.json only for forge URLs",
+      "result": "no application repository URL identified"
+    }
+  ],
+  "not_done": [
+    "没有搜索其他本地目录/凭据/全盘",
+    "没有臆造GitHub或Origin地址",
+    "没有创建仓库/提交/PR或上传本地产品代码",
+    "没有启动云端实现；由父协调者处理"
+  ]
+}

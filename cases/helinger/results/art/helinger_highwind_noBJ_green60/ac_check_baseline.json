@@ -1,0 +1,44 @@
+{
+  "hour": 20,
+  "converged": true,
+  "vmin_pu": 0.9830503407511515,
+  "vmax_pu": 1.02,
+  "vmin_bus": 4,
+  "max_line_loading_pct": 29.278325064376116,
+  "max_trafo_loading_pct": 73.95066936814304,
+  "max_branch_loading_pct": 73.95066936814304,
+  "dcopf_pred_loading_pct": 69.66614814814815,
+  "slack_p_mw": 69.76010868184534,
+  "ext_grid_p_mw": {
+    "\u8499\u897f\u7535\u7f51": 69.76
+  },
+  "line_loading_pct": {
+    "\u7eff\u7535\u76f4\u4f9b\u4e13\u7ebf220kV(41km)": 20.7,
+    "\u516c\u7f51\u8054\u7edc\u7ebf220kV": 29.3
+  },
+  "bus_vm_pu": {
+    "\u8499\u897f\u7535\u7f51220kV(\u516c\u7f51\u6258\u5e95)": 1.02,
+    "\u534e\u7535\u98ce\u7535\u573a220kV\u5347\u538b\u7ad9": 1.016,
+    "\u5149\u4f0f\u573a35kV\u6bcd\u7ebf": 1.016,
+    "\u96c6\u7fa4220kV\u7528\u6237\u7ad9": 1.0124,
+    "\u96c6\u7fa4110kV\u914d\u7535\u6bcd\u7ebfA": 0.9831,
+    "\u96c6\u7fa4110kV\u914d\u7535\u6bcd\u7ebfB": 0.9974
+  },
+  "line_p_from_mw": {
+    "\u7eff\u7535\u76f4\u4f9b\u4e13\u7ebf220kV(41km)": 126.0,
+    "\u516c\u7f51\u8054\u7edc\u7ebf220kV": 69.76
+  },
+  "trafo_p_hv_mw": {
+    "\u5149\u4f0f35/220kV\u5347\u538b\u53d8": 0.0,
+    "\u7528\u6237\u7ad9220/110kV#1": 125.69,
+    "\u7528\u6237\u7ad9220/110kV#2": 69.59
+  },
+  "trafo_loading_pct": {
+    "\u5149\u4f0f35/220kV\u5347\u538b\u53d8": 0.0,
+    "\u7528\u6237\u7ad9220/110kV#1": 74.0,
+    "\u7528\u6237\u7ad9220/110kV#2": 40.4
+  },
+  "losses_mw": 0.854,
+  "voltage_ok": true,
+  "loading_ok": true
+}

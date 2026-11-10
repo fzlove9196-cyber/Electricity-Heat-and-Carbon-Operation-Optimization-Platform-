@@ -1,0 +1,2897 @@
+{
+  "model_kind": "opt_gpu",
+  "name": "Real DVFS calibration + real SRP Flex tags; synthetic equal-work/recovery experiment",
+  "n_steps": 9,
+  "dt_hours": 1,
+  "gpus": [
+    {
+      "id": "G0",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G1",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G2",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G3",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G4",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G5",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G6",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G7",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G8",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G9",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G10",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G11",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G12",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G13",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G14",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G15",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G16",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G17",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G18",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G19",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G20",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G21",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G22",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G23",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G24",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G25",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G26",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G27",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G28",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G29",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G30",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G31",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G32",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G33",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G34",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G35",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G36",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G37",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G38",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G39",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G40",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G41",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G42",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G43",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G44",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G45",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G46",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G47",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G48",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G49",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G50",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G51",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G52",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G53",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G54",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G55",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G56",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G57",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G58",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G59",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G60",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G61",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G62",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G63",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G64",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G65",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G66",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G67",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G68",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G69",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G70",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G71",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G72",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G73",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G74",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G75",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G76",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G77",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G78",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G79",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G80",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G81",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G82",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G83",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G84",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G85",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G86",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G87",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G88",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G89",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G90",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G91",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G92",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G93",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G94",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G95",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G96",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G97",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G98",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G99",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G100",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G101",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G102",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G103",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G104",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G105",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G106",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G107",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G108",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G109",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G110",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G111",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G112",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G113",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G114",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G115",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G116",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G117",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G118",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G119",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G120",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G121",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G122",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G123",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G124",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G125",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G126",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G127",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G128",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G129",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G130",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G131",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G132",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G133",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G134",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G135",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G136",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G137",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G138",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G139",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G140",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G141",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G142",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G143",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G144",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G145",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G146",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G147",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G148",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G149",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G150",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G151",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G152",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G153",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G154",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G155",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G156",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G157",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G158",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G159",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G160",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G161",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G162",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G163",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G164",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G165",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G166",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G167",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G168",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G169",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G170",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G171",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G172",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G173",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G174",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G175",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G176",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G177",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G178",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G179",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G180",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G181",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G182",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G183",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G184",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G185",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G186",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G187",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G188",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G189",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G190",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G191",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G192",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G193",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G194",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G195",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G196",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G197",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G198",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G199",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G200",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G201",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G202",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G203",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G204",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G205",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G206",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G207",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G208",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G209",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G210",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G211",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G212",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G213",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G214",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G215",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G216",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G217",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G218",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G219",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G220",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G221",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G222",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G223",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G224",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G225",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G226",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G227",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G228",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G229",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G230",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G231",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G232",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G233",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G234",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G235",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G236",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G237",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G238",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G239",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G240",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G241",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G242",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G243",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G244",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G245",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G246",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G247",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G248",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G249",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G250",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G251",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G252",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G253",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G254",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    },
+    {
+      "id": "G255",
+      "idle_power_w": 100,
+      "source": {
+        "kind": "EXPLICIT COUNTERFACTUAL ASSUMPTION idle100W, not author measured idle"
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "id": "ft_llama_8b_p3-c6rr6ijz",
+      "gpu_ids": [
+        "G0",
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G10",
+        "G11",
+        "G12",
+        "G13",
+        "G14",
+        "G15",
+        "G16",
+        "G17",
+        "G18",
+        "G19",
+        "G20",
+        "G21",
+        "G22",
+        "G23",
+        "G24",
+        "G25",
+        "G26",
+        "G27",
+        "G28",
+        "G29",
+        "G30",
+        "G31"
+      ],
+      "actions": [
+        {
+          "id": "cap100",
+          "cap_w": 100,
+          "power_w_per_gpu": 100.11568008463533,
+          "normalized_rate": 0.22798295454545456,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "ft_llama_8b_p3",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap200",
+          "cap_w": 200,
+          "power_w_per_gpu": 195.37413708385373,
+          "normalized_rate": 0.784090909090909,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "ft_llama_8b_p3",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap300",
+          "cap_w": 300,
+          "power_w_per_gpu": 285.5416641104498,
+          "normalized_rate": 0.9374999999999999,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "ft_llama_8b_p3",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap400",
+          "cap_w": 400,
+          "power_w_per_gpu": 343.3614077325251,
+          "normalized_rate": 1.0,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "ft_llama_8b_p3",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        }
+      ],
+      "reference_action": "cap400",
+      "baseline_rate": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "required_work_h": 6,
+      "deadline_h": 9,
+      "flex": 2,
+      "sla_windows": [
+        {
+          "start_h": 0,
+          "end_h": 6
+        }
+      ],
+      "allow_pause": true,
+      "pause_power_w_per_gpu": 100,
+      "source": {
+        "file": "SRP_exp_performance.csv",
+        "workload": "ft_llama_8b_p3",
+        "reported_measured_performance": 0.939635,
+        "required_work": "SYNTHETIC6 baseline-ganghours, recovery3h; real field job sizes/deadlines/control states NOT available",
+        "pause": "EXPLICIT100W assumption; paperp6 negligible checkpoint overhead approximation, NOT measured pause power"
+      }
+    },
+    {
+      "id": "infer_llama_8b_32g-ssac4bap",
+      "gpu_ids": [
+        "G32",
+        "G33",
+        "G34",
+        "G35",
+        "G36",
+        "G37",
+        "G38",
+        "G39",
+        "G40",
+        "G41",
+        "G42",
+        "G43",
+        "G44",
+        "G45",
+        "G46",
+        "G47",
+        "G48",
+        "G49",
+        "G50",
+        "G51",
+        "G52",
+        "G53",
+        "G54",
+        "G55",
+        "G56",
+        "G57",
+        "G58",
+        "G59",
+        "G60",
+        "G61",
+        "G62",
+        "G63"
+      ],
+      "actions": [
+        {
+          "id": "cap100",
+          "cap_w": 100,
+          "power_w_per_gpu": 97.9375,
+          "normalized_rate": 0.2252252252252252,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_32g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap200",
+          "cap_w": 200,
+          "power_w_per_gpu": 194.625,
+          "normalized_rate": 0.7807807807807806,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_32g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap300",
+          "cap_w": 300,
+          "power_w_per_gpu": 288.9375,
+          "normalized_rate": 0.9309309309309308,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_32g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap400",
+          "cap_w": 400,
+          "power_w_per_gpu": 368.375,
+          "normalized_rate": 1.0,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_32g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 32,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        }
+      ],
+      "reference_action": "cap400",
+      "baseline_rate": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "required_work_h": 6,
+      "deadline_h": 9,
+      "flex": 3,
+      "sla_windows": [
+        {
+          "start_h": 0,
+          "end_h": 6
+        }
+      ],
+      "allow_pause": true,
+      "pause_power_w_per_gpu": 100,
+      "source": {
+        "file": "SRP_exp_performance.csv",
+        "workload": "infer_llama_8b_32g",
+        "reported_measured_performance": 0.973165,
+        "required_work": "SYNTHETIC6 baseline-ganghours, recovery3h; real field job sizes/deadlines/control states NOT available",
+        "pause": "EXPLICIT100W assumption; paperp6 negligible checkpoint overhead approximation, NOT measured pause power"
+      }
+    },
+    {
+      "id": "infer_llama_8b_48g-hgfu2h87",
+      "gpu_ids": [
+        "G64",
+        "G65",
+        "G66",
+        "G67",
+        "G68",
+        "G69",
+        "G70",
+        "G71",
+        "G72",
+        "G73",
+        "G74",
+        "G75",
+        "G76",
+        "G77",
+        "G78",
+        "G79",
+        "G80",
+        "G81",
+        "G82",
+        "G83",
+        "G84",
+        "G85",
+        "G86",
+        "G87",
+        "G88",
+        "G89",
+        "G90",
+        "G91",
+        "G92",
+        "G93",
+        "G94",
+        "G95",
+        "G96",
+        "G97",
+        "G98",
+        "G99",
+        "G100",
+        "G101",
+        "G102",
+        "G103",
+        "G104",
+        "G105",
+        "G106",
+        "G107",
+        "G108",
+        "G109",
+        "G110",
+        "G111"
+      ],
+      "actions": [
+        {
+          "id": "cap100",
+          "cap_w": 100,
+          "power_w_per_gpu": 97.9375,
+          "normalized_rate": 0.2252252252252252,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap200",
+          "cap_w": 200,
+          "power_w_per_gpu": 194.625,
+          "normalized_rate": 0.7807807807807807,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap300",
+          "cap_w": 300,
+          "power_w_per_gpu": 288.9375,
+          "normalized_rate": 0.9309309309309309,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap400",
+          "cap_w": 400,
+          "power_w_per_gpu": 368.375,
+          "normalized_rate": 1.0,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        }
+      ],
+      "reference_action": "cap400",
+      "baseline_rate": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "required_work_h": 6,
+      "deadline_h": 9,
+      "flex": 1,
+      "sla_windows": [
+        {
+          "start_h": 0,
+          "end_h": 6
+        }
+      ],
+      "allow_pause": true,
+      "pause_power_w_per_gpu": 100,
+      "source": {
+        "file": "SRP_exp_performance.csv",
+        "workload": "infer_llama_8b_48g",
+        "reported_measured_performance": 1.0,
+        "required_work": "SYNTHETIC6 baseline-ganghours, recovery3h; real field job sizes/deadlines/control states NOT available",
+        "pause": "EXPLICIT100W assumption; paperp6 negligible checkpoint overhead approximation, NOT measured pause power"
+      }
+    },
+    {
+      "id": "infer_llama_8b_48g-xhganfr6",
+      "gpu_ids": [
+        "G112",
+        "G113",
+        "G114",
+        "G115",
+        "G116",
+        "G117",
+        "G118",
+        "G119",
+        "G120",
+        "G121",
+        "G122",
+        "G123",
+        "G124",
+        "G125",
+        "G126",
+        "G127",
+        "G128",
+        "G129",
+        "G130",
+        "G131",
+        "G132",
+        "G133",
+        "G134",
+        "G135",
+        "G136",
+        "G137",
+        "G138",
+        "G139",
+        "G140",
+        "G141",
+        "G142",
+        "G143",
+        "G144",
+        "G145",
+        "G146",
+        "G147",
+        "G148",
+        "G149",
+        "G150",
+        "G151",
+        "G152",
+        "G153",
+        "G154",
+        "G155",
+        "G156",
+        "G157",
+        "G158",
+        "G159"
+      ],
+      "actions": [
+        {
+          "id": "cap100",
+          "cap_w": 100,
+          "power_w_per_gpu": 97.9375,
+          "normalized_rate": 0.2252252252252252,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap200",
+          "cap_w": 200,
+          "power_w_per_gpu": 194.625,
+          "normalized_rate": 0.7807807807807807,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap300",
+          "cap_w": 300,
+          "power_w_per_gpu": 288.9375,
+          "normalized_rate": 0.9309309309309309,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap400",
+          "cap_w": 400,
+          "power_w_per_gpu": 368.375,
+          "normalized_rate": 1.0,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "infer_llama_8b_48g",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        }
+      ],
+      "reference_action": "cap400",
+      "baseline_rate": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "required_work_h": 6,
+      "deadline_h": 9,
+      "flex": 2,
+      "sla_windows": [
+        {
+          "start_h": 0,
+          "end_h": 6
+        }
+      ],
+      "allow_pause": true,
+      "pause_power_w_per_gpu": 100,
+      "source": {
+        "file": "SRP_exp_performance.csv",
+        "workload": "infer_llama_8b_48g",
+        "reported_measured_performance": 0.992455,
+        "required_work": "SYNTHETIC6 baseline-ganghours, recovery3h; real field job sizes/deadlines/control states NOT available",
+        "pause": "EXPLICIT100W assumption; paperp6 negligible checkpoint overhead approximation, NOT measured pause power"
+      }
+    },
+    {
+      "id": "pt_mpt_13b_sm-gnn16mkt",
+      "gpu_ids": [
+        "G160",
+        "G161",
+        "G162",
+        "G163",
+        "G164",
+        "G165",
+        "G166",
+        "G167",
+        "G168",
+        "G169",
+        "G170",
+        "G171",
+        "G172",
+        "G173",
+        "G174",
+        "G175",
+        "G176",
+        "G177",
+        "G178",
+        "G179",
+        "G180",
+        "G181",
+        "G182",
+        "G183",
+        "G184",
+        "G185",
+        "G186",
+        "G187",
+        "G188",
+        "G189",
+        "G190",
+        "G191",
+        "G192",
+        "G193",
+        "G194",
+        "G195",
+        "G196",
+        "G197",
+        "G198",
+        "G199",
+        "G200",
+        "G201",
+        "G202",
+        "G203",
+        "G204",
+        "G205",
+        "G206",
+        "G207"
+      ],
+      "actions": [
+        {
+          "id": "cap100",
+          "cap_w": 100,
+          "power_w_per_gpu": 102.90833825075129,
+          "normalized_rate": 0.19060773480662982,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_13b_sm",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap200",
+          "cap_w": 200,
+          "power_w_per_gpu": 195.42136293629997,
+          "normalized_rate": 0.638121546961326,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_13b_sm",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap300",
+          "cap_w": 300,
+          "power_w_per_gpu": 287.1038303741149,
+          "normalized_rate": 0.8660220994475138,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_13b_sm",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap400",
+          "cap_w": 400,
+          "power_w_per_gpu": 376.82521929554076,
+          "normalized_rate": 1.0,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_13b_sm",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        }
+      ],
+      "reference_action": "cap400",
+      "baseline_rate": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "required_work_h": 6,
+      "deadline_h": 9,
+      "flex": 3,
+      "sla_windows": [
+        {
+          "start_h": 0,
+          "end_h": 6
+        }
+      ],
+      "allow_pause": true,
+      "pause_power_w_per_gpu": 100,
+      "source": {
+        "file": "SRP_exp_performance.csv",
+        "workload": "pt_mpt_13b_sm",
+        "reported_measured_performance": 0.666923,
+        "required_work": "SYNTHETIC6 baseline-ganghours, recovery3h; real field job sizes/deadlines/control states NOT available",
+        "pause": "EXPLICIT100W assumption; paperp6 negligible checkpoint overhead approximation, NOT measured pause power"
+      }
+    },
+    {
+      "id": "pt_mpt_7b_fast-qryepi9o",
+      "gpu_ids": [
+        "G208",
+        "G209",
+        "G210",
+        "G211",
+        "G212",
+        "G213",
+        "G214",
+        "G215",
+        "G216",
+        "G217",
+        "G218",
+        "G219",
+        "G220",
+        "G221",
+        "G222",
+        "G223",
+        "G224",
+        "G225",
+        "G226",
+        "G227",
+        "G228",
+        "G229",
+        "G230",
+        "G231",
+        "G232",
+        "G233",
+        "G234",
+        "G235",
+        "G236",
+        "G237",
+        "G238",
+        "G239",
+        "G240",
+        "G241",
+        "G242",
+        "G243",
+        "G244",
+        "G245",
+        "G246",
+        "G247",
+        "G248",
+        "G249",
+        "G250",
+        "G251",
+        "G252",
+        "G253",
+        "G254",
+        "G255"
+      ],
+      "actions": [
+        {
+          "id": "cap100",
+          "cap_w": 100,
+          "power_w_per_gpu": 99.97692476996532,
+          "normalized_rate": 0.17488789237668162,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_7b_fast",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap200",
+          "cap_w": 200,
+          "power_w_per_gpu": 198.42475995395918,
+          "normalized_rate": 0.6255605381165918,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_7b_fast",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap300",
+          "cap_w": 300,
+          "power_w_per_gpu": 295.71144557869246,
+          "normalized_rate": 0.874439461883408,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_7b_fast",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        },
+        {
+          "id": "cap400",
+          "cap_w": 400,
+          "power_w_per_gpu": 387.8466524247686,
+          "normalized_rate": 1.0,
+          "source": {
+            "file": "emerald_dvfs_sweep.csv",
+            "workload": "pt_mpt_7b_fast",
+            "training_caps": [
+              100,
+              200,
+              300,
+              400
+            ],
+            "heldout_caps": [
+              250,
+              350
+            ],
+            "split": "CALIBRATION measured action",
+            "gang_size": 48,
+            "raw_throughput_unit": "unspecified in CSV; normalized only, do not invent tokens/steps units"
+          }
+        }
+      ],
+      "reference_action": "cap400",
+      "baseline_rate": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "required_work_h": 6,
+      "deadline_h": 9,
+      "flex": 3,
+      "sla_windows": [
+        {
+          "start_h": 0,
+          "end_h": 6
+        }
+      ],
+      "allow_pause": true,
+      "pause_power_w_per_gpu": 100,
+      "source": {
+        "file": "SRP_exp_performance.csv",
+        "workload": "pt_mpt_7b_fast",
+        "reported_measured_performance": 0.743277,
+        "required_work": "SYNTHETIC6 baseline-ganghours, recovery3h; real field job sizes/deadlines/control states NOT available",
+        "pause": "EXPLICIT100W assumption; paperp6 negligible checkpoint overhead approximation, NOT measured pause power"
+      }
+    }
+  ],
+  "price_usd_kwh": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "power_limit_kw": [
+    null,
+    71.13286116751173,
+    71.13286116751173,
+    71.13286116751173,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "mip_relative_gap": 0,
+  "source": {
+    "kind": "PUBLIC_FIELD_CURVES_AND_FLEX_TAGS_WITH_EXPLICIT_COUNTERFACTUAL_WORKLOAD_NOT_AUTHOR_CONTROL_REPRODUCTION",
+    "paper": "arxiv2507.00909v1",
+    "paper_evidence": "p3Flex0/1/2/3 >=100/90/75/50% average3–6h; p6proportional fairness; p7Methods; p8Table1; public author README contains detailed DVFS Fair headroom/pause/resize pseudocode, archived separately",
+    "training_caps": [
+      100,
+      200,
+      300,
+      400
+    ],
+    "heldout_caps": [
+      250,
+      350
+    ],
+    "sweep_points": 48,
+    "gpu_count": 256,
+    "raw_manifest": [
+      {
+        "file": "emerald_dvfs_sweep.csv",
+        "bytes": 3949,
+        "sha256": "65025daeb2c723019c27d05ed7da900f5800b5b5b0f957ccb23e7903b4028bd7"
+      },
+      {
+        "file": "emerald_SRP_exp_performance.csv",
+        "bytes": 314,
+        "sha256": "e82300a82851ffa8810c042c03c81e02ec3edea197b6bdd8eddfb794ce6c6817"
+      },
+      {
+        "file": "emerald_Fig345_data.xlsx",
+        "bytes": 79476,
+        "sha256": "1a454b943871af2aa6503465e58fbd6aec8b4001cee38835c860905cb6bdeef3"
+      },
+      {
+        "file": "emerald2025_paginated.txt",
+        "bytes": 47944,
+        "sha256": "9b0e8b343dc241038975dd285fcb39c1c205e3cf8c01309c14dea6aaaa40f9e8"
+      }
+    ],
+    "workload_and_idle": "SYNTHETIC demand6h+recovery3h and idle/pause100W, not original field task state",
+    "weighted_performance": "author reported .909560245, weights not established; our explicit GPUweighted/unweighted metrics NOT equated",
+    "power_boundary": "GPU subtotal, not whole DC PUE/thermal or actual hardware commands"
+  }
+}

@@ -1,0 +1,141 @@
+{
+ "ok": true,
+ "kind": "sweep",
+ "params": [
+  "dcs.*.cooling_mode"
+ ],
+ "rows": [
+  {
+   "label": "cooling_mode=风冷-冷冻水",
+   "x": [
+    "风冷-冷冻水"
+   ],
+   "raw": [
+    "air_chw"
+   ],
+   "ok": true,
+   "pue": 1.2757,
+   "wue_l_kwh": 1.6,
+   "water_m3": 6462.7,
+   "cooling_mwh": 912.17,
+   "dc_elec_mwh": 5231.4,
+   "energy_cost_cny": -3729509.0,
+   "total_cost_cny": -3767586.0,
+   "emissions_t": 2785.69,
+   "heat_delivered_mwh": 342.0,
+   "heat_cost_cny_gj": 16.6,
+   "terminal_margin_k": 18.5,
+   "boost_mwh": 0.0,
+   "heat_net_carbon_t": 91.04,
+   "heat_verdict": "可行",
+   "hp_cop": "4.85-4.85",
+   "t_src_c": 32.0,
+   "tin_max_c": 27.0,
+   "thermal_safe": true,
+   "coolant_margin_k": 99,
+   "curtail_mwh": 0.0,
+   "solve_s": 0.085,
+   "warnings": [],
+   "wall_s": 0.23
+  },
+  {
+   "label": "cooling_mode=风冷-间接蒸发冷却",
+   "x": [
+    "风冷-间接蒸发冷却"
+   ],
+   "raw": [
+    "air_iec"
+   ],
+   "ok": true,
+   "pue": 1.3021,
+   "wue_l_kwh": 0.8,
+   "water_m3": 3231.4,
+   "cooling_mwh": 1019.1,
+   "dc_elec_mwh": 5343.4,
+   "energy_cost_cny": -3711083.0,
+   "total_cost_cny": -3749159.0,
+   "emissions_t": 2839.77,
+   "heat_delivered_mwh": 342.0,
+   "heat_cost_cny_gj": 26.0,
+   "terminal_margin_k": 18.5,
+   "boost_mwh": 0.0,
+   "heat_net_carbon_t": 88.12,
+   "heat_verdict": "可行",
+   "hp_cop": "5.49-5.49",
+   "t_src_c": 36.0,
+   "tin_max_c": 27.0,
+   "thermal_safe": true,
+   "coolant_margin_k": 99,
+   "curtail_mwh": 0.0,
+   "solve_s": 0.084,
+   "warnings": [],
+   "wall_s": 0.23
+  },
+  {
+   "label": "cooling_mode=液冷-冷板",
+   "x": [
+    "液冷-冷板"
+   ],
+   "raw": [
+    "liquid_cold_plate"
+   ],
+   "ok": true,
+   "pue": 1.1424,
+   "wue_l_kwh": 0.217,
+   "water_m3": 876.0,
+   "cooling_mwh": 374.14,
+   "dc_elec_mwh": 4660.8,
+   "energy_cost_cny": -3800321.0,
+   "total_cost_cny": -3838397.0,
+   "emissions_t": 2536.12,
+   "heat_delivered_mwh": 342.0,
+   "heat_cost_cny_gj": 10.4,
+   "terminal_margin_k": 18.5,
+   "boost_mwh": 0.0,
+   "heat_net_carbon_t": 110.18,
+   "heat_verdict": "可行",
+   "hp_cop": "9.0-9.0",
+   "t_src_c": 50.0,
+   "tin_max_c": 42.0,
+   "thermal_safe": true,
+   "coolant_margin_k": 3.0,
+   "curtail_mwh": 0.0,
+   "solve_s": 0.084,
+   "warnings": [],
+   "wall_s": 0.23
+  },
+  {
+   "label": "cooling_mode=液冷-单相浸没",
+   "x": [
+    "液冷-单相浸没"
+   ],
+   "raw": [
+    "liquid_immersion"
+   ],
+   "ok": true,
+   "pue": 1.1004,
+   "wue_l_kwh": 0.047,
+   "water_m3": 190.3,
+   "cooling_mwh": 204.35,
+   "dc_elec_mwh": 4487.1,
+   "energy_cost_cny": -3896209.0,
+   "total_cost_cny": -3934285.0,
+   "emissions_t": 2383.15,
+   "heat_delivered_mwh": 342.0,
+   "heat_cost_cny_gj": 8.7,
+   "terminal_margin_k": 18.5,
+   "boost_mwh": 0.0,
+   "heat_net_carbon_t": 112.41,
+   "heat_verdict": "可行",
+   "hp_cop": "9.0-9.0",
+   "t_src_c": 55.0,
+   "tin_max_c": 45.0,
+   "thermal_safe": true,
+   "coolant_margin_k": 3.0,
+   "curtail_mwh": 0.0,
+   "solve_s": 0.084,
+   "warnings": [],
+   "wall_s": 0.23
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "completed": "2026-11-06T13:22:28.663145+08:00",
+  "full_suite": "232 passed, 311 warnings",
+  "new_foundation_tests": 31,
+  "pytest_log": "logs/product_foundation_pytest_release.log",
+  "pytest_log_sha256": "5fa1f7c185fc1868a7367b9beec59aaac94f35e20f1a05dd347ac6c25a45afdd",
+  "code_hash": "abc58da34b4374e98b06df6931a82f23f967a373ad89a6ea51cb8fd37d8cf3de",
+  "cases": "cases/product_foundation/results/workflow_validation.json",
+  "live_http": "cases/product_foundation/results/http_smoke.json",
+  "application": "http://127.0.0.1:8080",
+  "browser_ui_acceptance": "待主助手computerUse真实操作，不以静态语法/HTTP冒充UI验收"
+}

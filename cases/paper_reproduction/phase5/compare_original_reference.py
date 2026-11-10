@@ -1,0 +1,8 @@
+"""Compare independently solved original8760 procurement LPs with saved product exports.
+No app imports; prior HTTP suite independently reconstructed all exported constraints/costs.
+"""
+import pathlib,sys,json
+P=pathlib.Path(sys.argv[1]);R=pathlib.Path(sys.argv[2]);out=[]
+for key in ['riepin8760_f0','riepin8760_f40','riepin8760_f40_manuscript']:
+ p=json.loads((P/key/'summary.json').read_text());r=json.loads((R/(key+'.json')).read_text());err=p['objective']-r['objective'];rates=[x['paper_cfe_score'] for x in p['investments']];gap=max(x['max_hourly_unmatched_mwh'] for x in p['investments']);q=dict(name=key+'_independent_original8760_sparse_LP_optimum',passed=r['optimal'] and p['solver']['optimal'] and abs(err)<.05 and gap<1e-7 and p['audit']['max_physical_residual']<1e-7,source_kind=r['source_kind'],scope='original full8760 procurement same declared model, not entire background authorOPF/four configurations',product_objective_eur=p['objective'],independent_objective_eur=r['objective'],difference_eur=err,product_elapsed_s=p['solver']['total_seconds'],independent_elapsed_s=r['elapsed_s'],physical_residual_mwh=p['audit']['max_physical_residual'],max_hourly_unmatched_mwh=gap,site_paper_cfe_scores=rates,execution_code_hash=p['execution_context']['code_hash'],solver_algorithm=p['solver'].get('lp_algorithm','IPM Phase5A'),input_model_hash=p['execution_context']['input_model_hash'],independent_equality_residual=r['max_equality_residual']);out.append(q)
+(P/'original8760_independent_comparisons.json').write_text(json.dumps(out,ensure_ascii=False,indent=2));print(json.dumps(out,ensure_ascii=False,indent=2));assert all(x['passed'] for x in out)

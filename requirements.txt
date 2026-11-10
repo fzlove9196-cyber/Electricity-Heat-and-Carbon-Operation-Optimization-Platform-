@@ -1,0 +1,42 @@
+# Direct Python dependencies for sim-agent.
+# Verified with Python 3.13.5 (Debian 13 packaging host). Python 3.11+ is recommended.
+# For a fully pinned, reproducible install see requirements-lock.txt.
+#
+# CPU-only PyTorch (recommended on machines without NVIDIA GPUs):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements.txt
+#
+# Or a locked install:
+#   pip install -r requirements-lock.txt --extra-index-url https://download.pytorch.org/whl/cpu
+
+fastapi>=0.162
+uvicorn>=0.54
+python-multipart
+openai
+python-dotenv
+httpx
+pandapower==3.5.6
+pyomo>=6.10
+highspy>=1.15
+pandas
+numpy
+scipy
+matplotlib
+pydantic>=2.12
+pytest
+sentence-transformers
+torch  # CPU: pip install torch --index-url https://download.pytorch.org/whl/cpu
+jieba
+lancedb
+pyarrow
+plotly
+openpyxl
+python-docx
+pypdf
+PyYAML
+networkx
+scikit-learn
+pillow
+andes
+opendssdirect
+playwright  # optional: UI screenshot scripts under tests/screens_*.py only

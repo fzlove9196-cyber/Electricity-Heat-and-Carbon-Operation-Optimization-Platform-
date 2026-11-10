@@ -1,0 +1,287 @@
+
+                               SPECpower_ssj2008                               
+      Copyright (C) 2007-2023 Standard Performance Evaluation Corporation      
+
+
+Dell Inc. PowerEdge R7615 (AMD EPYC 9654P, 2.40 GHz)                           
+SPECpower_ssj2008 = 24,677 overall ssj_ops/watt                                
+            Test Sponsor:  Dell Inc.                                           
+          SPEC License #:  6573                                                
+               Tested By:  Dell Inc.                                           
+           Test Location:  Round Rock, TX, USA                                 
+               Test Date:  Aug 26, 2023                                        
+             Publication:  Sep 18, 2023                                        
+   Hardware Availability:  Feb-2023                                            
+   Software Availability:  Jan-2023                                            
+             Test Method:  Single Node                                         
+           System Source:  Single Supplier                                     
+      System Designation:  Server                                              
+      Power Provisioning:  Line-powered                                        
+
+
+
+
+
+                           Benchmark Results Summary                           
+
+                 Performance                  |     Power     |  Performance 
+                                              |               |   to Power   
+                                              |               |     Ratio    
+ Target Load  |  Actual Load  |    ssj_ops    |    Average    |              
+              |               |               | Active Power  |              
+              |               |               |      (W)      |              
+------------- | ------------- | ------------- | ------------- | -------------
+         100% |         99.4% |    11,229,635 |           347 |        32,382
+          90% |         90.1% |    10,178,832 |           327 |        31,108
+          80% |         80.0% |     9,038,784 |           301 |        30,039
+          70% |         70.0% |     7,911,815 |           269 |        29,364
+          60% |         60.0% |     6,778,233 |           249 |        27,173
+          50% |         50.0% |     5,646,900 |           231 |        24,497
+          40% |         40.0% |     4,521,566 |           211 |        21,470
+          30% |         29.9% |     3,383,074 |           190 |        17,827
+          20% |         20.0% |     2,258,199 |           168 |        13,439
+          10% |         10.0% |     1,127,693 |           145 |         7,758
+                  Active Idle |             0 |          77.4 |             0
+                              sum of ssj_ops / sum of power = |        24,677
+
+
+
+                               System Under Test                               
+
+
+
+                                  Set: 'sut'                                   
+
+                  Set Identifier:  sut                                         
+                 Set Description:  System Under Test                           
+            # of Identical Nodes:  1                                           
+                         Comment:  PowerEdge R7615                             
+
+                                   HARDWARE                                    
+                 Hardware Vendor:  Dell Inc.                                   
+                           Model:  PowerEdge R7615 (AMD EPYC 9654P, 2.40 GHz)  
+                     Form Factor:  2U                                          
+                        CPU Name:  AMD EPYC 9654P 2.40 GHz                     
+             CPU Characteristics:  96core, 2.40 GHz, 384 MB L3 Cache, Max Boost
+                                   Clock up to 3.55 GHz                        
+             CPU Frequency (MHz):  2400                                        
+                  CPU(s) Enabled:  96 cores, 1 chip, 96 cores/chip             
+                Hardware Threads:  192 (2 / core)                              
+                CPU(s) Orderable:  1 chip                                      
+                   Primary Cache:  32 KB I + 32 KB D on chip per core          
+                 Secondary Cache:  1 MB I+D on chip per core                   
+                  Tertiary Cache:  384 MB I+D on chip per chip, 32 MB shared / 
+                                   8 cores                                     
+                     Other Cache:  None                                        
+              Memory Amount (GB):  192                                         
+              # and size of DIMM:  12 x 16 GB                                  
+                  Memory Details:  16GB 1Rx8 PC4-4800-R running at 3600. Slots 
+                                   A1-12 populated.                            
+ Power Supply Quantity and Rating  1 x 1100                                    
+                             (W):                                              
+            Power Supply Details:  1100W Titanium Efficiency (DPN FR0KX)       
+                      Disk Drive:  1 x 960GB NVMe SSD DPN [400-BMTJ]           
+                 Disk Controller:  n/a                                         
+  # and type of Network Interface  1 x Dual-port Broadcom 5720                 
+          Cards (NICs) Installed:                                              
+  NICs Enabled in Firmware / OS /  2/2/1                                       
+                       Connected:                                              
+            Network Speed (Mbit):  1000                                        
+                        Keyboard:  None                                        
+                           Mouse:  None                                        
+                         Monitor:  None                                        
+                  Optical Drives:  No                                          
+                  Other Hardware:  None                                        
+
+                                   SOFTWARE                                    
+                Power Management:  Balanced power plan in OS (see SUT notes)   
+           Operating System (OS):  Microsoft Windows Server 2022 Datacenter    
+                      OS Version:  21H2 Build 20348.1487                       
+                      Filesystem:  NTFS                                        
+                      JVM Vendor:  Oracle                                      
+                     JVM Version:  Open JDK 64-Bit Server VM                   
+                                   Microsoft-30338(build 17.0.2+8-LTS, mixed   
+                                   mode, sharing)                              
+        JVM Command-line Options:  -server -Xms1500m -Xmx1500m -Xmn1300m       
+                                   -XX:+UseParallelGC -XX:ParallelGCThreads=2  
+                                   -XX:+UseLargePages                          
+                                   -XX:LargePageSizeInBytes=2m                 
+                                   -XX:+UseBiasedLocking                       
+                                   -XX:InlineSmallCode=1500 -XX:UseAVX=1       
+                                   -XX:AutoBoxCacheMax=20000 -XX:+OptimizeFill 
+                                   -XX:+AggressiveHeap                         
+                    JVM Affinity:  start /NODE[0-11] /AFFINITY [0xF - 0xF000]  
+                   JVM Instances:  48                                          
+           JVM Initial Heap (MB):  1500                                        
+           JVM Maximum Heap (MB):  1500                                        
+                JVM Address Bits:  64                                          
+           Boot Firmware Version:  1.4.5                                       
+     Management Firmware Version:  6.10.30.00 A00                              
+                Workload Version:  SSJ 1.2.10                                  
+               Director Location:  Controller                                  
+                  Other Software:  n/a                                         
+
+
+
+                            Boot Firmware Settings                             
+
+* Logical Processor enabled                                                    
+* L1 Stream HW Prefetcher disabled                                             
+* L2 Stream HW Prefetcher disabled                                             
+* MADT Core Enumeration set to Linear                                          
+* L3 Cache as NUMA Domain set to Enabled                                       
+* NUMA nodes per socket set to 4                                               
+* System Profile set to Custom                                                 
+* CPU Power Management set Max                                                 
+* Memory Frequency set to 3600 MHz                                             
+* Memory Patrol Scrub disabled                                                 
+* Memory Refresh Rate set to 1x                                                
+* Determinism Slider set to Power Determinism                                  
+* Efficiency Optimized Mode Enabled                                            
+* ApbDis enabled                                                               
+* ApbDis Fixed Socket P-state set to P3                                        
+* xGMI x20                                                                     
+
+
+                         Management Firmware Settings                          
+
+Minimum Power (Performance per Watt Optimized)                                 
+
+
+                            System Under Test Notes                            
+
+* Each JVM instance was bound to 4 logical processors                          
+* Using the local security settings console, "lock pages in memory" was enabled
+for the user running the benchmark                                             
+* Run initiated via Windows Remote Desktop Connection                          
+* Hard Disk set to turn off after 1 minute                                     
+* Display set to turn off after 1 minute                                       
+* SPECpower_ssj.props input.load_level.number_warehouses set to 192 due to a   
+known inconsistency in processor reporting with this Java version              
+* Power Plan Minimum processor state set to 0%                                 
+* Power Plan Maximum processor state set to 100%                               
+* Using Windows PowerShell, set the following powercfg properties:             
+* Powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMIN 0     
+* Powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMAX 100   
+* Powercfg /setacvalueindex scheme_current sub_processor PERFEPP 0             
+* Powercfg /setacvalueindex scheme_current sub_processor perfautonomous 1      
+* Powercfg /setactive scheme_current                                           
+* N/A: The test sponsor attests, as of date of publication, that CVE-2017-5754 
+(Meltdown) is mitigated in the system as tested and documented.                
+* Yes: The test sponsor attests, as of date of publication, that CVE-2017-5753 
+(Spectre variant 1) is mitigated in the system as tested and documented.       
+* Yes: The test sponsor attests, as of date of publication, that CVE-2017-5715 
+(Spectre variant 2) is mitigated in the system as tested and documented.       
+* The system ROM used for this result contains AMD AGESA version GenoaPI-SP5   
+1.0.0.7 for the AMD EPYC 9654P processor.                                      
+
+
+                               Controller System                               
+
+                                   HARDWARE                                    
+                 Hardware Vendor:  Dell Inc                                    
+                           Model:  PowerEdge R410                              
+                 CPU Description:  Intel Xeon E5620, 2.40 GHz                  
+              Memory amount (GB):  32.0                                        
+
+                                   SOFTWARE                                    
+           Operating System (OS):  Microsoft Windows Server 2008 R2 Enterprise 
+                                   Edition Service Pack 1                      
+                      JVM Vendor:  Oracle Corporation                          
+                     JVM Version:  Hotspot(TM) Client VM, version 1.8.0_121    
+                     CCS Version:  1.2.6                                       
+
+
+
+                              Measurement Devices                              
+
+                              POWER ANALYZER PWR1                              
+                 Hardware Vendor:  Yokogawa Meters and Instruments Corporation 
+                           Model:  WT210                                       
+                   Serial Number:  91J936840                                   
+                    Connectivity:  RS-232                                      
+                Input Connection:  Default                                     
+             Metrology Institute:  NIST                                        
+                   Accredited by:  TesCom                                      
+               Calibration Label:  T76419                                      
+             Date of Calibration:  25-Oct-2022                                 
+            PTDaemon Host System:  same as CCS                                 
+                PTDaemon Host OS:  same as CCS                                 
+                PTDaemon Version:  1.10.0-82175bac-20220817                    
+               Setup Description:  Connected to power supply                   
+
+                           TEMPERATURE SENSOR TEMP1                            
+                 Hardware Vendor:  Digi International Inc.                     
+                           Model:  Watchport/H                                 
+                  Driver Version:  5.10.26.0                                   
+                    Connectivity:  USB                                         
+            PTDaemon Host System:  same as CCS                                 
+                PTDaemon Host OS:  same as CCS                                 
+               Setup Description:  25 mm in front of SUT main airflow intake   
+
+
+
+                                     Notes                                     
+
+None                                                                           
+
+
+                  Aggregate Electrical and Environmental Data                  
+
+Target Load |  Average   |    Minimum   
+            |   Active   |    Ambient   
+            | Power (W)  |  Temperature 
+            |            |  (Degrees C) 
+----------- | ---------- | -------------
+       100% |        347 |          21.4
+        90% |        327 |          21.4
+        80% |        301 |          21.4
+        70% |        269 |          21.3
+        60% |        249 |          21.3
+        50% |        231 |          21.2
+        40% |        211 |          21.2
+        30% |        190 |          21.2
+        20% |        168 |          21.2
+        10% |        145 |          21.1
+Active Idle |       77.4 |          21.1
+
+      Line Standard       |     Minimum     |  Elevation (m) 
+                          |   Temperature   |                
+                          |   (Degrees C)   |                
+------------------------- | --------------- | ---------------
+208V / 60 Hz / 1 phase /  |            21.1 |             255
+         2 wires          |                 |                
+
+See the Power/Temperature Details Report                                       
+(power_ssj2008-20230829-01308-power.txt) for additional details.               
+
+
+                          Aggregate Performance Data                           
+
+   Target Load    |    Actual Load    |                ssj_ops               
+                  |                   |      Target       |      Actual      
+----------------- | ----------------- | ----------------- | -----------------
+    Calibration 1 |                   |                   |        11,455,545
+    Calibration 2 |                   |                   |        11,310,615
+    Calibration 3 |                   |                   |        11,291,913
+                                                ssj_ops@calibrated=11,301,264
+             100% |             99.4% |        11,301,264 |        11,229,635
+              90% |             90.1% |        10,171,137 |        10,178,832
+              80% |             80.0% |         9,041,011 |         9,038,784
+              70% |             70.0% |         7,910,885 |         7,911,815
+              60% |             60.0% |         6,780,758 |         6,778,233
+              50% |             50.0% |         5,650,632 |         5,646,900
+              40% |             40.0% |         4,520,505 |         4,521,566
+              30% |             29.9% |         3,390,379 |         3,383,074
+              20% |             20.0% |         2,260,253 |         2,258,199
+              10% |             10.0% |         1,130,126 |         1,127,693
+      Active Idle |                   |                 0 |                 0
+
+See the Host Performance Report                                                
+(power_ssj2008-20230829-01308.WIN-5QPKQ797D4A.txt) for additional details.     
+
+
+      Copyright (C) 2007-2023 Standard Performance Evaluation Corporation      
+                      http://www.spec.org - info@spec.org                      
+         SPECpower_ssj2008 Reporter Version: [SSJ 1.2.10, May 9, 2012]         
+

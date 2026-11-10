@@ -1,0 +1,103 @@
+{
+  "model_kind": "opt_grid_feedback",
+  "name": "SYNTHETIC stable negative LMCE at B=-2t/MWh, congestion redispatch",
+  "horizon_mode": "benchmark",
+  "start": "2020-02-29T00:00:00+00:00",
+  "slack_bus": "A",
+  "source": {
+    "kind": "SYNTHETIC; analytic independent references only"
+  },
+  "max_iterations": 3,
+  "buses": [
+    {
+      "id": "A",
+      "region": "R1",
+      "background_load_mw": [
+        0
+      ]
+    },
+    {
+      "id": "B",
+      "region": "R2",
+      "background_load_mw": [
+        29
+      ]
+    },
+    {
+      "id": "C",
+      "region": "R2",
+      "background_load_mw": [
+        0
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "id": "AB",
+      "from_bus": "A",
+      "to_bus": "B",
+      "b_mw_per_rad": 100,
+      "limit_mw": 12
+    },
+    {
+      "id": "AC",
+      "from_bus": "A",
+      "to_bus": "C",
+      "b_mw_per_rad": 100,
+      "limit_mw": 100
+    },
+    {
+      "id": "BC",
+      "from_bus": "B",
+      "to_bus": "C",
+      "b_mw_per_rad": 100,
+      "limit_mw": 100
+    }
+  ],
+  "generators": [
+    {
+      "id": "dirtyA",
+      "bus": "A",
+      "available_mw": [
+        100
+      ],
+      "cost_usd_mwh": 10,
+      "operational_tco2_mwh": 2,
+      "low_carbon": false,
+      "source": {
+        "kind": "SYNTHETIC analytic control, not paper precision"
+      }
+    },
+    {
+      "id": "cleanC",
+      "bus": "C",
+      "available_mw": [
+        100
+      ],
+      "cost_usd_mwh": 20,
+      "operational_tco2_mwh": 0,
+      "low_carbon": true,
+      "source": {
+        "kind": "SYNTHETIC analytic control, not paper precision"
+      }
+    }
+  ],
+  "sites": [
+    {
+      "id": "computeB",
+      "bus": "B",
+      "baseline_work_mw": [
+        1
+      ],
+      "capacity_work_mw": 2
+    },
+    {
+      "id": "computeC",
+      "bus": "C",
+      "baseline_work_mw": [
+        1
+      ],
+      "capacity_work_mw": 2
+    }
+  ]
+}

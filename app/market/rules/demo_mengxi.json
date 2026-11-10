@@ -1,0 +1,11 @@
+{"id": "demo_mengxi", "province": "mengxi", "label": "蒙西示范规则包【假设·非官方】", "official": false,
+ "note": "所有数值为可配置示例，未取自内蒙古电力交易中心正式规则；不得用于真实申报或收益承诺。",
+ "time_resolution_h": 1, "bid_segments_max": 3, "min_bid_mw": 1.0,
+ "price_floor_cny_mwh": 0, "price_cap_cny_mwh": 1500,
+ "da_price_factor": 1000.0, "rt_price_spread": 0.15,
+ "deviation_tolerance_pct": 5.0, "deviation_penalty_cny_mwh": 80.0,
+ "intraday_adjust_max_pct": 15.0, "intraday_gate_closure_h": 1,
+ "dr": {"baseline_method": "prior_n_days", "n_days": 3, "adjust_window_h": 2, "adjust_cap_pct": 20,
+        "comp_price_cny_mwh": 600, "valid_ratio_min": 0.7, "pay_cap_ratio": 1.5, "penalty_ratio_below": 0.4,
+        "penalty_cny_mwh": 150},
+ "diesel_allowed_market": false, "diesel_allowed_dr": false, "ups_reserve_floor_frac": 0.5}

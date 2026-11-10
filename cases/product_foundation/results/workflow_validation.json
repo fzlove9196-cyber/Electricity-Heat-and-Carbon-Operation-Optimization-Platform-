@@ -1,0 +1,222 @@
+{
+  "generated": "2026-11-06T13:13:58.118611+08:00",
+  "scope": "公开项目等值模型叠加2024-07-01公开ERA5温度；风光/任务等未绑定曲线沿原预设，不是同期现场整套数据；非真实工程数字孪生/非交易收益验证",
+  "checks": "创建项目/模板/独立场景、数据版本绑定、静态校验发布、原引擎求解、AC诊断、直接求解一致、冻结重跑、编辑写回不改历史、当时模型与结果恢复",
+  "results": [
+    {
+      "site": "zhongwei",
+      "project_id": "2a63bc41d634455d",
+      "scenario_id": "da479b7d6ba3433c",
+      "version_id": "adb108c1c13d49f0",
+      "task_id": "e15ec2a6f4624b20",
+      "task_session_id": "pfe15ec2a6f4624b20",
+      "snapshot_hash": "26eac1c431ad0adc80e2667c4b9007afef22684df62ebb18d9c9a1a52b243978",
+      "weather_resource_id": "1354cb8e225b4319",
+      "weather_sha256": "4f6e83b5a0054cde7f94819cd6dbf64109461504abe49216d0ba4b92f58e41c0",
+      "source": "https://archive-api.open-meteo.com/v1/archive?latitude=37.5&longitude=105.19&start_date=2024-01-01&end_date=2024-12-31&hourly=temperature_2m,relative_humidity_2m,wind_speed_100m,shortwave_radiation&timezone=Asia%2FShanghai",
+      "assumptions": "中卫夏季大风典型日 · 算-电-热-碳耦合（RC 热模型+动态 PUE+蓄冷罐+预冷，碳权重 1）。热参数为假设。",
+      "solver_status": "optimal",
+      "cost_cny": -2416428.7,
+      "emissions_tco2": 4650.4,
+      "thermal_safe": true,
+      "tin_range_c": [
+        18.0,
+        27.0
+      ],
+      "direct_solver_cost_error_cny": 0.02566315233707428,
+      "rerun_cost_error_cny": 0.0,
+      "ac": {
+        "ok": true,
+        "hour": 23,
+        "converged": true,
+        "vmin_pu": 0.9889623796491329,
+        "vmax_pu": 1.0274490202187405,
+        "vmin_bus": 5,
+        "max_line_loading_pct": 42.351978436232514,
+        "max_trafo_loading_pct": 37.64759904278023,
+        "max_branch_loading_pct": 42.351978436232514,
+        "dcopf_pred_loading_pct": 41.33409985583037,
+        "slack_p_mw": -408.8467457203767,
+        "ext_grid_p_mw": {
+          "西北电网(宁夏)": -408.85,
+          "华东电网(上海)": 74.87
+        },
+        "line_loading_pct": {
+          "沙坡头-天都山750": 32.0,
+          "光伏站-沙坡头330(π接)": 42.4,
+          "光伏站-塞上330(π接)": 12.6,
+          "直供110kV-开关站A(2回)": 40.0,
+          "直供110kV-开关站B(2回)": 40.0
+        },
+        "bus_vm_pu": {
+          "沙坡头750kV": 1.02,
+          "天都山750kV": 1.0274,
+          "塞上330kV": 1.0012,
+          "大唐光伏升压站330kV": 1.0042,
+          "光伏直供110kV母线": 0.9935,
+          "110kV开关站A": 0.989,
+          "110kV开关站B": 0.989,
+          "风电330kV升压站(3座等值)": 1.0274,
+          "存量DC 110kV": 0.9905,
+          "沙坡头330kV侧": 1.0155,
+          "上海DC 110kV(华东)": 1.0
+        },
+        "line_p_from_mw": {
+          "沙坡头-天都山750": -783.54,
+          "光伏站-沙坡头330(π接)": -372.96,
+          "光伏站-塞上330(π接)": 109.42,
+          "直供110kV-开关站A(2回)": 100.04,
+          "直供110kV-开关站B(2回)": 100.04
+        },
+        "trafo_p_hv_mw": {
+          "沙坡头750/330": 374.7,
+          "天都山750/330(风电)": -785.07,
+          "光伏站330/110": 263.55,
+          "塞上330/110(存量DC)": 109.3
+        },
+        "trafo_loading_pct": {
+          "沙坡头750/330": 12.9,
+          "天都山750/330(风电)": 34.9,
+          "光伏站330/110": 37.6,
+          "塞上330/110(存量DC)": 31.6
+        },
+        "losses_mw": 4.996,
+        "voltage_ok": true,
+        "loading_ok": true
+      },
+      "version_unchanged": true,
+      "edit_writeback_and_task_restore": true
+    },
+    {
+      "site": "shaoguan",
+      "project_id": "61ba1875ee034ad2",
+      "scenario_id": "8aecfabc3f2042fd",
+      "version_id": "398cef6493ae45c1",
+      "task_id": "a1307c759fb64673",
+      "task_session_id": "pfa1307c759fb64673",
+      "snapshot_hash": "cc64c8b66509eb1869b9bdb8b25ed7d5d9f2efd75148e0b645f693a98ce76b3f",
+      "weather_resource_id": "bb506340c79047e6",
+      "weather_sha256": "db8fc9a8c0de7c9c958bca58bc358098f780dd0024c87b9ed70f10951dd347e8",
+      "source": "https://archive-api.open-meteo.com/v1/archive?latitude=24.8&longitude=113.6&start_date=2024-01-01&end_date=2024-12-31&hourly=temperature_2m,relative_humidity_2m,wind_speed_100m,shortwave_radiation&timezone=Asia%2FShanghai",
+      "assumptions": "韶关集群·华南数谷（冷板液冷+风冷，水电+光伏）（气象日 2024-07-16，summer_typical）",
+      "solver_status": "optimal",
+      "cost_cny": 517556.0,
+      "emissions_tco2": 957.28,
+      "thermal_safe": true,
+      "tin_range_c": [
+        20.27,
+        42.0
+      ],
+      "direct_solver_cost_error_cny": 0.04847905150381848,
+      "rerun_cost_error_cny": 0.0,
+      "ac": {
+        "ok": true,
+        "hour": 8,
+        "converged": true,
+        "vmin_pu": 1.00143167533456,
+        "vmax_pu": 1.0222151905554193,
+        "vmin_bus": 4,
+        "max_line_loading_pct": 62.61894301209438,
+        "max_trafo_loading_pct": 42.69112676032506,
+        "max_branch_loading_pct": 62.61894301209438,
+        "dcopf_pred_loading_pct": 64.00020144563338,
+        "slack_p_mw": 0.7732830985440273,
+        "ext_grid_p_mw": {
+          "省网": 0.77
+        },
+        "line_loading_pct": {
+          "公网联络线 220kV": 22.9,
+          "绿电专线 220kV": 62.6
+        },
+        "bus_vm_pu": {
+          "省网 220kV": 1.02,
+          "新能源/电源汇集站 220kV": 1.0222,
+          "园区 220kV 站": 1.0172,
+          "华南数谷_液冷 110kV": 1.0039,
+          "华南数谷_风冷 110kV": 1.0014
+        },
+        "line_p_from_mw": {
+          "公网联络线 220kV": 0.77,
+          "绿电专线 220kV": 126.72
+        },
+        "trafo_p_hv_mw": {
+          "华南数谷_液冷 220/110kV": 22.37,
+          "华南数谷_风冷 220/110kV": 104.51
+        },
+        "trafo_loading_pct": {
+          "华南数谷_液冷 220/110kV": 36.5,
+          "华南数谷_风冷 220/110kV": 42.7
+        },
+        "losses_mw": 0.773,
+        "voltage_ok": true,
+        "loading_ok": true
+      },
+      "version_unchanged": true,
+      "edit_writeback_and_task_restore": true
+    },
+    {
+      "site": "ulanqab",
+      "project_id": "7b0d673311ae4a1e",
+      "scenario_id": "8603f85c7d4941db",
+      "version_id": "7878fbd853bb440c",
+      "task_id": "5bbe51e2704844d6",
+      "task_session_id": "pf5bbe51e2704844d6",
+      "snapshot_hash": "1966e6af53c8968eaf26f7cf7568321775607182bd5e29e6ef38da6116e9e152",
+      "weather_resource_id": "f1c092674e5a468d",
+      "weather_sha256": "e41a4caba341c4f996dfb4f0fcd4158bcfc51fec543a6173bcbbdb9fec0a7e0f",
+      "source": "https://archive-api.open-meteo.com/v1/archive?latitude=41.03&longitude=113.13&start_date=2024-01-01&end_date=2024-12-31&hourly=temperature_2m,relative_humidity_2m,wind_speed_100m,shortwave_radiation&timezone=Asia%2FShanghai",
+      "assumptions": "中金数据乌兰察布 源网荷储一体化（风200+光100+储45MW）（气象日 2024-07-13，summer_typical）",
+      "solver_status": "optimal",
+      "cost_cny": 1798831.1,
+      "emissions_tco2": 4170.51,
+      "thermal_safe": true,
+      "tin_range_c": [
+        18.0,
+        32.0
+      ],
+      "direct_solver_cost_error_cny": 0.03784037893638015,
+      "rerun_cost_error_cny": 0.0,
+      "ac": {
+        "ok": true,
+        "hour": 14,
+        "converged": true,
+        "vmin_pu": 0.9928972042496563,
+        "vmax_pu": 1.02,
+        "vmin_bus": 3,
+        "max_line_loading_pct": 77.20721195969874,
+        "max_trafo_loading_pct": 41.35230660674431,
+        "max_branch_loading_pct": 77.20721195969874,
+        "dcopf_pred_loading_pct": 74.27789036013677,
+        "slack_p_mw": 326.7377704011461,
+        "ext_grid_p_mw": {
+          "省网": 326.74
+        },
+        "line_loading_pct": {
+          "公网联络线 220kV": 77.2,
+          "绿电专线 220kV": 18.5
+        },
+        "bus_vm_pu": {
+          "省网 220kV": 1.02,
+          "新能源/电源汇集站 220kV": 1.0113,
+          "园区 220kV 站": 1.0083,
+          "中金_乌兰察布 110kV": 0.9929
+        },
+        "line_p_from_mw": {
+          "公网联络线 220kV": 326.74,
+          "绿电专线 220kV": 61.42
+        },
+        "trafo_p_hv_mw": {
+          "中金_乌兰察布 220/110kV": 341.75
+        },
+        "trafo_loading_pct": {
+          "中金_乌兰察布 220/110kV": 41.4
+        },
+        "losses_mw": 1.846,
+        "voltage_ok": true,
+        "loading_ok": true
+      },
+      "version_unchanged": true,
+      "edit_writeback_and_task_restore": true
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "name": "Phase4 cancellation resets all progress (SYNTHETIC)",
+  "note": "明确合成守恒控制，不作为论文精度；RC隐式欧拉/每小时损失转指数保持",
+  "network_case": "custom",
+  "network": {
+    "buses": [
+      {
+        "name": "site",
+        "vn_kv": 100
+      }
+    ],
+    "ext_grids": [
+      {
+        "bus": 0,
+        "import_max_mw": 100
+      }
+    ]
+  },
+  "price_cny_kwh": [
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001,
+    0.001
+  ],
+  "grid_markup_cny_mwh": 0,
+  "data_centers": [
+    {
+      "name": "DC",
+      "bus": 0,
+      "cap_it_mw": 1,
+      "pue": 1,
+      "interactive_mw": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "batch_mwh": 0
+    }
+  ],
+  "pv": [],
+  "storage": [],
+  "pv_curtail_penalty": 0,
+  "carbon_factor": 0.4,
+  "carbon_shape": "flat",
+  "lifecycle_enabled": true,
+  "lifecycle_embodied_t_per_year": 87.6,
+  "outdoor_temp_c": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+  ],
+  "jobs": [
+    {
+      "id": "job",
+      "dc": "DC",
+      "release": 0,
+      "deadline": 6,
+      "energy_mwh": 3,
+      "max_mw": 1,
+      "execution_mode": "continuous",
+      "duration_h": 3,
+      "required": true,
+      "source": "合成整数/能量流区分反例；非Azure样本",
+      "initial_progress_h": 1,
+      "allow_restart": true,
+      "restart_delay_h": 1,
+      "cancellation_penalty_cny": 7
+    }
+  ]
+}

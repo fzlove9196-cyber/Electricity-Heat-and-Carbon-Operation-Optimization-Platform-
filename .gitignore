@@ -1,0 +1,62 @@
+# Secrets and local config — never commit
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+secrets*
+credentials*
+data/settings.json
+
+# Virtual environments
+.venv/
+venv/
+env/
+sdco-env/
+
+# Python / test caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Runtime / generated
+logs/
+*.pid
+artifacts/
+!artifacts/.gitkeep
+data/foundation.sqlite3
+data/knowledge.db
+data/sessions/
+data/lancedb/
+data/market/
+data/docs/
+node_modules/
+
+# Optional local download (GitHub file size limit 100MB; this file is ~167MB)
+cases/public_bench/raw/bdg2_electricity_cleaned.csv
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+*.bak
+*.bak_tier
+
+# Hugging Face / model caches if downloaded into the tree
+.cache/

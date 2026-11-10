@@ -1,0 +1,11 @@
+preset,case,error,总成本 元,外网购电 MWh,外送 MWh,新能源利用 MWh,新能源占比 %,弃电 MWh,碳排放 tCO2,数据中心用电 MWh,最大支路负载率 %,迁移 MWh,ac_converged,ac_vmin,ac_max_load,ppa_cny,demand_cny
+qinghai_hainan_clean100_winter,baseline,,-763924.0,0.0,9369.0,3275.1,100.0,0.0,0.0,2106.0,50.6,0.0,True,1.0077,46.8218,745729.0,0.0
+qinghai_hainan_clean100_winter,optimized,,-777678.0,0.0,9351.6,3275.1,100.0,0.0,0.0,2106.0,56.2,37.7,True,1.0008,57.7671,745729.0,0.0
+qinghai_hainan_grid_summer,baseline,,-1737162.0,0.0,15687.9,4093.9,100.0,0.0,0.0,2106.0,56.4,0.0,True,1.0077,46.8218,932190.0,0.0
+qinghai_hainan_grid_summer,optimized,,-1750916.0,0.0,15670.5,4093.9,100.0,0.0,0.0,2106.0,56.4,37.7,True,1.0008,57.7671,932190.0,0.0
+qinghai_hainan_grid_winter,baseline,,-763924.0,0.0,9369.0,3275.1,100.0,0.0,0.0,2106.0,50.6,0.0,True,1.0077,28.8015,745729.0,0.0
+qinghai_hainan_grid_winter,optimized,,-777678.0,0.0,9351.6,3275.1,100.0,0.0,0.0,2106.0,56.2,37.7,True,1.0008,57.7671,745729.0,0.0
+qinghai_hainan_offgrid_summer,baseline,,16046.0,0.0,0.0,615.7,100.0,142.3,0.0,810.0,57.7,0.0,True,0.8844,61.8383,0.0,0.0
+qinghai_hainan_offgrid_summer,optimized,,6906.0,0.0,0.0,732.4,100.0,25.6,0.0,810.0,57.7,0.0,True,0.8595,63.2605,0.0,0.0
+qinghai_hainan_offgrid_winter,baseline,LP 求解失败: infeasible（检查容量/批处理量/线路约束是否过紧；存在无外网孤岛（离网微网），低风光时段电源/储能可能不足）,,,,,,,,,,,,,,,
+qinghai_hainan_offgrid_winter,optimized,,11783.0,0.0,0.0,625.6,100.0,16.8,0.0,810.0,63.9,0.0,True,0.8354,71.776,0.0,0.0

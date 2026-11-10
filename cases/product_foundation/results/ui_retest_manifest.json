@@ -1,0 +1,37 @@
+{
+  "created": "2026-11-06T13:34:50.313766+08:00",
+  "project_id": "99101d7b2cb243cd",
+  "project_name": "UI复验-绑定修复-20261106-1336",
+  "template_id": "6ece340cebd044fe",
+  "selected_public_resource": {
+    "id": "1354cb8e225b4319",
+    "name": "公开气象·中卫·2024-07-01",
+    "revision": 1,
+    "axis": {
+      "location": "中卫",
+      "year": 2024,
+      "timezone": "Asia/Shanghai",
+      "start": "2024-07-01T00:00:00+08:00",
+      "step_minutes": 60,
+      "length": 24
+    }
+  },
+  "old_example_id": "a3d7b665e1c14ba7",
+  "binding_retest": {
+    "scenario_id": "4a5f775f1a014e1b",
+    "name": "01-气象替换待操作（示例→中卫）",
+    "published_v1": "27a077eee08a4846",
+    "old_task_id": "dc2c5ee7690e481c",
+    "initial_revision": 2
+  },
+  "edit_retest": {
+    "scenario_id": "fc9f7df8b1c74ca7",
+    "name": "02-编辑写回与结果过期（中卫已匹配）",
+    "published_v1": "4a48f8155fb943e5",
+    "old_task_id": "3370411c685746be",
+    "initial_revision": 2,
+    "device": "DC_A",
+    "old_pue": 1.35,
+    "test_pue": 1.4
+  }
+}

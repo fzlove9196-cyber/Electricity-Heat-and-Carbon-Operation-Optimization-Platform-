@@ -1,0 +1,277 @@
+
+                               SPECpower_ssj2008                               
+      Copyright (C) 2007-2024 Standard Performance Evaluation Corporation      
+
+
+Lenovo Global Technology Think System SR645 V3                                 
+SPECpower_ssj2008 = 34,402 overall ssj_ops/watt                                
+            Test Sponsor:  Lenovo Global Technology                            
+          SPEC License #:  9017                                                
+               Tested By:  Lenovo Global Technology                            
+           Test Location:  Beijing, China                                      
+               Test Date:  Sep 18, 2024                                        
+             Publication:  Oct 10, 2024                                        
+   Hardware Availability:  Nov-2024                                            
+   Software Availability:  Sep-2024                                            
+             Test Method:  Single Node                                         
+           System Source:  Single Supplier                                     
+      System Designation:  Server                                              
+      Power Provisioning:  Line-powered                                        
+
+
+
+
+
+                           Benchmark Results Summary                           
+
+                 Performance                  |     Power     |  Performance 
+                                              |               |   to Power   
+                                              |               |     Ratio    
+ Target Load  |  Actual Load  |    ssj_ops    |    Average    |              
+              |               |               | Active Power  |              
+              |               |               |      (W)      |              
+------------- | ------------- | ------------- | ------------- | -------------
+         100% |         99.8% |    32,402,358 |           751 |        43,127
+          90% |         90.0% |    29,228,964 |           675 |        43,272
+          80% |         80.0% |    25,968,872 |           625 |        41,520
+          70% |         70.0% |    22,740,274 |           579 |        39,286
+          60% |         60.0% |    19,476,476 |           531 |        36,654
+          50% |         50.0% |    16,228,477 |           482 |        33,637
+          40% |         40.0% |    12,991,857 |           433 |        29,992
+          30% |         30.0% |     9,743,935 |           383 |        25,471
+          20% |         20.0% |     6,497,575 |           329 |        19,726
+          10% |         10.0% |     3,252,682 |           273 |        11,904
+                  Active Idle |             0 |           126 |             0
+                              sum of ssj_ops / sum of power = |        34,402
+
+
+
+                               System Under Test                               
+
+
+
+                                  Set: 'sut'                                   
+
+                  Set Identifier:  sut                                         
+                 Set Description:  System Under Test                           
+            # of Identical Nodes:  1                                           
+                         Comment:  'SUT'                                       
+
+                                   HARDWARE                                    
+                 Hardware Vendor:  Lenovo Global Technology                    
+                           Model:  Think System SR645 V3                       
+                     Form Factor:  1U                                          
+                        CPU Name:  AMD EPYC 9655 2.60 GHz                      
+             CPU Characteristics:  96-Core,2.60GHz 384MB L3 Cache              
+             CPU Frequency (MHz):  2600                                        
+                  CPU(s) Enabled:  192 cores, 2 chips, 96 cores/chip           
+                Hardware Threads:  384 (2 / core)                              
+                CPU(s) Orderable:  1,2 chips                                   
+                   Primary Cache:  32 KB I + 48 KB D on chip per core          
+                 Secondary Cache:  1 MB I+D on chip per core                   
+                  Tertiary Cache:  384 MB I+D on chip per chip                 
+                     Other Cache:  None                                        
+              Memory Amount (GB):  384                                         
+              # and size of DIMM:  24 x 16 GB                                  
+                  Memory Details:  16GB 1Rx8 PC5-6400-RD1; slots 1 to 24       
+                                   populated                                   
+ Power Supply Quantity and Rating  1 x 1100                                    
+                             (W):                                              
+            Power Supply Details:  Lenovo P/N:4P57A72666                       
+                      Disk Drive:  1 x 240GB M.2 SSD P/N:4XB7A82286 M.2 Module 
+                                   P/N:4Y37A09738                              
+                 Disk Controller:  Integrated SATA controller                  
+  # and type of Network Interface  1 x ThinkSystem 10/25GbE 2-Port Ethernet    
+          Cards (NICs) Installed:  Adapter P/N:4XC7A08238                      
+  NICs Enabled in Firmware / OS /  2/2/1                                       
+                       Connected:                                              
+            Network Speed (Mbit):  10000                                       
+                        Keyboard:  None                                        
+                           Mouse:  None                                        
+                         Monitor:  None                                        
+                  Optical Drives:  No                                          
+                  Other Hardware:  None                                        
+
+                                   SOFTWARE                                    
+                Power Management:  Enabled (see SUT Notes)                     
+           Operating System (OS):  Microsoft Windows Server 2022 Datacenter    
+                      OS Version:  Version 21H2(OS Build 20348.2700)           
+                      Filesystem:  NTFS                                        
+                      JVM Vendor:  Oracle Corporation                          
+                     JVM Version:  Java HotSpot(TM) 64-Bit Server VM (build    
+                                   17.0.10+11-LTS-240, mixed mode, sharing),   
+                                   version 17.0.10                             
+        JVM Command-line Options:  -server -Xmn1900m -Xms2048m -Xmx2048m       
+                                   -XX:ParallelGCThreads=2 -XX:+UseLargePages  
+                                   -XX:InlineSmallCode=1500                    
+                                   -XX:AutoBoxCacheMax=20000 -XX:+UseParallelGC
+                                   -XX:FreqInlineSize=2500                     
+                                   -XX:CompileThresholdScaling=210             
+                    JVM Affinity:  start /NODE [0-23] /AFFINITY                
+                                   [0xF,0xF0,0xF00,0xF000]                     
+                   JVM Instances:  96                                          
+           JVM Initial Heap (MB):  2048                                        
+           JVM Maximum Heap (MB):  2048                                        
+                JVM Address Bits:  64                                          
+           Boot Firmware Version:  KAE125W                                     
+     Management Firmware Version:  KAX341H                                     
+                Workload Version:  SSJ 1.2.10                                  
+               Director Location:  Controller                                  
+                  Other Software:  KB5042881                                   
+
+
+
+                            Boot Firmware Settings                             
+
+* Choose Operating Mode: Custom Mode                                           
+* NUMA nodes per socket: NPS4                                                  
+* ACPI SRAT L3 Cache as NUMA Domain: Enable                                    
+* Memory Speed: 4800MHz                                                        
+* BoostFmax:Manual                                                             
+* BoostFmax:2750                                                               
+* L1 Stream HW Prefetcher: Disable                                             
+* L2 Stream HW Prefetcher: Disable                                             
+* PCIe Gen Speed Selection: Gen1                                               
+
+
+                         Management Firmware Settings                          
+
+None                                                                           
+
+
+                            System Under Test Notes                            
+
+* Benchmark started via Windows Remote Desktop Connection                      
+* Using the local security settings console, "lock pages in memory" was enabled
+for the user running the benchmark                                             
+* Balanced mode                                                                
+* Hard Disk set to turn off after 1 minute                                     
+* Display set to turn off after 1 minute                                       
+* Minimum processor state set to 0%.                                           
+* Maximum processor state set to 100%.                                         
+* System cooling policy set to passive.                                        
+* PCIE power management set to maximum power saving.                           
+* Using Windows PowerShell, set the following powercfg properties:             
+* Powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMIN 0     
+* Powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMAX 100   
+* Powercfg /setacvalueindex scheme_current sub_processor PERFEPP 0             
+* Powercfg /setacvalueindex scheme_current sub_processor perfautonomous 1      
+* Powercfg /setactive scheme_current                                           
+* Each JVM instance was bound to 4 logical processors                          
+* The system ROM used for this result contains AMD AGESA version               
+0E21000B00000000 for the AMD EPYC 9655 processor                               
+
+
+                               Controller System                               
+
+                                   HARDWARE                                    
+                 Hardware Vendor:  Lenovo Global Technology                    
+                           Model:  ThinkSystem SR650                           
+                 CPU Description:  2 x Intel Xeon Gold 5218                    
+              Memory amount (GB):  768                                         
+
+                                   SOFTWARE                                    
+           Operating System (OS):  Microsoft Windows Server 2019 DataCenter -  
+                                   Version 1809 (OS Build 17763.2268)          
+                      JVM Vendor:  Oracle Corporation                          
+                     JVM Version:  Oracle Java HotSpot(TM) 64-Bit Server VM    
+                                   (build 24.80-b11, mixed mode), version      
+                                   1.7.0_80                                    
+                     CCS Version:  1.2.6                                       
+
+
+
+                              Measurement Devices                              
+
+                              POWER ANALYZER PWR1                              
+                 Hardware Vendor:  YOKOGAWA, Inc.                              
+                           Model:  WT310E                                      
+                   Serial Number:  C3UD17024E                                  
+                    Connectivity:  USB                                         
+                Input Connection:  Default                                     
+             Metrology Institute:  China National Accreditation Service for    
+                                   Conformity Assessment (CNAS)                
+                   Accredited by:  GRG METROLOGY & TEST (BEIJING) CO.,LTD.     
+               Calibration Label:  J202308266858A-0006                         
+             Date of Calibration:  16-Oct-2023                                 
+            PTDaemon Host System:  same as CCS                                 
+                PTDaemon Host OS:  same as CCS                                 
+                PTDaemon Version:  1.11.0-a4047d62-20231205                    
+               Setup Description:  Connected to PSU 1                          
+
+                           TEMPERATURE SENSOR TEMP1                            
+                 Hardware Vendor:  Digi International, Inc.                    
+                           Model:  Watchport/H                                 
+                  Driver Version:  5.70.105.0                                  
+                    Connectivity:  USB                                         
+            PTDaemon Host System:  same as CCS                                 
+                PTDaemon Host OS:  same as CCS                                 
+               Setup Description:  50 mm in front of SUT main intake           
+
+
+
+                                     Notes                                     
+
+* SPECpower_ssj.props input.load_level.number_warehouses set to 384 due to a   
+known inconsistency in processor reporting with this Java version.             
+
+
+                  Aggregate Electrical and Environmental Data                  
+
+Target Load |  Average   |    Minimum   
+            |   Active   |    Ambient   
+            | Power (W)  |  Temperature 
+            |            |  (Degrees C) 
+----------- | ---------- | -------------
+       100% |        751 |          22.9
+        90% |        675 |          22.9
+        80% |        625 |          22.9
+        70% |        579 |          22.9
+        60% |        531 |          22.9
+        50% |        482 |          22.8
+        40% |        433 |          22.8
+        30% |        383 |          22.7
+        20% |        329 |          22.6
+        10% |        273 |          22.6
+Active Idle |        126 |          22.6
+
+      Line Standard       |     Minimum     |  Elevation (m) 
+                          |   Temperature   |                
+                          |   (Degrees C)   |                
+------------------------- | --------------- | ---------------
+220V / 50 Hz / 1 phase /  |            22.6 |              43
+         2 wires          |                 |                
+
+See the Power/Temperature Details Report                                       
+(power_ssj2008-20240923-01457-power.txt) for additional details.               
+
+
+                          Aggregate Performance Data                           
+
+   Target Load    |    Actual Load    |                ssj_ops               
+                  |                   |      Target       |      Actual      
+----------------- | ----------------- | ----------------- | -----------------
+    Calibration 1 |                   |                   |        31,746,211
+    Calibration 2 |                   |                   |        32,411,296
+    Calibration 3 |                   |                   |        32,549,671
+                                                ssj_ops@calibrated=32,480,484
+             100% |             99.8% |        32,480,484 |        32,402,358
+              90% |             90.0% |        29,232,435 |        29,228,964
+              80% |             80.0% |        25,984,387 |        25,968,872
+              70% |             70.0% |        22,736,339 |        22,740,274
+              60% |             60.0% |        19,488,290 |        19,476,476
+              50% |             50.0% |        16,240,242 |        16,228,477
+              40% |             40.0% |        12,992,193 |        12,991,857
+              30% |             30.0% |         9,744,145 |         9,743,935
+              20% |             20.0% |         6,496,097 |         6,497,575
+              10% |             10.0% |         3,248,048 |         3,252,682
+      Active Idle |                   |                 0 |                 0
+
+See the Host Performance Report                                                
+(power_ssj2008-20240923-01457.WIN-86FEQPF270A.txt) for additional details.     
+
+
+      Copyright (C) 2007-2024 Standard Performance Evaluation Corporation      
+                      http://www.spec.org - info@spec.org                      
+         SPECpower_ssj2008 Reporter Version: [SSJ 1.2.10, May 9, 2012]         
+

@@ -1,0 +1,96 @@
+[
+ {
+  "case": "zhongwei",
+  "rule": "demo_ningxia",
+  "n_resources": 10,
+  "excluded": [
+   "SH_EAST",
+   "SH_EAST_UPS",
+   "SH_EAST_DG"
+  ],
+  "da_feasible": true,
+  "da_warnings": [],
+  "energy_mwh": 6561.333,
+  "net_cost_cny": 2272156.79,
+  "cf_cost_cny": 2482643.92,
+  "saving_cny": 210487.13,
+  "saving_pct": 8.478,
+  "abs_dev_mwh": 143.627,
+  "abs_dev_pct": 2.202,
+  "dev_penalty_cny": 5052.06,
+  "cf_dev_penalty_cny": 4530.47,
+  "dr_mw": 6.4,
+  "dr_ratio": 1.2976,
+  "dr_payment_cny": 11159.2,
+  "tickets": [
+   "ess"
+  ],
+  "rmse_mw": 0.0,
+  "thermal_ok": true,
+  "max_temp_c": {},
+  "max_rate_k_h": 0
+ },
+ {
+  "case": "ulanqab",
+  "rule": "demo_mengxi",
+  "n_resources": 4,
+  "excluded": [],
+  "da_feasible": true,
+  "da_warnings": [],
+  "energy_mwh": 3361.234,
+  "net_cost_cny": 985952.85,
+  "cf_cost_cny": 1172933.47,
+  "saving_cny": 186980.62,
+  "saving_pct": 15.941,
+  "abs_dev_mwh": 56.338,
+  "abs_dev_pct": 1.669,
+  "dev_penalty_cny": 236.08,
+  "cf_dev_penalty_cny": 286.02,
+  "dr_mw": 4.3,
+  "dr_ratio": 0.8728,
+  "dr_payment_cny": 4503.9,
+  "tickets": [
+   "cooling",
+   "ess",
+   "ups"
+  ],
+  "rmse_mw": 0.47,
+  "thermal_ok": true,
+  "max_temp_c": {
+   "世纪互联_乌兰察布": 25.35
+  },
+  "max_rate_k_h": 2.028
+ },
+ {
+  "case": "shaoguan",
+  "rule": "demo_guangdong",
+  "n_resources": 6,
+  "excluded": [],
+  "da_feasible": true,
+  "da_warnings": [
+   "华南数谷_液冷 批处理 96.0 MWh 超出热安全可容纳 95.9"
+  ],
+  "energy_mwh": 2196.541,
+  "net_cost_cny": 1310649.55,
+  "cf_cost_cny": 1443703.46,
+  "saving_cny": 133053.91,
+  "saving_pct": 9.216,
+  "abs_dev_mwh": 37.888,
+  "abs_dev_pct": 1.722,
+  "dev_penalty_cny": 198.5,
+  "cf_dev_penalty_cny": 1386.58,
+  "dr_mw": 1.9,
+  "dr_ratio": 1.0937,
+  "dr_payment_cny": 5452.95,
+  "tickets": [
+   "cooling"
+  ],
+  "rmse_mw": 0.306,
+  "thermal_ok": true,
+  "max_temp_c": {
+   "华南数谷_液冷": 41.8,
+   "华南数谷_风冷": 26.362
+  },
+  "max_rate_k_h": 1.796
+ }
+]

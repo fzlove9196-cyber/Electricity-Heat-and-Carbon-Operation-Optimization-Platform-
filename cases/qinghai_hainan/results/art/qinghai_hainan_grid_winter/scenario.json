@@ -1,0 +1,394 @@
+{
+  "name": "qinghai_hainan_grid_winter",
+  "synthetic": false,
+  "note": "青海海南州 水光互补 + 100%清洁能源数据中心。规模来自公开报道；水电电量/DC 拆分/价格/网络为假设，见 sources。",
+  "network_case": "custom",
+  "network": {
+    "buses": [
+      {
+        "name": "青海主网330kV(海南州)",
+        "vn_kv": 330.0
+      },
+      {
+        "name": "龙羊峡水电站330kV开关站",
+        "vn_kv": 330.0
+      },
+      {
+        "name": "塔拉滩光伏330kV升压站",
+        "vn_kv": 330.0
+      },
+      {
+        "name": "共和330kV变电站",
+        "vn_kv": 330.0
+      },
+      {
+        "name": "大数据产业园110kV",
+        "vn_kv": 110.0
+      },
+      {
+        "name": "华为DC 110kV",
+        "vn_kv": 110.0
+      }
+    ],
+    "lines": [
+      {
+        "name": "光伏-龙羊峡330kV(48km)",
+        "from_bus": 2,
+        "to_bus": 1,
+        "length_km": 48.0,
+        "r_ohm_per_km": 0.04,
+        "x_ohm_per_km": 0.31,
+        "c_nf_per_km": 11.5,
+        "rating_mva": 1000.0,
+        "parallel": 1
+      },
+      {
+        "name": "龙羊峡-主网330kV送出(多回等值)",
+        "from_bus": 1,
+        "to_bus": 0,
+        "length_km": 60.0,
+        "r_ohm_per_km": 0.04,
+        "x_ohm_per_km": 0.31,
+        "c_nf_per_km": 11.5,
+        "rating_mva": 900.0,
+        "parallel": 3
+      },
+      {
+        "name": "主网-共和330kV",
+        "from_bus": 0,
+        "to_bus": 3,
+        "length_km": 30.0,
+        "r_ohm_per_km": 0.04,
+        "x_ohm_per_km": 0.31,
+        "c_nf_per_km": 11.5,
+        "rating_mva": 600.0,
+        "parallel": 1
+      }
+    ],
+    "trafos": [
+      {
+        "name": "共和330/110kV#1",
+        "hv_bus": 3,
+        "lv_bus": 4,
+        "sn_mva": 240.0,
+        "vk_percent": 12.0,
+        "vkr_percent": 0.3,
+        "parallel": 1
+      },
+      {
+        "name": "共和330/110kV#2",
+        "hv_bus": 3,
+        "lv_bus": 5,
+        "sn_mva": 120.0,
+        "vk_percent": 12.0,
+        "vkr_percent": 0.3,
+        "parallel": 1
+      }
+    ],
+    "ext_grids": [
+      {
+        "bus": 0,
+        "name": "青海电网(含青豫直流外送)",
+        "vm_pu": 1.02,
+        "import_max_mw": 10000.0,
+        "price_cny_kwh": [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.42,
+          0.42,
+          0.18,
+          0.18,
+          0.18,
+          0.18,
+          0.18,
+          0.18,
+          0.18,
+          0.18,
+          0.3,
+          0.42,
+          0.42,
+          0.42,
+          0.42,
+          0.42,
+          0.3
+        ],
+        "export_max_mw": 2200.0,
+        "export_price_cny_kwh": [
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277,
+          0.2277
+        ],
+        "demand_charge_cny_mw_day": 0.0
+      }
+    ],
+    "gens": [
+      {
+        "name": "龙羊峡水电128万kW",
+        "bus": 1,
+        "kind": "hydro",
+        "pmax_mw": 1280.0,
+        "pmin_mw": 256.0,
+        "cost_cny_mwh": 50.0,
+        "emission_t_mwh": 0.0,
+        "energy_mwh_day": 8200.0,
+        "vm_pu": 1.02
+      }
+    ],
+    "loads": [],
+    "note": "等值网络（假设）"
+  },
+  "sources": {
+    "龙羊峡水电4×32万kW=128万kW、多年调节水库；光伏85万kW 经330kV线路(约36~48km)接入水电站、年发电约14.94亿kWh、送出线路利用小时4621→5019h": "http://www.qhnews.com/newscenter/system/2021/06/21/013405876.shtml ; https://www.china5e.com/energy/news-913758-1.html",
+    "海南州大数据产业园：全国首个100%清洁能源运营DC、规划10万机架/年耗电57亿kWh、实测PUE<1.4（华为一期）": "https://e.huawei.com/cn/news/ebg/2020/the-first-clean-energy-operation-data-center-in-china-launched-in-qinghai ; https://digitalpower.huawei.com/cn/cases/data-center-facility/hainan-prefecturep-clean-energy-data-center",
+    "在用在建8个DC、机架31149架、PUE<1.2、年清洁能源发电400亿kWh": "http://qh.news.cn/2023-05/23/c_1129638386.htm",
+    "园区已建DC PUE稳定在1.2以下、7个大型DC在用在建、中电万界智算1606架/2500P": "https://www.hainanzhou.gov.cn/xwzx/hnyw/content_1013652677",
+    "青海0.1567 kgCO2/kWh（2022省级）": "https://www.mee.gov.cn/xxgk2018/xxgk/xxgk01/202412/t20241226_1099413.html",
+    "假设": "水电日可用电量（按送出通道5019h扣除光伏≈3900h×128万kW/365≈13.7GWh/日，枯水日取60%）、水电最小出力20%（生态流量）、水电成本50元/MWh；DC 负荷：31149架×6kW×50%≈93MW IT，拆分华为海南州DC(30MW峰)+园区等值DC(85MW峰)；PUE1.2；青海分时电价(0.42/0.30/0.18)、上网0.2277元/kWh；离网微网规模均为假设"
+  },
+  "hours": 24,
+  "price_kind": "qinghai_tou_assumed",
+  "price_cny_kwh": [
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.42,
+    0.42,
+    0.18,
+    0.18,
+    0.18,
+    0.18,
+    0.18,
+    0.18,
+    0.18,
+    0.18,
+    0.3,
+    0.42,
+    0.42,
+    0.42,
+    0.42,
+    0.42,
+    0.3
+  ],
+  "grid_markup_cny_mwh": 0.0,
+  "data_centers": [
+    {
+      "name": "华为海南州DC",
+      "bus": 5,
+      "cap_it_mw": 25.0,
+      "pue": 1.2,
+      "interactive_mw": [
+        15.45,
+        15.233,
+        15.0,
+        14.767,
+        14.55,
+        14.364,
+        14.221,
+        14.131,
+        14.1,
+        14.131,
+        14.221,
+        14.364,
+        14.55,
+        14.767,
+        15.0,
+        15.233,
+        15.45,
+        15.636,
+        15.779,
+        15.869,
+        15.9,
+        15.869,
+        15.779,
+        15.636
+      ],
+      "batch_mwh": 120.0,
+      "pf_q_ratio": 0.25
+    },
+    {
+      "name": "海南州园区DC(等值)",
+      "bus": 4,
+      "cap_it_mw": 70.83,
+      "pue": 1.2,
+      "interactive_mw": [
+        38.303,
+        37.765,
+        37.188,
+        36.61,
+        36.072,
+        35.61,
+        35.255,
+        35.032,
+        34.956,
+        35.032,
+        35.255,
+        35.61,
+        36.072,
+        36.61,
+        37.188,
+        37.765,
+        38.303,
+        38.765,
+        39.12,
+        39.343,
+        39.419,
+        39.343,
+        39.12,
+        38.765
+      ],
+      "batch_mwh": 382.5,
+      "pf_q_ratio": 0.25
+    }
+  ],
+  "storage": [
+    {
+      "name": "ESS_HNZ(共享储能,假设)",
+      "bus": 4,
+      "energy_mwh": 200.0,
+      "power_mw": 50.0,
+      "eta_ch": 0.95,
+      "eta_dis": 0.95,
+      "soc0": 0.5,
+      "soc_min": 0.1,
+      "soc_max": 0.95
+    }
+  ],
+  "pv": [
+    {
+      "bus": 2,
+      "cap_mw": 850.0,
+      "profile": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0943,
+        0.2736,
+        0.4262,
+        0.5371,
+        0.5953,
+        0.5953,
+        0.5371,
+        0.4262,
+        0.2736,
+        0.0943,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "kind": "pv",
+      "name": "龙羊峡水光互补光伏85万kW",
+      "ppa_price_cny_kwh": 0.2277,
+      "ppa_take_or_pay": true
+    }
+  ],
+  "mig_max_mw": 15.0,
+  "mig_day_share": 0.4,
+  "pv_curtail_penalty": 30.0,
+  "gen_cost": [
+    420.0,
+    480.0,
+    600.0,
+    650.0
+  ],
+  "gen_min_share": 0.25,
+  "load_scale": 1.0,
+  "carbon_factor": 0.1567,
+  "carbon_shape": "flat",
+  "carbon_profiles": {
+    "qinghai": [
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567,
+      0.1567
+    ]
+  },
+  "bus_region": {
+    "0": "qinghai",
+    "1": "qinghai",
+    "2": "qinghai",
+    "3": "qinghai",
+    "4": "qinghai",
+    "5": "qinghai"
+  },
+  "carbon_source": "MEE 2022 省级（flat）",
+  "carbon_price_cny_t": 80.0,
+  "carbon_weight": 0.0,
+  "carbon_accounting": "generation",
+  "gen_emission_t_mwh": [
+    0.85,
+    0.85,
+    0.45,
+    0.45
+  ],
+  "jobs": [],
+  "links": [
+    {
+      "a": "华为海南州DC",
+      "b": "海南州园区DC(等值)",
+      "latency_ms": 1.0,
+      "bw_mw": 15.0
+    }
+  ],
+  "mig_energy_mwh_per_mwh": 0.0,
+  "unserved_penalty_cny_mwh": 20000.0,
+  "min_green_share": null,
+  "layout": {}
+}

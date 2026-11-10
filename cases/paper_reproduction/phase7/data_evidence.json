@@ -1,0 +1,180 @@
+{
+  "raw_sources": [
+    {
+      "file": "emerald_dvfs_sweep.csv",
+      "bytes": 3949,
+      "sha256": "65025daeb2c723019c27d05ed7da900f5800b5b5b0f957ccb23e7903b4028bd7"
+    },
+    {
+      "file": "emerald_SRP_exp_performance.csv",
+      "bytes": 314,
+      "sha256": "e82300a82851ffa8810c042c03c81e02ec3edea197b6bdd8eddfb794ce6c6817"
+    },
+    {
+      "file": "emerald_Fig345_data.xlsx",
+      "bytes": 79476,
+      "sha256": "1a454b943871af2aa6503465e58fbd6aec8b4001cee38835c860905cb6bdeef3"
+    },
+    {
+      "file": "emerald2025_paginated.txt",
+      "bytes": 47944,
+      "sha256": "9b0e8b343dc241038975dd285fcb39c1c205e3cf8c01309c14dea6aaaa40f9e8"
+    }
+  ],
+  "train_caps": [
+    100,
+    200,
+    300,
+    400
+  ],
+  "heldout_caps": [
+    250,
+    350
+  ],
+  "calibration_points": 32,
+  "heldout_points": 16,
+  "holdout": [
+    {
+      "workload": "ft_llama_8b_dolly",
+      "cap_w": 250,
+      "predicted_power_w": 242.21142425384434,
+      "measured_power_w": 244.12121825500438,
+      "predicted_rate": 0.8788732394366198,
+      "measured_rate": 0.9042253521126762
+    },
+    {
+      "workload": "ft_llama_8b_dolly",
+      "cap_w": 350,
+      "predicted_power_w": 316.9759706505176,
+      "measured_power_w": 320.6174361125655,
+      "predicted_rate": 0.9753521126760564,
+      "measured_rate": 0.9802816901408451
+    },
+    {
+      "workload": "ft_llama_8b_p3",
+      "cap_w": 250,
+      "predicted_power_w": 240.45790059715176,
+      "measured_power_w": 239.8239191269841,
+      "predicted_rate": 0.8607954545454544,
+      "measured_rate": 0.8778409090909091
+    },
+    {
+      "workload": "ft_llama_8b_p3",
+      "cap_w": 350,
+      "predicted_power_w": 314.45153592148745,
+      "measured_power_w": 317.0761557148546,
+      "predicted_rate": 0.96875,
+      "measured_rate": 0.9673295454545454
+    },
+    {
+      "workload": "infer_llama_8b_48g",
+      "cap_w": 250,
+      "predicted_power_w": 241.78125,
+      "measured_power_w": 241.75,
+      "predicted_rate": 0.8558558558558558,
+      "measured_rate": 0.8708708708708708
+    },
+    {
+      "workload": "infer_llama_8b_48g",
+      "cap_w": 350,
+      "predicted_power_w": 328.65625,
+      "measured_power_w": 332.875,
+      "predicted_rate": 0.9654654654654655,
+      "measured_rate": 0.975975975975976
+    },
+    {
+      "workload": "infer_llama_8b_32g",
+      "cap_w": 250,
+      "predicted_power_w": 241.78125,
+      "measured_power_w": 241.75,
+      "predicted_rate": 0.8558558558558558,
+      "measured_rate": 0.8708708708708708
+    },
+    {
+      "workload": "infer_llama_8b_32g",
+      "cap_w": 350,
+      "predicted_power_w": 328.65625,
+      "measured_power_w": 332.875,
+      "predicted_rate": 0.9654654654654654,
+      "measured_rate": 0.975975975975976
+    },
+    {
+      "workload": "infer_llama_8b",
+      "cap_w": 250,
+      "predicted_power_w": 241.8242789583333,
+      "measured_power_w": 241.8006221354167,
+      "predicted_rate": 0.8558558558558558,
+      "measured_rate": 0.8708708708708708
+    },
+    {
+      "workload": "infer_llama_8b",
+      "cap_w": 350,
+      "predicted_power_w": 328.670021328125,
+      "measured_power_w": 332.9056502604167,
+      "predicted_rate": 0.9654654654654654,
+      "measured_rate": 0.975975975975976
+    },
+    {
+      "workload": "pt_mpt_13b_lg",
+      "cap_w": 250,
+      "predicted_power_w": 243.66254246703068,
+      "measured_power_w": 244.7432102429776,
+      "predicted_rate": 0.7415730337078652,
+      "measured_rate": 0.7808988764044943
+    },
+    {
+      "workload": "pt_mpt_13b_lg",
+      "cap_w": 350,
+      "predicted_power_w": 336.4457536045767,
+      "measured_power_w": 337.09944106375883,
+      "predicted_rate": 0.9297752808988764,
+      "measured_rate": 0.9213483146067415
+    },
+    {
+      "workload": "pt_mpt_13b_sm",
+      "cap_w": 250,
+      "predicted_power_w": 241.26259665520746,
+      "measured_power_w": 243.1787103441022,
+      "predicted_rate": 0.7520718232044199,
+      "measured_rate": 0.7831491712707183
+    },
+    {
+      "workload": "pt_mpt_13b_sm",
+      "cap_w": 350,
+      "predicted_power_w": 331.96452483482784,
+      "measured_power_w": 330.9657277272788,
+      "predicted_rate": 0.9330110497237569,
+      "measured_rate": 0.9116022099447514
+    },
+    {
+      "workload": "pt_mpt_7b_fast",
+      "cap_w": 250,
+      "predicted_power_w": 247.0681027663258,
+      "measured_power_w": 247.46579923211175,
+      "predicted_rate": 0.75,
+      "measured_rate": 0.7869955156950672
+    },
+    {
+      "workload": "pt_mpt_7b_fast",
+      "cap_w": 350,
+      "predicted_power_w": 341.7790490017305,
+      "measured_power_w": 343.28519556584683,
+      "predicted_rate": 0.9372197309417041,
+      "measured_rate": 0.9349775784753362
+    }
+  ],
+  "power_rmse_w": 2.32416370938452,
+  "normalized_rate_rmse": 0.019972999213951157,
+  "fig5": {
+    "n_actual_aligned": 400,
+    "n_prediction_points": 37,
+    "distinct_prediction_times": 37,
+    "actual_mean_w": 71463.4181012031,
+    "linear_nrmse": 0.06443016728383498,
+    "previous_hold_nrmse": 0.04729093331295375,
+    "scope": "Explicit no-extrapolation time alignment, linear vs previous-hold sensitivity; interpolation protocol not established; NOT all33 experiments or our controller prediction"
+  },
+  "srp_author_weighted": 0.909560245,
+  "srp_explicit_gpu_weighted": 0.8770978125,
+  "weights_unestablished": true
+}

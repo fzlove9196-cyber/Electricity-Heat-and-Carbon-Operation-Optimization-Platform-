@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>算电协同仿真智能体</title><link rel="stylesheet" href="/static/style.css?v=1793944000"><script src="/static/vendor/marked.min.js"></script><script src="/static/vendor/echarts.min.js"></script><script src="/static/model_viz.js?v=2026110703"></script><link rel="stylesheet" href="/static/vendor/katex/katex.min.css"><script src="/static/vendor/katex/katex.min.js"></script></head>
+<body>
+<aside id="side">
+  <div class="brand">⚡ 算电协同仿真智能体</div>
+  <p class="brand-sub">对话驱动的研究 / 仿真工作台</p>
+  <div class="nav-search"><input id="navSearch" type="search" placeholder="🔍 搜索功能 (Ctrl+K)" autocomplete="off" aria-label="搜索功能菜单"><div id="navSearchRes" class="ns-res hidden"></div></div>
+  <nav id="iaNav" aria-label="功能导航">
+    <div class="nav-d" data-domain="build"><div class="nav-g">① 资源与建模</div>
+      <a data-view="foundation">📁 项目与场景</a><a data-view="templates">🧱 基础模板库</a><a data-view="resources">🗃 数据与设备模型库</a>
+      <a data-view="config" title="从零构建配置 / 散热方式 / 对比扫描 / 余热可行性">🧪 配置构建器</a>
+      <a data-view="model" title="查看与编辑模型拓扑、能流（与会话共享）">🗺 模型拓扑 / 能流</a>
+      <details class="nav-adv"><summary>高级</summary><a data-view="scenario" title="高级：完整场景 JSON 表单">🧩 场景表单 (JSON)</a></details></div>
+    <div class="nav-d" data-domain="sim"><div class="nav-g">② 仿真优化 · 对话主线</div>
+      <a data-view="tasks">▶ 版本化仿真任务</a>
+      <a data-view="chat" class="active" title="对话为主 + 六步透明工作流">🧭 仿真工作台</a>
+      <a class="nav-sub" data-jump="chat:params" title="② 输入参数：单位与来源">↳ 参数透明核对</a>
+      <a class="nav-sub" data-jump="chat:solver" title="④ 求解配置与数学模型（透明模型）">↳ 透明模型 / 数学表述</a>
+      <a class="nav-sub" data-jump="chat:research" title="研究模式：问题卡/计划/证据结论">↳ 🔬 研究模式</a></div>
+    <div class="nav-d" data-domain="tier"><div class="nav-g">③ 三级运行</div>
+      <a data-view="tier" title="日前基线 → 日内滚动 → 实时跟踪 · 可行域 · UPS/柴发 · 应急">⏱ 三级优化运行</a></div>
+    <div class="nav-d" data-domain="ops"><div class="nav-g">④ 电力交易运营 · P0</div>
+      <a data-view="market" title="P0 运营沙盘：聚合台账/申报/日内/实时/DR/结算/审计（非真实交易）">💹 运营工作台</a></div>
+    <div class="nav-d" data-domain="review"><div class="nav-g">⑤ 结果复盘</div><a href="/paper-reproduction">🔎 原文案例 / 福利与生命周期审计</a>
+      <a class="nav-sub0" data-jump="chat:results" title="⑥ KPI、基线对比、收益归因、局限">📊 结果与分析</a>
+      <a class="nav-sub0" data-jump="chat:run" title="⑤ 每步动作、用时、求解状态、交流校核">🧾 运行日志与校核</a></div>
+    <div class="nav-d" data-domain="kit"><div class="nav-g">⑥ 知识 · 工具 · 设置</div>
+      <a data-view="kb" title="上传文档，对话自动检索">📚 知识库</a>
+      <a data-view="cards" title="可复用的任务技能卡">🧠 技能卡</a>
+      <a data-jump="help" title="在线使用帮助：快速上手、参数配置手册、常见问题（F1）">❓ 使用帮助</a>
+      <details class="nav-adv"><summary>高级与配置</summary><a data-view="sims" title="仿真器状态与已注册工具">🛠 仿真器 / 工具</a><a data-view="settings" title="LLM 设置">⚙️ 设置</a></details></div>
+  </nav>
+  <div class="sess-head"><span>会话</span><button id="newSess" class="sm">＋ 新会话</button></div>
+  <ul id="sessList"></ul>
+  <div id="modeBadge" class="badge"></div>
+</aside>
+<button id="menuBtn" type="button" aria-label="打开菜单">☰</button>
+<main>
+<header id="topbar"><nav id="domBar" class="dom-bar" aria-label="业务域"></nav>
+  <div id="pfContext" class="pf-context"></div><div id="pfMsg" role="status" aria-live="polite"></div><div id="crumb" class="crumb" aria-live="polite"></div><div id="subBar" class="sub-bar"></div><button type="button" id="helpTopBtn" class="help-top-btn" title="使用帮助：打开当前功能的说明（F1 / Shift+?）">❓ 帮助</button></header>
+<section id="v-foundation" class="view">
+ <h2>项目与场景 · 建模起点</h2>
+ <p class="hint">① 建项目 → ② 复制基础模板 → ③ 配置设备/拓扑/数据 → ④ 校验发布 → ⑤ 选择版本创建仿真任务。对话与配置构建器依然可用，编辑副本需明确写回草稿。</p>
+ <div data-pf-panel="foundation">
+ <div class="pf-grid"><article class="card"><h3>1 · 项目与资料</h3><div class="row"><input id="pfProjectName" placeholder="项目名称，例如中卫园区"><button id="pfCreateProject">创建项目</button></div><p class="hint">资料引用 documents 可填写标题/URL/知识库文档ID；pending 记录待确认内容。PDF不会自动可靠生成拓扑。</p><textarea id="pfProjectInfo" rows="7" class="mono" aria-label="项目资料JSON"></textarea><button id="pfSaveProject" class="ghost">保存项目名称与资料引用</button></article>
+ <article class="card"><h3>2 · 创建独立场景</h3><input id="pfSceneName" placeholder="场景名称，例如方案A·夏季"><p><select id="pfTemplate" aria-label="基础模板"></select></p><details><summary>新建场景时间轴（现有场景修改请用草稿JSON或绑定区明确对齐）</summary><textarea id="pfAxis" rows="7" class="mono" aria-label="场景时间轴"></textarea></details><div class="row"><button id="pfCreateScene">从模板新建</button><button id="pfCopyScene" class="ghost">复制所选已发布版本</button></div><div class="row"><select id="pfCfePreset" aria-label="年度CFE公开原输入"></select><button id="pfCfeCreate" class="ghost">新建年度CFE独立场景</button></div><div class="row"><select id="pfGpuPreset" aria-label="离散GPU公开曲线/显式控制输入"></select><button id="pfGpuCreate" class="ghost">新建GPU离散控制独立场景</button></div><p class="hint">GPU模式：固定校准gang、离散功率帽/暂停、同工作deadline、Flex窗口吞吐；闲置/恢复能量入账。不是整DC PUE/热安全，作者Fair公开语义仅作DVFS-headroom离散实现；加权公式不杜撰。独立配置→保存发布→冻结→逐GPU/任务审计ZIP。</p><div class="row"><select id="pfGridPreset" aria-label="内生电网反馈公开输入"></select><button id="pfGridCreate" class="ghost">新建电网反馈独立场景</button></div><p class="hint">电网反馈：正常项目独立模式，基态ISO→四信号→工作调度→真实再出清；仅UTC1h、≤168h明示原输入子集或合成边界，不冒充8784h整篇。不得绑定日资源/AC/整数/GPU。非收敛和增排结果会保留。</p><p class="hint">年度CFE：正常项目→高级JSON→保存/校验→发布→冻结任务→年度结果/ZIP；完整UTC年8760/8784×1h，全年共享容量。与原24h日模型分工明确；不支持日资源绑定/拓扑签出/15min/AC/三级运行，后台会拒绝混用。部分CFE目标为年累计分数，逐时下限须另选hourly_cfe_floor。</p><div class="row"><button id="pfImportSession" class="ghost">将当前旧会话导入为场景</button><label>导入结构化场景JSON <input type="file" id="pfJsonImport" accept=".json"></label></div></article></div>
+ <article class="card"><h3>3 · 场景草稿与模型编辑</h3><p id="pfRevision"></p><div class="row"><button id="pfCheckout">签出草稿 → 拓扑/配置编辑</button><button id="pfSaveSession" class="ghost">当前会话模型 → 写回场景草稿</button></div><p class="hint">写回会话会实体化当前参数并解除草稿绑定，防止绑定覆盖手动修改；来源仍保留在历史版本。编辑器可修改连接/参数/时间轴/绑定/待确认项。支持1h/15min，连续整数任务需在jobs中显式execution_mode=continuous、duration_h、required、allow_restart与initial_progress_h；取消损失及逐步状态在结果审计/ZIP。15min或整数模式暂不支持三级滚动/VCC。展开不会改写历史，仍须保存并发布新版本。</p><fieldset id="pfGpuConfig" hidden><legend>离散GPU独立模式（仅写编辑器，保存发布生效）</legend><div class="row"><label>目标/策略<select id="pfGpuPolicy"><option value="energy_cost">完整时域能量费用</option><option value="fair_minimax">明确变体：先minimax归一化Flex损耗，再最小费用</option><option value="author_dvfs_headroom_discrete">作者公开伪代码：DVFS功率headroom公平（离散实现）</option></select></label><label>MIP相对gap<input id="pfGpuGap" type="number" min="0" max=".01" step=".00001"></label><label><input id="pfGpuValidation" type="checkbox">留出验证不满足则真实failed</label><button id="pfGpuApply" class="ghost">写入GPU配置到编辑器</button><button id="pfGpu15" class="ghost">相同阶梯输入明确细化15min</button></div><p class="hint">每GPU闲置W、暂停W、gang动作cap W/归一化吞吐、原始工作h、release/deadline、3–6h SLA窗口及功率预算见JSON。Flex0不改参考帽/不暂停，1/2/3≥90/75/50%；公平可选自定义吞吐minimax变体或作者公开README的DVFS功率headroom公平离散实现；不是作者混合暂停精确轨迹。禁止混入日PUE/热网络/重设GPU数做线性假设。</p></fieldset><fieldset id="pfGridConfig" hidden><legend>独立电网反馈实验（先写入编辑器，再保存/发布）</legend><div class="row"><label>展示信号<select id="pfGridSignal"><option>lmce</option><option>lmp</option><option>average</option><option>excess</option></select></label><label>最多迭代<input id="pfGridIterations" type="number" min="1" max="8"></label><label>FD步长MW<input id="pfGridFD" type="number" min="0.000001" step=".01"></label><label>LMCE方法<select id="pfGridMethod"><option value="forward_fd">正向FD（同时审计负向/半步/活跃基）</option><option value="validated_basis">仅FD验证稳定的活跃基</option></select></label><label>不稳定策略<select id="pfGridUnstable"><option value="fail">显式失败</option><option value="allow_directional">明确接受方向导数实验</option></select></label><label><input id="pfGridRequire" type="checkbox">任一信号非固定点则任务failed</label><button id="pfGridApply" class="ghost">写入反馈配置到编辑器</button></div><p class="hint">四信号均从每次真实成本出清计算，不接收固定外部LMCE；ISO碳价USD/t、PUE、容量、线路MW/rad、费用和排放源在JSON。默认strict不稳定失败；方向导数实验不是全局碳最优。年度/CFE/运行碳默认口径不改。</p></fieldset><fieldset id="pfCfeConfig" hidden><legend>独立年度CFE模式（仅写入草稿编辑器，保存/发布后生效）</legend><div class="row"><label>匹配 <select id="pfCfeMatching"><option value="paper_cfe_score">论文式2/7：年累计小时清洁分数</option><option value="hourly_cfe_floor">严格逐小时清洁份额下限</option><option value="annual_res_share">年RES发电份额（不等于24/7）</option></select></label><label>目标0~1 <input id="pfCfeTarget" type="number" min="0" max="1" step=".01"></label><label>负荷弹性0~1 <input id="pfCfeFlex" type="number" min="0" max="1" step=".01"></label><label><input id="pfCfeSpatial" type="checkbox">空间虚拟迁移</label><label><input id="pfCfeTemporal" type="checkbox">按源UTC日守恒DSM</label><label>超额弃售上限/原年负荷 <input id="pfCfeExcess" type="number" min="0" max="1" step=".01"></label><button id="pfCfeApply" class="ghost">写入年度参数到编辑器</button></div><p class="hint">完整风光8760/8784剖面、各站原负荷/外网价格与CFE因子、币种、气象/规划年、地域额外性、资产年化容量费用与充放效率见下方JSON。默认全周期cyclic双来源SOC，全年容量一次投资；本模式只允许1h；价格/CFE为外生输入，不是LMCE。</p></fieldset><details><summary>完整草稿JSON（高级）</summary><textarea id="pfDraft" rows="20" class="mono" aria-label="场景草稿JSON"></textarea></details><div class="row"><button id="pfExpand15" class="ghost">显式展开为15分钟草稿</button><label>迁移次目标 <select id="pfCleanup"><option value="off">关闭（兼容默认）</option><option value="lexicographic_gross">锁主目标后最小gross</option></select></label><button id="pfSetCleanup" class="ghost">写入编辑器</button><button id="pfSaveDraft">保存编辑器草稿</button><button id="pfValidateDraft" class="ghost">校验与展开</button><button id="pfPublish">发布不可变版本</button></div></article>
+ <article class="card"><h3>4 · 绑定通用数据与设备版本</h3><p class="hint">气象/电价/碳作用于场景公共信号；负荷必须选择数据中心；设备模型必须选对应设备。库新增版本不会自动改变这里的绑定。同类已有绑定不会自动覆盖，请用“替换同类绑定”；只选下拉框不会保存。删除仍可用草稿JSON完成。</p><div class="row"><select id="pfResourcePick" aria-label="资源版本"></select><select id="pfTargetPick" aria-label="绑定目标"></select><button id="pfBind">新增绑定并校验</button><button id="pfBindReplace" class="ghost">替换同类绑定并校验</button></div><p><label><input type="checkbox" id="pfAlignAxis">同时按所选数据设置草稿时间轴（明确确认后才更新；其他绑定冲突会整体拒绝）</label></p><pre id="pfBindingPreview" class="pf-binding-preview"></pre><div id="pfBindingMsg" role="status" aria-live="polite"></div><h4>已保存绑定（不是选择预览）</h4><ul id="pfBindRows"></ul></article>
+ <article class="card"><h3>5 · 发布历史与模板沉淀</h3><table class="tbl"><thead><tr><th>版本</th><th>发布时间（北京时间）</th><th>输入摘要</th><th>告警</th></tr></thead><tbody id="pfVersions"></tbody></table><div class="row"><input id="pfTemplateName" placeholder="模板名称"><button id="pfSaveTemplate" class="ghost">所选已发布模型 → 保存为新模板</button><button onclick="show('tasks')">下一步：版本化仿真任务 →</button></div></article>
+ </div>
+</section>
+<section id="v-templates" class="view"><div data-pf-panel="templates"><h2>基础模板库</h2><p>模板是参考结构，不是唯一接线，也不是原工程完整模型。复制后场景独立修改，模板不可覆盖；新建场景使用项目页填写的名称和时间轴。</p><div id="pfTemplateCards" class="pf-grid"></div></div></section>
+<section id="v-resources" class="view"><div data-pf-panel="resources"><h2>通用数据与设备模型库</h2><p>维护来源、单位、适用工况和确定版本；支持24点气象/电价/碳/交互负荷，以及数据中心、储能性能参数。数据中心分段功率曲线用 pdu_breakpoints；热性能用 thermal 参数。所有示例明确标注合成，不能作为现场数据。</p><table class="tbl"><thead><tr><th>名称（点击查看）</th><th>类型·版本</th><th>单位</th><th>来源</th><th>适用工况</th></tr></thead><tbody id="pfLibraryList"></tbody></table><h3>新增版本 / 复制修订</h3><div class="row"><select id="pfResourceKind" aria-label="资源类型"><option value="weather">气象</option><option value="price">电价</option><option value="carbon">碳因子</option><option value="load">负荷</option><option value="device">设备模型</option></select><button id="pfResourceExample" class="ghost">填入明确示例</button></div><textarea id="pfLibraryJson" rows="19" class="mono" aria-label="通用资源JSON"></textarea><button id="pfLibrarySave">新增不可变资源版本</button></div></section>
+<section id="v-tasks" class="view"><div data-pf-panel="tasks"><h2>仿真任务与输入追溯</h2><p>使用顶部所选已发布场景版本，不读取当前会话和未保存草稿。日模型调用 Pyomo + HiGHS 联合调度与可选 pandapower 校核；opt_cfe另用完整年度采购LP/专用结果，不进入24h/AC/三级运行。完整输入、绑定内容与哈希、代码/求解器标识随任务冻结。纯碳/多目标仍使用原寻优工作台，不将大权重加权冒充纯碳最优。</p><div class="row"><input id="pfTaskName" placeholder="任务名称"><label>目标 <select id="pfObjective"><option value="cost">运行成本最优</option><option value="weighted_carbon">成本 + 加权碳成本</option><option value="welfare">福利出清（显式任务报价）</option></select></label><label>碳权重 <input id="pfCarbonWeight" type="number" min="0" value="1" style="width:75px"></label><label>求解器软限时(秒) <input id="pfTimeLimit" type="number" min="1" max="600" value="120" style="width:80px"></label><label><input id="pfAC" type="checkbox" checked>交流校核</label><button id="pfTaskCreate">创建冻结任务</button></div><p id="pfSolverGate" class="hint" aria-live="polite">Pyomo执行域：读取状态中…</p><p class="hint">日/年度/VCC/三级Pyomo的建模→映射→求解→加载按FIFO排队，避免共享变量收集器串扰。running可包含等待执行域；排队单独审计，不计求解器软限时；错误不自动换算法/重试/生成伪结果。</p><table class="tbl"><thead><tr><th>任务</th><th>版本</th><th>状态</th><th>成本</th><th>创建时间（北京时间）</th></tr></thead><tbody id="pfTaskList"></tbody></table><p id="pfTaskSelection" class="hint"></p><div class="row"><button id="pfTaskRun" disabled>运行所选任务</button><button id="pfTaskOpen" disabled>查看当时模型与结果</button><button id="pfTaskRerun" class="ghost" disabled>按原快照创建重跑</button><button id="pfTaskExport" class="ghost">下载任务/输入/结果JSON</button></div><article id="pfCfeResults" class="card" hidden></article><article id="pfGridResults" class="card" hidden></article><article id="pfGpuResults" class="card" hidden></article><details open><summary>冻结输入、来源、求解信息与结果（全年数组仅预览长度，完整见ZIP）</summary><pre id="pfTaskDetail" class="pf-detail"></pre></details></div></section>
+
+<section id="v-market" class="view">
+  <h2>💹 运营工作台（沙盘 · P0）</h2>
+  <p id="mkInfo" class="hint"></p>
+  <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    组合 <select id="mkCase"><option value="zhongwei">中卫（宁夏示范规则）</option><option value="ulanqab">乌兰察布（蒙西示范规则）</option><option value="shaoguan">韶关（广东示范规则）</option></select>
+    seed <input id="mkSeed" value="7" size="3"> 操作人 <input id="mkActor" value="reviewer2" size="8">
+    <button id="mkRun">▶ 运行 日前→日内→实时→DR→结算 闭环</button>
+    <label class="hint">导入价格CSV(hour,price) <input type="file" id="mkPriceFile" accept=".csv"></label>
+  </div>
+  <div id="mkMsg"></div>
+  <div id="mkCap"></div><div id="mkKpi"></div><div id="mkChart" style="height:320px"></div>
+  <div id="mkRt"></div><div id="mkSt"></div><h4>申报台账与审批（草稿→审核→沙盘出清→结算；真实外部下单不可执行）</h4><div id="mkBids"></div>
+  <h4>审计记录</h4><div id="mkAudit"></div>
+</section>
+<section id="v-chat" class="view active">
+  <div id="statusBar" class="status-bar" role="status" aria-live="polite">
+    <span id="statusDot" class="sdot idle"></span>
+    <span id="statusText">就绪 — 用中文描述问题即可开始</span>
+    <button type="button" id="helpTip" class="help-btn" title="快捷提示（不会打断操作）">?</button>
+  </div>
+  <div id="helpPop" class="help-pop hidden" role="dialog" aria-label="使用提示">
+    <button type="button" class="help-close" id="helpClose" aria-label="关闭">×</button>
+    <h4>上手要点</h4>
+    <ul>
+      <li><b>对话是主路径</b>：描述需求 → 智能体建模 → 你在右侧核对参数 → 求解并解释。</li>
+      <li><b>🔬 研究模式</b>：勾选后适合“值不值 / 最优方案 / 为什么”类问题；会走问题卡→澄清→计划→证据结论。</li>
+      <li><b>参数透明</b>：右侧 ② 输入参数显示单位与来源（用户指定 / 智能体推断 / 默认值 / 公开资料）。</li>
+      <li><b>键盘</b>：Enter 发送，Shift+Enter 换行；Ctrl+/ 聚焦输入框；Esc 关闭本提示；F1 打开当前功能帮助。</li>
+    </ul>
+    <p><button type="button" id="helpOpenFull" class="sm">📘 打开完整使用帮助</button></p>
+    <p class="muted">这不是 CAD 建模器——拓扑与图表是结果的透明视图，主交互仍是自然语言。</p>
+  </div>
+  <div id="stepper"></div>
+  <div id="wb">
+   <div id="chatCol"><div class="col-h">💬 智能体对话 <span class="muted">每个动作会在右侧步骤中高亮</span></div>
+    <div id="chatLog"><div class="welcome" id="welcome">
+      <div class="welcome-badge">对话驱动 · 研究 / 仿真</div>
+      <h3>用中文提问，看清模型在算什么</h3>
+      <p class="muted welcome-lead">不是画 CAD。描述场景 → 核对参数来源 → 求解 → 追问「为什么 / 如果…」。点下面任一卡片即可开始：</p>
+      <div id="examples" class="onb-grid"></div>
+      <div class="onb-foot">
+        <span class="onb-chip">① 场景</span><span class="onb-arr">→</span>
+        <span class="onb-chip">② 参数透明</span><span class="onb-arr">→</span>
+        <span class="onb-chip">③ 拓扑</span><span class="onb-arr">→</span>
+        <span class="onb-chip">求解</span><span class="onb-arr">→</span>
+        <span class="onb-chip">结论 / 追问</span>
+      </div>
+      <p class="muted onb-more">也可以直接在下方输入；右侧可先选案例预设。默认数据为合成示例，结论仅用于方法演示。</p>
+    </div></div>
+    <div id="artBar"></div>
+    <div id="nextSteps" class="next-steps hidden"></div>
+    <form id="chatForm"><div id="dropHint">拖拽文件到此处上传到知识库</div>
+      <div class="chk"><label><input type="checkbox" id="useScenario"> 使用“场景表单”中的场景</label>
+        <label title="研究模式：问题卡 → 澄清 → 计划 → 执行-诊断-修订 → 证据化结论"><input type="checkbox" id="researchMode"> 🔬 研究模式</label>
+        <label title="关闭（推荐）：求解前暂停等你确认参数；打开则直接跑"><input type="checkbox" id="autoRun"> 自动运行</label></div>
+      <textarea id="input" rows="2" placeholder="用中文描述仿真 / 研究任务，Enter 发送，Shift+Enter 换行"></textarea>
+      <button id="sendBtn" type="submit">发送</button></form>
+   </div>
+   <div id="stepCol"><div id="stepBody"></div></div>
+  </div>
+  <div id="wfToast" class="wf-toast"></div>
+</section>
+<section id="v-tier" class="view"><h2>⏱ 三级运行（日前 → 日内 → 实时）</h2>
+  <p class="muted">基于<b>当前会话</b>的场景与优化结果运行；没有场景时请先到「② 仿真优化」建模求解。可行域、UPS/柴发与应急属于实时层的安全兜底。</p>
+  <div id="tierHost"></div></section>
+<section id="v-model" class="view"><h2>🗺 模型拓扑 / 能流</h2>
+  <div class="row mv-src"><label><input type="radio" name="mvSrc" value="session" checked> 当前会话模型（可编辑；与智能体共享，随建模/修改/求解自动更新）</label>
+    <label><input type="radio" name="mvSrc" value="panel"> 场景参数面板（编辑即预览，未求解）</label><button class="sm ghost" id="mvReload" type="button">刷新</button></div>
+  <div id="mvMsg" class="muted"></div><div id="mvBox"></div></section>
+<section id="v-config" class="view"><h2>🧪 配置构建器 · 散热方式 · 对比扫描</h2>
+  <p class="muted">从模板新建配置（不限于预设）：数据中心数量/容量/散热方式、电池/蓄冷/蓄热/虚拟储能、各类电源、供热末端与管线。校验后可“构建为当前会话场景”交给工作台求解，或直接做多配置对比与 1-2 参数网格扫描。</p>
+  <details open><summary><b>散热方式库</b>（默认参数与文献来源）</summary><div id="cfgLib"></div></details>
+  <div id="cfgForm"></div>
+  <div class="row"><button id="cfgValidate" class="ghost">校验</button><button id="cfgBuild">构建为当前会话场景</button><button id="cfgReset" class="ghost">恢复模板</button></div>
+  <div id="cfgMsg"></div>
+  <h3>对比 / 参数扫描</h3>
+  <div class="row"><button id="cfgCmpCool">❄ 散热方式对比</button><button id="cfgSweepEss">🔋 储能容量扫描</button><button id="cfgSweepTes">🧊 蓄冷容量扫描(夏)</button><button id="cfgHeat">♨ 余热供暖可行性（末端×距离）</button></div>
+  <div class="row">参数1 <input id="cfgP1" placeholder="如 heat.pipe_length_km" style="width:190px"> 取值 <input id="cfgV1" placeholder="1,5,10" style="width:120px">
+    参数2 <input id="cfgP2" placeholder="如 dcs.*.cooling_mode" style="width:170px"> 取值 <input id="cfgV2" placeholder="air_chw,liquid_cold_plate" style="width:200px"><button id="cfgCustom" class="ghost">运行扫描</button></div>
+  <div id="cfgRes"></div></section>
+<section id="v-kb" class="view"><h2>知识库文档</h2>
+  <div id="dropZone" class="drop">拖拽或点击上传：PDF / DOCX / MD / TXT / CSV / .py / .mo / .m<input type="file" id="fileInput" multiple hidden></div>
+  <div class="row"><input id="kbQuery" placeholder="测试检索，例如：Alibaba GPU trace 数据集 / 碳感知调度 碳强度"><button id="kbSearchBtn">检索</button><button id="kbReindex" class="ghost">重建向量索引</button></div>
+  <div id="kbInfo" class="muted"></div>
+  <div id="kbResult"></div><table class="tbl" id="docTable"></table></section>
+<section id="v-cards" class="view"><h2>技能卡 <button id="newCard" class="sm">＋ 新建</button></h2>
+  <p class="muted">在对话中说“记住：……步骤：……参数：……校验：……”智能体会自动生成技能卡；类似任务会自动检索复用。</p>
+  <div id="cardEditor" class="card hidden"></div><div id="cardList" class="grid"></div></section>
+<section id="v-scenario" class="view"><h2>场景参数（算电协同 · 碳感知 · 任务级作业）</h2>
+  <p class="muted">默认数据均为<b>合成示例数据</b>。编辑后在工作台对话框下方勾选“使用场景表单”再发送请求；更推荐在工作台「② 输入参数」中逐项查看与修改。</p>
+  <div id="scForm"></div><h3>高级：完整 JSON</h3><textarea id="scJson" rows="14" class="mono"></textarea>
+  <div class="row"><button id="scApply">从 JSON 更新表单</button><button id="scReset">恢复默认</button><select id="scPreset"><option value="">— 场景预设 —</option></select><button id="scLoadPreset">加载预设</button><button id="scModel" class="ghost">🗺 预览模型拓扑</button></div></section>
+<section id="v-sims" class="view"><h2>仿真器状态</h2><div id="simList" class="grid"></div><h3>已注册工具（MCP 兼容）</h3><div id="toolList"></div></section>
+<section id="v-settings" class="view"><h2>LLM 设置</h2><p class="muted">保存在服务端 data/settings.json，API Key 以掩码显示。</p>
+  <form id="setForm" class="form"></form><div id="setMsg"></div></section>
+</main>
+<script src="/static/model_edit.js?v=1793865962"></script><script src="/static/research.js?v=1793865962"></script><script src="/static/opt.js?v=1793865962"></script><script src="/static/workflow.js?v=2026110704"></script><script src="/static/config.js?v=1793865962"></script><script src="/static/app.js?v=1793942000"></script><script src="/static/tier.js?v=1793942000"></script><script src="/static/market.js?v=1793865963"></script><script src="/static/nav.js?v=1793942000"></script><script src="/static/foundation_binding.js?v=1793944000"></script><script src="/static/foundation.js?v=2026110704"></script><script src="/static/help_widget.js?v=2026111001"></script></body></html>

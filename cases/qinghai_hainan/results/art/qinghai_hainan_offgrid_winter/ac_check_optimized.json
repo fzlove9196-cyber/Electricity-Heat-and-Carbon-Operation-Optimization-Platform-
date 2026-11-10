@@ -1,0 +1,36 @@
+{
+  "hour": 12,
+  "converged": true,
+  "vmin_pu": 0.8353527704100407,
+  "vmax_pu": 1.0,
+  "vmin_bus": 3,
+  "max_line_loading_pct": 71.77601839617184,
+  "max_trafo_loading_pct": NaN,
+  "max_branch_loading_pct": 71.77601839617184,
+  "dcopf_pred_loading_pct": 63.885000000000005,
+  "slack_p_mw": 12.006326440925541,
+  "ext_grid_p_mw": {
+    "\u5c0f\u6c34\u7535(\u7b49\u503c)(\u5b64\u5c9b\u5e73\u8861)": 12.01
+  },
+  "line_loading_pct": {
+    "\u5149\u4f0f-\u5fae\u7f5135kV": 71.8,
+    "\u5c0f\u6c34\u7535-\u5fae\u7f5135kV": 64.1,
+    "\u5fae\u7f51-DC 35kV(\u53cc\u56de)": 46.3
+  },
+  "bus_vm_pu": {
+    "\u56ed\u533a\u76f4\u4f9b\u5fae\u7f5135kV\u6bcd\u7ebf": 0.8498,
+    "\u5fae\u7f51\u5149\u4f0f35kV": 0.8901,
+    "\u5c0f\u6c34\u753535kV": 1.0,
+    "DC 10kV\u914d\u7535(\u7b49\u503c)": 0.8354
+  },
+  "line_p_from_mw": {
+    "\u5149\u4f0f-\u5fae\u7f5135kV": 76.66,
+    "\u5c0f\u6c34\u7535-\u5fae\u7f5135kV": 12.01,
+    "\u5fae\u7f51-DC 35kV(\u53cc\u56de)": 45.45
+  },
+  "trafo_p_hv_mw": {},
+  "trafo_loading_pct": {},
+  "losses_mw": 8.006,
+  "voltage_ok": false,
+  "loading_ok": true
+}

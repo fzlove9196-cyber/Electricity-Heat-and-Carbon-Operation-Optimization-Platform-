@@ -1,0 +1,111 @@
+{
+ "tag": "nominal_after",
+ "chiller_cap_x_it": null,
+ "sources": {
+  "aemo_SA1_202312.csv": "3113efe4395c000df503e415733ed3c0ed9d0de39e01705a4242a44e02255b82",
+  "aemo_SA1_202401.csv": "b0e3a569fe9a83b28f5be9c1f05211659348cefe6f43510df6b0667c9398ee0b",
+  "openmeteo_adelaide_202312_202401.json": "984f782a9da60bcf73c120c2fb5ea651895800683c0434ad662469a65f19f77a"
+ },
+ "aggregate": [
+  {
+   "strategy": "da_id_no_thermal",
+   "batch_served_mwh": 49447.170000000006,
+   "cost_aud": 5618680.21189575,
+   "energy_mwh": 243434.5403,
+   "thermal_viol_mwh": 0.0,
+   "thermal_viol_h": 0,
+   "carbon_t": 53555.598866,
+   "abs_dev_vs_da_mwh": 0.0,
+   "cost_per_mwh": 23.08086685222027,
+   "saving_vs_naive_pct": 30.391711833761253,
+   "regret_vs_oracle_pct": 16.069194807967445
+  },
+  {
+   "strategy": "da_id_rolling",
+   "batch_served_mwh": 49447.170000000006,
+   "cost_aud": 5618680.21189575,
+   "energy_mwh": 243434.5403,
+   "thermal_viol_mwh": 0.0,
+   "thermal_viol_h": 0,
+   "carbon_t": 53555.598866,
+   "abs_dev_vs_da_mwh": 37363.2974,
+   "cost_per_mwh": 23.08086685222027,
+   "saving_vs_naive_pct": 30.391711833761253,
+   "regret_vs_oracle_pct": 16.069194807967445
+  },
+  {
+   "strategy": "da_id_rolling_margin2K",
+   "batch_served_mwh": 49447.170000000006,
+   "cost_aud": 5640231.85234575,
+   "energy_mwh": 244706.0514,
+   "thermal_viol_mwh": 0.0,
+   "thermal_viol_h": 0,
+   "carbon_t": 53835.331308,
+   "abs_dev_vs_da_mwh": 0.0,
+   "cost_per_mwh": 23.04900847395125,
+   "saving_vs_naive_pct": 30.124714470977977,
+   "regret_vs_oracle_pct": 16.514402838943514
+  },
+  {
+   "strategy": "da_only",
+   "batch_served_mwh": 49447.170000000006,
+   "cost_aud": 6224476.830607,
+   "energy_mwh": 243368.6393,
+   "thermal_viol_mwh": 0.0,
+   "thermal_viol_h": 0,
+   "carbon_t": 53541.100646,
+   "abs_dev_vs_da_mwh": 0.0,
+   "cost_per_mwh": 25.576330822699386,
+   "saving_vs_naive_pct": 22.886663670296183,
+   "regret_vs_oracle_pct": 28.58357952100665
+  },
+  {
+   "strategy": "myopic",
+   "batch_served_mwh": 49447.170000000006,
+   "cost_aud": 6223369.3776326915,
+   "energy_mwh": 240824.77882766665,
+   "thermal_viol_mwh": 0.0,
+   "thermal_viol_h": 0,
+   "carbon_t": 52981.451342086664,
+   "abs_dev_vs_da_mwh": 0.0,
+   "cost_per_mwh": 25.8418980302941,
+   "saving_vs_naive_pct": 22.900383601464895,
+   "regret_vs_oracle_pct": 28.5607020533153
+  },
+  {
+   "strategy": "naive",
+   "batch_served_mwh": 49446.98400000001,
+   "cost_aud": 8071855.17689675,
+   "energy_mwh": 241433.5061,
+   "thermal_viol_mwh": 0.0,
+   "thermal_viol_h": 0,
+   "carbon_t": 53115.371342,
+   "abs_dev_vs_da_mwh": 0.0,
+   "cost_per_mwh": 33.43303631416199,
+   "saving_vs_naive_pct": 0.0,
+   "regret_vs_oracle_pct": 66.74622787845409
+  },
+  {
+   "strategy": "oracle",
+   "batch_served_mwh": 49447.170000000006,
+   "cost_aud": 4840802.265572417,
+   "energy_mwh": 243373.7751,
+   "thermal_viol_mwh": 0.0,
+   "thermal_viol_h": 0,
+   "carbon_t": 53542.230522,
+   "abs_dev_vs_da_mwh": 0.0,
+   "cost_per_mwh": 19.890402174940075,
+   "saving_vs_naive_pct": 40.028628369996625,
+   "regret_vs_oracle_pct": 0.0
+  }
+ ],
+ "criteria": {
+  "rolling_le_da_only": true,
+  "da_le_naive": true,
+  "oracle_is_lower_bound": true,
+  "rolling_and_oracle_zero_thermal_viol": true,
+  "no_thermal_variant_violates": true,
+  "naive_batch_matches_oracle_within_0p1pct": true
+ },
+ "n_days": 31
+}

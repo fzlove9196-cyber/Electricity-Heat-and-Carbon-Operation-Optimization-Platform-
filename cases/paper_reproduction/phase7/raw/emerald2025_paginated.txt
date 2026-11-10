@@ -1,0 +1,603 @@
+                                        Turning AI Data Centers into Grid-Interactive Assets: Results
+                                              from a Field Demonstration in Phoenix, Arizona
+
+                                            Philip Colangelo1 , Ayse K. Coskun1*, Jack Megrue1 , Ciaran Roberts1 ,
+                                             Shayan Sengupta1 , Varun Sivaram1 , Ethan Tiao1 , Aroon Vijaykar1 ,
+                                           Chris Williams1 , Daniel C. Wilson1 , Zack MacFarland2 , Daniel Dreiling3 ,
+                                                   Nathan Morey3 , Anuja Ratnayake4 , Baskar Vairamohan4
+                                                           1*
+                                                                Emerald AI, authors are listed in alphabetical order.
+arXiv:2507.00909v1 [cs.DC] 1 Jul 2025
+
+
+
+
+                                                                              2*
+                                                                                 NVIDIA Corporation.
+                                                                           3*
+                                                                              Salt River Project (SRP).
+                                                                  4*
+                                                                     Electric Power Research Institute (EPRI).
+
+
+                                                     *Corresponding author(s). E-mail(s): ayse.coskun@emeraldai.co
+
+
+                                                                                        Abstract
+                                         Artificial intelligence (AI) is fueling exponential electricity demand growth, threatening grid reliabil-
+                                         ity, raising prices for communities paying for new energy infrastructure, and stunting AI innovation
+                                         as data centers wait for interconnection to constrained grids. This paper presents the first field
+                                         demonstration, in collaboration with major corporate partners, of a software-only approach–Emerald
+                                         Conductor–that transforms AI data centers into flexible grid resources that can efficiently and imme-
+                                         diately harness existing power systems without massive infrastructure buildout. Conducted at a
+                                         256-GPU cluster running representative AI workloads within a commercial, hyperscale cloud data
+                                         center in Phoenix, Arizona, the trial achieved a 25% reduction in cluster power usage for three hours
+                                         during peak grid events while maintaining AI quality of service (QoS) guarantees. By orchestrat-
+                                         ing AI workloads based on real-time grid signals without hardware modifications or energy storage,
+                                         this platform reimagines data centers as grid-interactive assets that enhance grid reliability, advance
+                                         affordability, and accelerate AI’s development.
+
+                                         Keywords: Demand Response, Artificial Intelligence, Data Centers
+
+
+
+
+                                                                                            1
+1 Introduction
+The global proliferation of AI technologies has led
+to surging demand for high-performance data cen-
+ters, increasingly powered by GPU clusters [1].
+As these AI clusters scale, their energy consump-
+tion poses a growing strain on power grids [2]–
+particularly during periods of high demand or
+low renewable output. In the United States alone,
+projections estimate that AI-related data center
+demand could reach tens of gigawatts by 2030,
+exacerbating grid congestion and delaying project
+deployments [3, 4].                                       Fig. 1 Overview of the Emerald Conductor architecture.
+    Historically, demand response in data cen-
+ters has been explored in academic settings,              AI in partnership with Oracle Cloud Infrastruc-
+mostly using CPU-based clusters running high              ture, NVIDIA, and regional utility Salt River
+performance computing (HPC) applications [5] or           Project (SRP) through the EPRI DCFlex initia-
+demonstrating the potential of demand response            tive, this test accomplishes the first validation
+via simulation and analytical models [6, 7]. These        of providing sustained, accurate power reduc-
+studies provided valuable insights but did not            tions using only workload orchestration–without
+account for the rigid performance demands and             requiring any hardware retrofits or energy storage
+distinct energy profiles of AI training and infer-        systems.
+ence workloads on GPUs. Other work has demon-
+strated that data centers can reduce operational          2 Results
+carbon emissions by allocating fewer compute
+resources to jobs broadly classified as having            2.1 System Architecture and
+flexible performance needs [8].                               Flexibility Framework
+    Scalable, software-based solutions that respect
+AI service-level agreements (SLAs) while offer-           At the core of the demonstration is Emer-
+ing real-time power modulation are urgently               ald Conductor, a software platform that inter-
+needed. Our central hypothesis is that GPU-               faces with AI workload managers and grid signal
+driven AI workloads contain enough operational            sources. Conductor dynamically schedules jobs,
+flexibility–when smartly orchestrated–to partici-         modifies resource allocations for each job, and
+pate in demand response and grid stabilization            applies power-limiting techniques such as GPU
+programs [9]. Although utilities offer financial          frequency scaling. To guide its decisions, Conduc-
+incentives for power flexibility, other adoption          tor uses the Emerald Simulator, a system-level
+costs–such as impacts on workload performance             model trained to predict the power-performance
+and delays in deploying new data centers–can              behavior of AI jobs. The simulator evaluates
+limit participation [10], especially amid rapid AI        the trade-offs of various orchestration strategies
+growth. Utilities and system operators can further        under operational constraints and grid needs, rec-
+prioritize flexible AI data centers for accelerated       ommending an orchestration strategy to assure
+interconnection and offer them lower tariffs and          AI workload QoS guarantees while also meet-
+flexibility payments, recognizing their benefits to       ing power grid response commitments. Fig. 1
+system reliability and ability to utilize existing        demonstrates the overall architecture of Emerald
+system headroom, estimated at 100GW in the                Conductor and Emerald Simulator.
+United States [11].                                           Our workload tagging schema classifies
+    In this paper, we present results from the            jobs into flexibility tiers based on user toler-
+first real-world demonstration of a software-based        ance for runtime or throughput deviations. The
+platform, Emerald Conductor, which transforms             tags allow applying control policies that differen-
+a production AI cluster into a grid-responsive            tiate jobs and ensure each job meets the compute
+asset. Conducted in Phoenix, Arizona by Emerald           user’s desired QoS threshold, which could pave
+
+
+                                                      2
+the way for an SLA that upholds user-specified                 In both APS and SRP events, all jobs com-
+QoS while enabling flexible power management.              pleted within allowable SLA envelopes. We con-
+For example, using feedback and guidance from              firmed via power measurements that our software
+our industry partners, we identified the following         solution achieved sustained and accurate reduc-
+flexible SLAs for representative AI workloads: (a)         tions.
+Flex 0: no performance reduction (strict SLA);                 We also modeled a synthetic emergency event
+(b) Flex 1: up to 10% performance (average                 as part of the field trial, based on Califor-
+throughput) reduction allowed over a 3-6 hour              nia ISO (CAISO)’s August 2020 emergency load
+period; (c) Flex 2: up to 25% allowed; (d) Flex 3:         shed event, where a power plant failure during
+up to 50% allowed. These tiers enable intelligent,         an extreme weather event triggered CAISO to
+non-disruptive throttling that preserves workload          request reduction of power via available reserves
+commitments while unlocking power flexibility.             in the grid [12]. In this reenactment, Conductor
+                                                           responded to an initial 15% curtailment followed
+2.2 Phoenix Field Trial                                    by an emergency 10% further step-down. The sys-
+                                                           tem delivered both reductions smoothly, matching
+The     demonstration     was      conducted     at        the desired power profile (Fig. 4), while continuing
+an Oracle Phoenix Region Cloud data                        to assure the AI QoS thresholds.
+center on a 256-GPU cluster built on                           In addition to demonstrating capabilities for
+NVIDIA A100 Tensor Core GPUs, orches-                      APS, SRP, and CAISO sample events, we ran
+trated    through     Databricks       MosaicML            a total of 33 experiments (each 3-6 hours long)
+(https://www.databricks.com/research/mosaic),              including 212 total individual jobs during the field
+instrumented      via   Weights       &     Biases         trial, where we demonstrated the impact of apply-
+(https://wandb.ai/) for telemetry, and integrat-           ing several different power management policies
+ing Amperon’s grid demand forecasting tools.               on our select workload ensembles (see Methods for
+Four representative workload ensembles were                further details). In every single experiment, Emer-
+selected–each combining varying proportions                ald Conductor performed as expected, guided by
+of training, inference, and fine-tuning jobs (see          the Emerald Simulator predictions to achieve the
+Methods for more details).                                 required power reduction and job-specific SLA
+    In consultation with the regional utilities Ari-       requirements.
+zona Public Service (APS) and Salt River Project
+(SRP), we set stringent targets for grid-responsive
+demand to prove that AI compute power load
+                                                           2.3 Simulator Performance
+could provide meaningful relief during periods of              Accuracy
+system-coincident peak stress, for example during          The Emerald Simulator’s predictions closely
+a hot Phoenix day with high air conditioning load.         matched real-world cluster behavior. Across con-
+We executed two events to demonstrate these                trol intervals in our experiments, the model
+capabilities: (a) May 1, 2025 (addressing APS              achieved 4.52% root-mean-square error (RMSE)
+system peak), and (b) May 3, 2025 (address-                in power predictions, relative to average exper-
+ing SRP system peak), where we tracked                     iment power (Fig. 5). Individual job behaviors,
+the grid load and identified the upcoming peak             including fine-tuning and batch inference work-
+demand periods. Each event required the cluster            loads, were predicted with sufficient fidelity to
+to reduce power by 25% with respect to the aver-           inform real-time orchestration without breaching
+age base load during the peak demand period,               SLAs.
+sustain the reduction for 3 hours, and ramp
+down and up gracefully over 15 minutes,
+avoiding so-called “snap back” at the conclusion
+                                                           3 Discussion
+of the event by staying below the pre-event base-          3.1 Data Centers as Grid Assets
+line. These and other technical requirements of
+the test were set by our utility partners. On both         This demonstration marks a paradigm shift in
+occasions, Emerald Conductor met the utility-set           the role of AI data centers–from static, high-
+requirements precisely (Figs. 2 and 3).                    load consumers to active, controllable grid
+
+
+                                                       3
+                              AI Cluster Achieves Demand Response Objectives in Phoenix                                                         Job Performance By Flex Tier
+                      5                                                                                  105                                                                                             100%
+
+                                                                                                                                                                                                         90%
+
+
+
+
+                                                                                                               GPU Cluster Power (kW)
+                                                                                                                                                                                                         75%
+   SRP Load (GW)
+
+
+
+
+                   4.5                                                                                   70
+
+
+
+
+                                                                                                                                                                                                                           Performance %
+                                                                                                                                                                                  All Jobs Performance
+                                                                                                                                                                                                         50%
+
+
+                      4                                                                                  35
+
+
+
+
+                   3.5                                                                                    0
+                                    15:00    16:00     17:00    18:00    19:00      20:00     21:00                                        Flex 3            Flex 2      Flex 1
+                                                     May 3, 2025 - Time (MDT)
+
+Fig. 2 SRP event summary figure shows the power reduction curve and applications with different flexible SLAs meeting
+their performance requirements. The power reduction was achieved using a mixture of control knobs and power capping
+(DVFS + Job Pausing, Fair–see Orchestration Algorithms).
+
+
+                                                               AI Cluster Achieves Demand Response Objectives in Phoenix
+                               5                                                                                                                                                                         98
+
+
+
+
+                                                                                                                                                                                                              GPU Cluster Power (kW)
+              APS Load (GW)
+
+
+
+
+                              4.5                                                                                                                                                                        65
+
+
+
+
+                               4                                                                                                                                                                         33
+
+
+
+
+                              3.5                                                                                                                                                                        0
+                                            15:00      16:00       17:00     18:00          19:00      20:00                            21:00        22:00            23:00
+                                                                                 May 1, 2025 - Time (MDT)
+
+Fig. 3 APS event showing power reduction curve achieved by Emerald Conductor. The power reduction was achieved using
+a mixture of control knobs without power capping (Job Pausing + Resource Allocation, Fair–see Orchestration Algorithms).
+
+
+participants. By integrating software intelligence                                                  incur significant capital costs and operational
+with workload management, AI clusters can shape                                                     complexity, this software platform runs atop exist-
+their power consumption profiles dynamically in                                                     ing cloud and HPC stack environments. This
+response to grid needs.                                                                             means the approach is cloud-native, scalable,
+    Recent studies demonstrate that load flexibil-                                                  and already compatible with emerging AI cluster
+ity for AI data centers to reduce power use by                                                      standards, including NVIDIA’s modern infras-
+roughly 25% for up to 200 hours a year, or far                                                      tructure and containerized ML platforms. An
+less than 1% of the time, could unlock up to                                                        opportunity exists to deploy this method in other
+100 GW of new data center capacity in the                                                           major AI data center regions, particularly those
+U.S. without requiring extensive new generation                                                     with constrained grid conditions like Northern
+or transmission infrastructure [11, 13]–enough to                                                   Virginia, Silicon Valley, and Texas [4], and glob-
+meet projected AI growth for the next decade.                                                       ally in countries with strong data center growth
+                                                                                                    such as the UK, Ireland, Germany, Singapore, and
+3.2 Scalability and Deployment                                                                      others [3].
+A central advantage of Emerald Conductor is
+deployability on standard hardware. Unlike
+hardware retrofits or battery deployments, which
+
+
+                                                                                              4
+                    45                                                                                                                                                       100
+
+
+
+
+                                                                                                                                                                                   GPU Cluster Power (kW)
+                    40                                                                                                                                                       80
+     Demand (GW)
+
+
+
+
+                    35                                                                                                                                                       60
+                                                                               3 P.M.                     6 P.M.
+                                Demand
+                                                                    A 500MW power plant trips Rolling outages occur
+                    30                                                         ofﬂine               after net demand                                                         40
+                                                                       CAISO draws heavily on    peaks, with insufﬁcient
+                                                                    reserves and requests modest     reserve capacity
+                    25                                                  load reductions (15%)                                                                                20
+                                                                                                   CAISO requires deeper
+                                Net Demand                                                         load reductions (25%)
+                    20                                                                                                                                                       0
+                                      13:00         14:00   15:00       16:00      17:00                             18:00       19:00          20:00    21:00
+                                                                       August 14, 2020 - Time (PDT)
+
+Fig. 4 Reenacted CAISO power event and how Emerald Conductor responded to the curtailment requirement. Power
+consumption shown in the plot is measured and averaged at continuous 5-minute windows.
+
+
+                                   Simulator Power
+
+                           80
+                                   AI Cluster Power
+              Power (kW)
+
+
+
+
+                           60
+
+
+                           40
+
+                                  Individual Jobs
+                           20
+
+
+                           0
+                                              12:00          1:00            2:00             3:00                                       4:00            5:00
+                                                                            May 2, 2025 - Time (UTC)
+
+Fig. 5 Power prediction of Emerald Simulator vs. measured power during a power reduction event. The bottom part of
+the plot also shows the individual controls applied to each job in the workload ensemble running during this event.
+
+
+3.3 Control Knob Tradeoffs                                                                                           1.0                                        ft_llama_8b_dolly (48 GPUs)
+                                                                                           Throughput (w.r.t. Max)
+
+
+
+
+                                                                                                                                                                ft_llama_8b_p3 (32 GPUs)
+Our demonstration explored several control                                                                           0.8                                        infer_llama_8b_48g (48 GPUs)
+                                                                                                                                                                infer_llama_8b_32g (32 GPUs)
+knobs to regulate power consumption: (a) power                                                                       0.6                                        infer_llama_8b (16 GPUs)
+capping via the NVIDIA-System Management                                                                             0.4                                        pt_mpt_13b_lg (64 GPUs)
+                                                                                                                                                                pt_mpt_13b_sm (48 GPUs)
+Interface (SMI), which primarily uses dynamic                                                                        0.2                                        pt_mpt_7b_fast (48 GPUs)
+voltage frequency scaling (DVFS) to effectively
+                                                                                                                     0.0
+reduce power with minor throughput impacts for                                                                             100     200      300    400
+many workloads [14] (Fig. 6); (b) job pausing                                                                                    GPU Power Cap (W)
+(de-prioritization), which temporarily pauses
+running jobs for steep reductions in power, and (c)
+                                                                                           Fig. 6 Throughput of power-capped AI workloads on the
+changing the allocated resources for jobs,                                                 256 GPU cluster.
+which reduces the number of allocated GPUs to
+reduce power while allowing job progress.
+                                                                                           experiments, job performance exhibited sensitiv-
+    We evaluated performance sensitivity to
+                                                                                           ity to power limits, with modest degradation
+power capping across multiple GPU allocations
+                                                                                           observed as power caps approached 400 W–the
+and workload types, including: fine-tuning (ft)
+                                                                                           typical thermal design power (TDP) of the target
+LLaMA-8B on two datasets, LLaMA-8B inference
+                                                                                           GPU. As power caps decreased further below this
+(infer) across three different GPU allocation sizes,
+                                                                                           threshold, performance degradation became more
+and three configurations of Mosaic Pretrained
+                                                                                           pronounced. The number of GPUs allocated had
+Transformer (MPT) pre-training (pt) workloads
+                                                                                           minimal influence on power sensitivity; however,
+(see Workloads section for details). Across all
+                                                                                           power-performance tradeoffs varied by workload.
+                                                                                           In particular, MPT pre-training jobs were notably
+
+
+                                                                                     5
+more sensitive in the mid-range of power caps,             requirements may not be willing to accept work-
+showing greater performance drops compared to              load throttling at a single site. In this study,
+fine-tuning and inference tasks.                           batch-style training, fine-tuning, and inference
+    Control overhead of power capping is negligi-          tasks could be slowed or paused, while other
+ble, making real-time responsiveness feasible even         “Flex 0” jobs such as real-time inference, stream-
+in busy clusters. Both pausing and re-allocating           ing, and model serving were not modified. To
+resources for running jobs require checkpoint-             unlock broader flexibility, future work will explore
+ing for training jobs to ensure forward progress           geographically shifting AI workloads [18, 19], har-
+and minimize the overhead associated with these            nessing spatiotemporal flexibility to preserve per-
+knobs. Although prior work offers methods to               formance with minimal latency penalty across the
+optimize for long-term objectives where changes            broadest range of AI workloads. In addition, the
+to control state incur a cost [15], we are able to         industry’s incentives and SLAs will need to evolve,
+treat checkpointing overhead as negligible for our         encouraging users to opt into flexibility tiers in
+relatively infrequent demand response events since         exchange for cost or compute availability benefits
+training jobs often run for days (or even weeks) at        that are enabled by the massive new capacities of
+a time. An essential ingredient in Emerald Con-            AI compute that can be brought online to power
+ductor is to apply these knobs in a carefully calcu-       grids thanks to flexibility.
+lated manner to avoid SLA violations–therefore,                Our field demonstration focused on a single
+our software was able to meet SLAs even consider-          cluster’s ability to curtail load to respond to
+ing the more conservative experimental duration            system peaks and reduce the system–coincident
+of only 6 hours.                                           peak demand of an AI data center, enabling
+    In experiments, our “DVFS + Job Pausing,               faster interconnection and avoiding infrastruc-
+Fair” policy, which spreads performance slow-              ture buildout to serve higher system peaks. To
+downs across all jobs proportionally with their            fully understand system-level impacts, larger-scale
+flexible SLAs (see Methods for more details), pro-         deployments involving full data center teleme-
+vided a good balance between achieving higher              try and multiple data center zones are needed.
+average job throughput and reducing the number             These would allow for the validation of broader
+of jobs impacted by power management.                      control strategies and coordination mechanisms.
+                                                           Our future work will also explore participation,
+3.4 Policy and Market Implications                         in addition to emergency demand response, in a
+                                                           wider range of grid programs such as day-ahead
+Software-defined flexibility in AI data centers
+                                                           demand response, frequency regulation, and other
+could transform utility interconnection pro-
+                                                           ancillary services [20, 21] to assess economic via-
+cesses. Flexibility may accelerate data center
+                                                           bility and technical readiness in real-world grid
+interconnection and siting approvals, particularly
+                                                           markets.
+in regions where permitting delays have become
+a bottleneck [16, 17]. Data centers that are able
+to respond to grid signals can also avoid expen-           4 Methods
+sive infrastructure upgrades and receive demand
+response credits in capacity or ancillary mar-             4.1 Workloads
+kets. Moreover, flexible data centers could com-           For our field trial, we worked with Databricks
+plement renewable energy integration by reducing           to design four representative workload ensembles
+demand during periods of low intermittent renew-           consisting of training, inference, and fine-tuning
+able production and matching ramping require-              jobs. We downloaded MPT and LLaMA 3.1 Fam-
+ments of fossil backup plants.                             ily models from Hugging Face and used the C4
+                                                           dataset for pretraining and Dolly and P3 datasets
+3.5 Limitations                                            for fine-tuning. These workloads and their flexi-
+Several limitations remain in the current approach         ble SLA tiers are shown in Table 1. Each job was
+to grid-interactive AI data centers. First, not            tagged into one of four flexibility tiers (discussed
+all AI workloads are temporally flexible; AI cus-          earlier in Results), based on tolerance to runtime
+tomers with jobs with strict latency or reliability        or throughput degradation. We determined these
+
+
+                                                       6
+ensembles and tags in consultation with our indus-            verify the timing of our cluster’s demand response
+try expert partners and based on typical SLA                  performance. We timestamp-aligned all power and
+expectations for different types of AI jobs.                  job completion telemetry.
+
+4.2 Orchestration Algorithms                                  4.4 Evaluation Metrics
+We designed a suite of power and load man-                    Three key metrics were used to assess perfor-
+agement algorithms for Emerald Conductor.                     mance in our experiments (a): power reduction
+These algorithms utilize the three control knobs              compliance, which compares percentage power
+described earlier–both individually and in various            reduction achieved vs. utility target; (b) QoS
+combinations (e.g., DVFS with job pausing, job                preservation, which checks whether individual
+pausing with resource reallocation, or others).               job SLAs are met, and (c) simulator accuracy,
+    We implemented two main algorithmic strate-               where we calculate the root mean square error
+gies across different knob combinations: (a)                  (RMSE) of power prediction vs measured power.
+Greedy: This algorithm prioritizes applying con-              We measured power consumption of GPUs via
+trol knobs to the most flexible jobs first, aiming to         NVDIA-SMI and throughput (e.g., steps per sec-
+maximize power reduction while minimizing the                 ond or tokens per second) of applications via our
+number of jobs affected. (b) Fair: This algorithm             custom scripts.
+distributes the projected performance overhead                   In all power reduction events (APS, SRP,
+more evenly across all jobs, ensuring a more                  CAISO) and our 33 total power reduction experi-
+balanced impact on workload performance.                      ments, we fully maintained compliance thresholds
+    All policies we implemented solved for power              while maintaining zero SLA violations. Across
+reduction objectives, subject to constraints                  our experiments, we achieved 4.52% simulator
+from job SLAs. The following “control knob, algo-             accuracy RMSE relative to average experiment
+rithmic strategy” combinations provided the most              power.
+desirable results while meeting power reduction
+and job performance constraints:                              5 Implementation of Emerald
+• DVFS + Job Pausing, Fair provided the best                    Conductor
+  tradeoff between average job throughput and
+  the number of jobs impacted;                                We implement the Emerald Conductor software as
+• DVFS, Fair provided the best average job                    a centralized Python application that issues com-
+  throughput overall as the knob can be applied               mands to compute-node management processes
+  at a finer granularity than other knobs;                    hosted alongside executing jobs. Conductor starts,
+• Job Pausing, Greedy affected the fewest number              stops, and queries the scheduling state of jobs
+  of jobs to achieve the desired power reduction;             through the MosaicML mcli API. GPU power and
+• Job Pausing + Resource Allocation, Fair                     application throughput metrics are queried from
+  achieved the best average throughput among                  the Weights & Biases API.
+  policies without DVFS.                                          Conductor issues new commands through a
+                                                              distributed memory object cache that is moni-
+4.3 Simulation and Real-Time                                  tored by the management process on each node.
+                                                              Whenever the cache is updated with a new
+    Execution
+                                                              power cap, the cap is enforced by launching
+In this field trial, we profiled each job in advance of       nvidia-smi -pl to set a power limit on the
+the power reduction event experiments, and used               compute node’s GPUs. A MosaicML Composer
+estimated power-performance relationships based               callback handles early stop requests received in
+on these profiles to determine the policy deci-               the cache to allow jobs to checkpoint immediately
+sions in the Emerald Simulator. The Simulator                 before suspension/rescaling.
+then drove Conductor’s decisions at runtime. We
+received the grid load signals via API from the
+Amperon platform, which provides forecast grid
+load and actual historical grid data that we used to
+
+
+                                                          7
+Table 1 Workload ensembles and their flexibility SLAs used in the experiments. In the cluster under test, each GPU
+node consisted of 8 A100 GPUs, and each workload ensemble ran throughout the experiment duration, with control
+actions determined by Emerald Conductor.
+
+             Ensemble                          Workload                     # Nodes        Flex Level
+                                               MPT 13B - training                8        Flex 3
+                                               MPT 7B - training                 6        Flex 3
+             Ensemble 1                        LLaMA 8B - finetune               6        Flex 2
+             80% training, 20% inference       LLaMA 8B - finetune               6        Flex 3
+                                               LLaMA 8B - inference              4        Flex 0
+                                               LLaMA 8B - inference              2        Flex 0
+                                               MPT 13B - training                8        Flex 3
+                                               MPT 7B - training                 6        Flex 3
+             Ensemble 2                        LLaMA 8B - finetune               4        Flex 2
+             50% training, 50% inference       LLaMA 8B - inference              4        Flex 0
+                                               LLaMA 8B - inference              6        Flex 0
+                                               LLaMA 8B - inference              4        Flex 0
+                                               MPT 13B - training                6        Flex 3
+                                               MPT 7B - training                 6        Flex 3
+             Ensemble 3                        LLaMA 8B - finetune               4        Flex 2
+             50% training, 50% inference       LLaMA 8B - inference              4        Flex 3
+                                               LLaMA 8B - inference              6        Flex 2
+                                               LLaMA 8B - inference              6        Flex 1
+                                               MPT 13B - training                6        Flex 3
+                                               MPT 7B - training                 6        Flex 3
+                                               LLaMA 8B - finetune               4        Flex 2
+             Ensemble 4                        LLaMA 8B - finetune               4        Flex 3
+             90% training, 10% inference       LLaMA 8B - inference              2        Flex 0
+                                               LLaMA 8B - inference              2        Flex 0
+                                               LLaMA 8B - finetune               4        Flex 3
+                                               LLaMA 8B - finetune               4        Flex 2
+
+
+6 Conclusion                                                  Jackson, Mike Sweeney, Andres Springborn, Bran-
+                                                              don Records, Scott Campbell, Ron Caputo, Sara
+This Phoenix-based field demonstration marks a                Chen, and Marcin Zablocki at Oracle; Jonathan
+transformative moment in energy-AI integration.               Frankle, Yu-Lin Yang, Lauren Ladrech, and Stew-
+With solely a software-based solution, existing AI            art Sherpa at Databricks; Shanker Trivedi, Vlad
+clusters can become reliable, precise assets for grid         Troy, Marc Spieler at NVIDIA; Rob Toews, Jor-
+support. As demand from AI accelerates, flexi-                dan Jacobs, David Katz, and Daniel Mulet at
+ble data centers offer a scalable, sustainable way            Radical Ventures; Markus Specks at Aventurine
+to meet electricity system needs–without delaying             Partners; David Rousseau at SRP; Greg Bernosky,
+innovation or sacrificing reliability.                        Chris Lynn, and Bruce Brazis at Arizona Pub-
+    The path forward will require deeper engage-              lic Service; Arushi Sharma Frank at Luminary;
+ment with grid operators, AI developers, and                  Tyler Norris at Duke University; Isaac Brown at
+regulators to standardize these capabilities and              38 North; Sean Kelly at Amperon; Anna Patterson
+unlock a new era of grid-interactive computing.               at Ceramic AI; Astrid Atkinson at Camus Energy;
+Acknowledgements. We would like to thank                      Gaurav Desai; Sherri Goodman; Max Boomer;
+the following individuals for their insights and sup-         Richard Stuebi at Boston University; and David
+port throughout this work: Pradeep Vincent, Jay               Porter, Dave Larson, and Tom Wilson at EPRI.
+
+
+
+                                                          8
+References
+ [1] National Academies of Sciences, Engineering, and Medicine. Implications of Artificial Intelli-
+     gence–Related Data Center Electricity Use and Emissions: Proceedings of a Workshop (The National
+     Academies Press, Washington, DC, 2025). https://doi.org/10.17226/29101.
+
+ [2] Ricardo Bianchini, Christian Belady & Anand Sivasubramaniam. Data center power and energy
+     management: Past, present, and future. IEEE Micro 44, 30–36 (2024). https://doi.org/10.1109/
+     MM.2024.3426478.
+
+ [3] Eren Çam, Marc Casanovas & John Moloney. Electricity 2025: Analysis and forecast to 2027. IEA
+     (2025). https://www.iea.org/reports/electricity-2025.
+
+ [4] Jordan Aljbour, Tom Wilson & Poorvi Patel. Powering intelligence: Analyzing artificial intelligence
+     and data center energy consumption. Electric Power Research Institute (EPRI) (2024). https:
+     //www.epri.com/research/products/000000003002028905.
+
+ [5] Yijia Zhang, Daniel Curtis Wilson, Ioannis Ch. Paschalidis & Ayse K. Coskun. HPC data center
+     participation in demand response: An adaptive policy with QoS assurance. IEEE Transactions on
+     Sustainable Computing 7, 157–171 (2022). https://doi.org/10.1109/TSUSC.2021.3077254.
+
+ [6] Yijia Zhang, Daniel C. Wilson, Ioannis Ch. Paschalidis & Ayse K. Coskun A data center demand
+     response policy for real-world workload scenarios in HPC. In 2021 Design, Automation & Test in
+     Europe Conference & Exhibition (DATE), 282–287 (2021).
+
+ [7] Jiali Xing, Bilge Acun, Aditya Sundarrajan, David Brooks, Manoj Chakkaravarthy, Nikky Avila,
+     Carole-Jean Wu & Benjamin C. Lee. Carbon responder: Coordinating demand response for the
+     datacenter fleet (2023). arXiv:2311.08589.
+
+ [8] Ana Radovanović, Ross Koningstein, Ian Schneider, Bokan Chen, Alexandre Duarte, Binz Roy, Diyue
+     Xiao, Maya Haridasan, Patrick Hung, Nick Care, Saurav Talukdar, Eric Mullen, Kendal Smith,
+     MariEllen Cottman & Walfredo Cirne. Carbon-aware computing for datacenters. IEEE Transactions
+     on Power Systems 38, 1270–1280 (2023). https://doi.org/10.1109/TPWRS.2022.3173250.
+
+ [9] Varun Sivaram. Taming the Sun: Innovations to Harness Solar Energy and Power the Planet (The
+     MIT Press, Cambridge, Massachusetts, 2018). ISBN: 978-0-262-53707-0.
+
+[10] Jie-Sheng Tan-Soo, Ping Qin, Yifei Quan, Jun Li & Xiaoxi Wang. Using cost–benefit analyses to
+     identify key opportunities in demand-side mitigation. Nature Climate Change 14, 1158–1164 (2024).
+     https://doi.org/10.1038/s41558-024-02146-4.
+
+[11] Tyler Norris, Timothy Profeta, Dalia Patino-Echeverri & Adam Cowie-Haskell. Rethinking load
+     growth: assessing the potential for integration of large flexible loads in US power systems. Nicholas
+     Institute for Energy, Environment & Sustainability (2025). https://hdl.handle.net/10161/32077.
+
+[12] Elliot Mainzer, Marybel Batjer & David Hochschild. Final root cause analysis: Mid-august 2020
+     extreme heat wave. California Independent System Operator (CAISO) (2021). https://www.caiso.
+     com/Documents/Final-Root-Cause-Analysis-Mid-August-2020-Extreme-Heat-Wave.pdf.
+
+[13] Liuzixuan Lin, Rajini Wijayawardana, Varsha Rao, Hai Nguyen, Emmanuel Wedan GNIBGA &
+     Andrew A. Chien Exploding AI power use: an opportunity to rethink grid planning and management.
+     In Proceedings of the 15th ACM International Conference on Future and Sustainable Energy Systems,
+     e-Energy ’24, 434–441 (Association for Computing Machinery, New York, NY, USA, 2024). URL
+
+
+                                                    9
+    https://doi.org/10.1145/3632775.3661959.
+
+[14] Dan Zhao, Siddharth Samsi, Joseph McDonald, Baolin Li, David Bestor, Michael Jones, Devesh
+     Tiwari & Vijay Gadepally Sustainable supercomputing for AI: GPU power capping at HPC scale. In
+     Proceedings of the 2023 ACM Symposium on Cloud Computing, SoCC ’23, 588–596 (Association for
+     Computing Machinery, New York, NY, USA, 2023). URL https://doi.org/10.1145/3620678.3624793.
+
+[15] Adam Lechowicz, Nicolas Christianson, Jinhang Zuo, Noman Bashir, Mohammad Hajiesmaili, Adam
+     Wierman & Prashant Shenoy. The online pause and resume problem: Optimal algorithms and
+     an application to carbon-aware load shifting. Proc. ACM Meas. Anal. Comput. Syst. 7 (2023).
+     https://doi.org/10.1145/3626776.
+
+[16] Anuja Ratnayake, Irene Danti Lopez, Baskar Vairamohan & Eamonn Lannoye. Grid flexibility
+     needs and data center characteristics. Electric Power Research Institute (EPRI) (2025). https:
+     //www.epri.com/research/programs/063638/results/3002031504.
+
+[17] Andrew Satchwell, Natalie Mims Frick, Peter Cappers, Sanem Sergici, Ryan Hledik, Goksin Kavlak &
+     Glenda Oskar. Electricity rate designs for large loads: Evolving practices and opportunities. Lawrence
+     Berkeley National Laboratory (2025). Retrieved from https://escholarship.org/uc/item/19m1k8vr.
+
+[18] Jiajia Zheng, Andrew A. Chien & Sangwon Suh. Mitigating curtailment and carbon emissions
+     through load migration between data centers. Joule 4, 2208–2222 (2020). https://doi.org/10.1016/
+     j.joule.2020.08.001.
+
+[19] Varun Mehra & Raiden Hasegawa. Supporting power grids with demand response at google
+     data centers. Google Cloud Blog (2023). https://cloud.google.com/blog/products/infrastructure/
+     using-demand-response-to-reduce-data-center-power-consumption.
+
+[20] Zhi Zhou, Todd Levin & Guenter Conzelmann. Survey of U.S. ancillary services markets. Argonne
+     National Lab (ANL) (2016). https://www.osti.gov/biblio/1236451.
+
+[21] ERCOT ancillary services study (2024). Whitepaper retrieved from https://www.ercot.com/files/
+     docs/2024/10/07/ERCOT-Ancillary-Services-Study-Final-White-Paper.pdf.
+
+
+
+
+                                                    10
+

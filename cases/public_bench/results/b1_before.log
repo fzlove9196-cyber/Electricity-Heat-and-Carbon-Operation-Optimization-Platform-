@@ -1,0 +1,86 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+case14 {'n_branch': 20, 'max_abs_err_mw': 2.90951740676487, 'mean_abs_err_mw': 0.2023284695177713, 'max_rel_err_pct': 6.800000000000014, 'trafo_max_abs_err_mw': 2.90951740676487, 'pass_': False}
+case30 {'n_branch': 41, 'max_abs_err_mw': 7.549516567451064e-15, 'mean_abs_err_mw': 2.003817166396624e-15, 'max_rel_err_pct': 6.545557695565166e-13, 'trafo_max_abs_err_mw': 0.0, 'pass_': True}
+case57 {'n_branch': 80, 'max_abs_err_mw': 4.232056047976137, 'mean_abs_err_mw': 0.2135025322609228, 'max_rel_err_pct': 10.500000000000021, 'trafo_max_abs_err_mw': 4.232056047976137, 'pass_': False}
+case118 {'n_branch': 186, 'max_abs_err_mw': 15.767174267392164, 'mean_abs_err_mw': 0.26397342663410245, 'max_rel_err_pct': 6.5000000000001, 'trafo_max_abs_err_mw': 15.767174267392164, 'pass_': False}
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+uncongested {'case': 'case14 x 24h, engine ratings x1.0', 'max_cost_rel_err_pct': 8.099523035137914e-11, 'max_balance_resid_mw': 1.4210854715202004e-13, 'max_eng_loading': 56.33245163857098, 'pass_': True}
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+gen vm_pu > bus max_vm_pu for gens [2 3]. Setting bus limit for these gens.
+congested_rating_x0.45 {'case': 'case14 x 24h, engine ratings x0.45', 'max_cost_rel_err_pct': 0.06977584328421678, 'max_balance_resid_mw': 1.7053025658242404e-13, 'max_eng_loading': 100.00000000000009, 'pass_': False}

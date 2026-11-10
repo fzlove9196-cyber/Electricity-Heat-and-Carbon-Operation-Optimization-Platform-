@@ -1,0 +1,141 @@
+{
+  "fan2007_idle_dynamic": {
+    "id": "fan2007_idle_dynamic",
+    "paper": {
+      "title": "Power Provisioning for a Warehouse-sized Computer",
+      "authors": "Fan, Weber, Barroso",
+      "venue": "ISCA 2007",
+      "url": "https://static.googleusercontent.com/media/research.google.com/en/us/archive/power_provisioning.pdf",
+      "doi_or_arxiv": null
+    },
+    "sourced": {
+      "idle_frac_of_peak_min": 0.5,
+      "idle_to_10pct_energy_savings_pct_range": [
+        35,
+        40
+      ],
+      "note": "SOURCED from Fan ISCA 2007 PDF text: idle never below ~50% peak; reducing idle to 10% of peak yields 35–40% energy savings for three workloads."
+    },
+    "assumed": {
+      "p_peak_mw": 1.0,
+      "p_idle_mw": 0.55,
+      "cap_it_mw": 1.0,
+      "util_profile": "flat_0.3",
+      "note": "ASSUMED site scale 1 MW peak and flat u=0.3 for the counterfactual idle=10% energy ratio; paper gives cluster-level %, not a single-server curve."
+    }
+  },
+  "specpower_dell_r710": {
+    "id": "specpower_dell_r710",
+    "paper": {
+      "title": "SPECpower_ssj2008 — Dell PowerEdge R710 (Xeon X5570)",
+      "authors": "Dell Inc. (SPEC result)",
+      "venue": "SPECpower_ssj2008 publication 2009-06-03",
+      "url": "https://www.spec.org/power_ssj2008/results/res2009q2/power_ssj2008-20090519-00167-power.html",
+      "doi_or_arxiv": null
+    },
+    "sourced": {
+      "power_w_by_util": {
+        "0.0": 65.0,
+        "0.1": 96.8,
+        "0.2": 111,
+        "0.3": 121,
+        "0.4": 131,
+        "0.5": 141,
+        "0.6": 153,
+        "0.7": 170,
+        "0.8": 186,
+        "0.9": 204,
+        "1.0": 220
+      },
+      "active_idle_w": 65.0,
+      "power_100pct_w": 220.0,
+      "note": "SOURCED verbatim from SPEC result table Average Active Power (W)."
+    },
+    "assumed": {
+      "n_servers": 1000,
+      "note": "ASSUMED n_servers=1000 to map W→MW for engine; PWL shape is sourced."
+    }
+  },
+  "google_pdu_mape": {
+    "id": "google_pdu_mape",
+    "paper": {
+      "title": "Power Modeling for Effective Datacenter Planning and Compute Management",
+      "authors": "Radovanović et al.",
+      "venue": "arXiv:2103.13308 / IEEE TSG",
+      "url": "https://arxiv.org/abs/2103.13308",
+      "doi_or_arxiv": "arXiv:2103.13308"
+    },
+    "sourced": {
+      "mape_threshold_pct": 5.0,
+      "pdu_fraction_above": 0.95,
+      "note": "SOURCED: MAPE < 5% for more than 95% of PDUs (abstract / §IV)."
+    },
+    "assumed": {
+      "breakpoints_util_power_mw": [
+        {
+          "util": 0.0,
+          "power_mw": 0.4
+        },
+        {
+          "util": 0.33,
+          "power_mw": 0.62
+        },
+        {
+          "util": 0.67,
+          "power_mw": 0.82
+        },
+        {
+          "util": 1.0,
+          "power_mw": 1.0
+        }
+      ],
+      "note": "ASSUMED synthetic 3-regime PWL (paper does not publish per-PDU slopes). We test that OUR pdu_pwl reproduces breakpoints with MAPE≈0; claim pass if MAPE<5%."
+    }
+  },
+  "google_vcc_peak_ci": {
+    "id": "google_vcc_peak_ci",
+    "paper": {
+      "title": "Carbon-Aware Computing for Datacenters",
+      "authors": "Radovanović et al.",
+      "venue": "arXiv:2106.11750",
+      "url": "https://arxiv.org/abs/2106.11750",
+      "doi_or_arxiv": "arXiv:2106.11750"
+    },
+    "sourced": {
+      "cluster_x_peak_ci_power_drop_pct": 8.0,
+      "campus_peak_ci_power_drop_pct_range": [
+        1.0,
+        2.0
+      ],
+      "flexible_load_drop_approx_pct": 50.0,
+      "note": "SOURCED: cluster X ~8% power drop during peak-CI hours when flexible load cut ~50%; campus-level 1–2% (ar5iv HTML §IV)."
+    },
+    "assumed": {
+      "carbon_accounting": "location",
+      "ci_shape": "solar_dip_scaled",
+      "ci_mean": 0.4,
+      "ci_peak_hours_n": 6,
+      "pass_rule": "peak_ci_power_drop_pct >= 1.0 AND location_emis_delta_pct <= 0.5",
+      "note": "ASSUMED synthetic DC on small network with location CI varying; we compare direction/magnitude to campus 1–2% (conservative) and check location emissions do not rise."
+    }
+  },
+  "liu2012_renewable_cooling": {
+    "id": "liu2012_renewable_cooling",
+    "paper": {
+      "title": "Renewable and Cooling Aware Workload Management for Sustainable Data Centers",
+      "authors": "Liu, Chen, Bash, Wierman, et al.",
+      "venue": "ACM SIGMETRICS 2012",
+      "url": "https://dl.acm.org/doi/10.1145/2254756.2254779",
+      "doi_or_arxiv": "10.1145/2254756.2254779"
+    },
+    "sourced": {
+      "max_cost_and_nonrenewable_reduction_pct": 60.0,
+      "note": "SOURCED from paper abstract/Caltech record: up to 60% reductions in recurring power cost and non-renewable energy while meeting SLAs."
+    },
+    "assumed": {
+      "compare": "VCC carbon day_ahead vs off on a high-PV case with location accounting",
+      "pass_rule": "grid_import_or_cost does not increase; preferably decreases (directional). Full 60% not expected — different plant/cooling model.",
+      "note": "ASSUMED we only test directional agreement (cost/import/carbon not worse under renewable-aware shaping). 60% is an upper bound from their full cooling+renewable co-optimization — intentional modeling difference if our Δ% << 60."
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "health": {
+    "ok": true,
+    "mock": true
+  },
+  "task_id": "34bf1fc06b6c49a9",
+  "history_view_session": "e321c2304b78",
+  "live_execution": "completed",
+  "pinned_source_visible": true,
+  "restored_history_to_tier_baseline": true,
+  "edited_view_invalidated_results": true,
+  "task_snapshot_unchanged": true,
+  "real_browser_check": "pending parent computerUse"
+}

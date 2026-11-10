@@ -1,0 +1,115 @@
+{
+ "source": {
+  "url": "https://media.githubusercontent.com/media/buds-lab/building-data-genome-project-2/master/data/meters/cleaned/electricity_cleaned.csv",
+  "license": "CC-BY-4.0 (BDG2)",
+  "sha256": "b6ffc9b4dfcefe5c753594730a08ae822b0d50fec6815abb8f185591e6c630a3"
+ },
+ "n_buildings": 120,
+ "n_events": 921,
+ "summary": [
+  {
+   "method": "adjusted_similar_days",
+   "day_type_filter": false,
+   "n": 921,
+   "mape_median": 3.5226666666666655,
+   "mape_mean": 9.744097040826714,
+   "bias_median_pct": -0.11228813559323063,
+   "ratio20_median": 0.9944,
+   "false_invalid_20": 0.2301845819761129,
+   "false_invalid_10": 0.3452768729641694,
+   "false_penalty_20": 0.09011943539630836
+  },
+  {
+   "method": "adjusted_similar_days",
+   "day_type_filter": true,
+   "n": 921,
+   "mape_median": 2.9740799366874255,
+   "mape_mean": 9.117802804592182,
+   "bias_median_pct": 0.07834619653002395,
+   "ratio20_median": 1.0039,
+   "false_invalid_20": 0.17698154180238868,
+   "false_invalid_10": 0.2768729641693811,
+   "false_penalty_20": 0.04560260586319218
+  },
+  {
+   "method": "prior_n_days",
+   "day_type_filter": false,
+   "n": 921,
+   "mape_median": 8.369408369408367,
+   "mape_mean": 16.3496324216004,
+   "bias_median_pct": -6.511439014484909,
+   "ratio20_median": 0.6744,
+   "false_invalid_20": 0.6036916395222585,
+   "false_invalid_10": 0.7100977198697068,
+   "false_penalty_20": 0.3756786102062975
+  },
+  {
+   "method": "prior_n_days",
+   "day_type_filter": true,
+   "n": 921,
+   "mape_median": 3.997905007385436,
+   "mape_mean": 12.36525247554986,
+   "bias_median_pct": -0.4724409448818964,
+   "ratio20_median": 0.9764,
+   "false_invalid_20": 0.2671009771986971,
+   "false_invalid_10": 0.38002171552660147,
+   "false_penalty_20": 0.09771986970684039
+  },
+  {
+   "method": "similar_days_avg",
+   "day_type_filter": false,
+   "n": 921,
+   "mape_median": 7.539404761904761,
+   "mape_mean": 15.540104921144913,
+   "bias_median_pct": -5.294052785369434,
+   "ratio20_median": 0.7353,
+   "false_invalid_20": 0.5559174809989142,
+   "false_invalid_10": 0.6384364820846906,
+   "false_penalty_20": 0.32356134636264927
+  },
+  {
+   "method": "similar_days_avg",
+   "day_type_filter": true,
+   "n": 921,
+   "mape_median": 3.850916945106552,
+   "mape_mean": 12.037788246818726,
+   "bias_median_pct": -0.2283198826118803,
+   "ratio20_median": 0.9886,
+   "false_invalid_20": 0.22258414766558088,
+   "false_invalid_10": 0.3409337676438654,
+   "false_penalty_20": 0.09229098805646037
+  }
+ ],
+ "criteria": {
+  "adjusted_similar_days|dtf=False": {
+   "mape_median_le_10": true,
+   "abs_bias_le_3": true,
+   "false_invalid_20_le_10pct": false
+  },
+  "adjusted_similar_days|dtf=True": {
+   "mape_median_le_10": true,
+   "abs_bias_le_3": true,
+   "false_invalid_20_le_10pct": false
+  },
+  "prior_n_days|dtf=False": {
+   "mape_median_le_10": true,
+   "abs_bias_le_3": false,
+   "false_invalid_20_le_10pct": false
+  },
+  "prior_n_days|dtf=True": {
+   "mape_median_le_10": true,
+   "abs_bias_le_3": true,
+   "false_invalid_20_le_10pct": false
+  },
+  "similar_days_avg|dtf=False": {
+   "mape_median_le_10": true,
+   "abs_bias_le_3": false,
+   "false_invalid_20_le_10pct": false
+  },
+  "similar_days_avg|dtf=True": {
+   "mape_median_le_10": true,
+   "abs_bias_le_3": true,
+   "false_invalid_20_le_10pct": false
+  }
+ }
+}

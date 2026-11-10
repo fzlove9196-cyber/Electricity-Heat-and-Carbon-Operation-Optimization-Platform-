@@ -1,0 +1,10 @@
+# Optional Conda/Mamba environment. The documented workflow uses a venv
+# (see scripts/setup_env.sh). Python 3.13.5 was used on the packaging host.
+name: sim-agent
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+      - -r requirements.txt

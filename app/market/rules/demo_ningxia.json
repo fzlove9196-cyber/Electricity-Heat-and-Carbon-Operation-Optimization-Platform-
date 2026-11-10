@@ -1,0 +1,11 @@
+{"id": "demo_ningxia", "province": "ningxia", "label": "宁夏示范规则包【假设·非官方】", "official": false,
+ "note": "所有数值为可配置示例，未取自宁夏电力交易中心正式规则；不得用于真实申报或收益承诺。",
+ "time_resolution_h": 1, "bid_segments_max": 3, "min_bid_mw": 1.0,
+ "price_floor_cny_mwh": 0, "price_cap_cny_mwh": 1500,
+ "da_price_factor": 1000.0, "rt_price_spread": 0.12,
+ "deviation_tolerance_pct": 3.0, "deviation_penalty_cny_mwh": 100.0,
+ "intraday_adjust_max_pct": 10.0, "intraday_gate_closure_h": 2,
+ "dr": {"baseline_method": "similar_days_avg", "n_days": 5, "adjust_window_h": 2, "adjust_cap_pct": 20,
+        "comp_price_cny_mwh": 800, "valid_ratio_min": 0.8, "pay_cap_ratio": 1.2, "penalty_ratio_below": 0.5,
+        "penalty_cny_mwh": 200},
+ "diesel_allowed_market": false, "diesel_allowed_dr": false, "ups_reserve_floor_frac": 0.5}

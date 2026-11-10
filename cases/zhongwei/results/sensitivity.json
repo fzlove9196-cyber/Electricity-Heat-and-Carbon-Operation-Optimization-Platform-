@@ -1,0 +1,226 @@
+[
+ {
+  "kind": "export_cap",
+  "cap": 1200,
+  "day": "summer_highwind",
+  "case": "B0",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3165792.0,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 1200,
+  "day": "summer_highwind",
+  "case": "O1",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3314658.7,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 1200,
+  "day": "summer_highwind",
+  "case": "O2",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3373088.0,
+  "storage_dis_mwh": 242.2
+ },
+ {
+  "kind": "export_cap",
+  "cap": 1200,
+  "day": "winter_highwind",
+  "case": "B0",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -2880813.9,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 1200,
+  "day": "winter_highwind",
+  "case": "O1",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3029680.6,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 1200,
+  "day": "winter_highwind",
+  "case": "O2",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3088109.9,
+  "storage_dis_mwh": 242.2
+ },
+ {
+  "kind": "export_cap",
+  "cap": 800,
+  "day": "summer_highwind",
+  "case": "B0",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3165792.0,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 800,
+  "day": "summer_highwind",
+  "case": "O1",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3314658.7,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 800,
+  "day": "summer_highwind",
+  "case": "O2",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3373088.0,
+  "storage_dis_mwh": 242.2
+ },
+ {
+  "kind": "export_cap",
+  "cap": 800,
+  "day": "winter_highwind",
+  "case": "B0",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -2880813.9,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 800,
+  "day": "winter_highwind",
+  "case": "O1",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3029680.6,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 800,
+  "day": "winter_highwind",
+  "case": "O2",
+  "re_curtail_mwh": 0.0,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3088109.9,
+  "storage_dis_mwh": 242.2
+ },
+ {
+  "kind": "export_cap",
+  "cap": 500,
+  "day": "summer_highwind",
+  "case": "B0",
+  "re_curtail_mwh": 425.2,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3046727.0,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 500,
+  "day": "summer_highwind",
+  "case": "O1",
+  "re_curtail_mwh": 193.4,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3198990.9,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 500,
+  "day": "summer_highwind",
+  "case": "O2",
+  "re_curtail_mwh": 122.3,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3247432.8,
+  "storage_dis_mwh": 121.1
+ },
+ {
+  "kind": "export_cap",
+  "cap": 500,
+  "day": "winter_highwind",
+  "case": "B0",
+  "re_curtail_mwh": 401.7,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -2768221.3,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 500,
+  "day": "winter_highwind",
+  "case": "O1",
+  "re_curtail_mwh": 193.4,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -2963124.9,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "export_cap",
+  "cap": 500,
+  "day": "winter_highwind",
+  "case": "O2",
+  "re_curtail_mwh": 122.3,
+  "zw_grid_import_mwh": 0.0,
+  "system_energy_cost_cny": -3029730.1,
+  "storage_dis_mwh": 201.7
+ },
+ {
+  "kind": "storage",
+  "cap": 0,
+  "day": "winter_lowwind",
+  "case": "O2",
+  "zw_grid_import_mwh": 1492.1,
+  "zw_green_share_pct": 76.2,
+  "zw_import_cost_cny": 606461.1,
+  "system_energy_cost_cny": 592246.9,
+  "storage_dis_mwh": 0.0
+ },
+ {
+  "kind": "storage",
+  "cap": 100,
+  "day": "winter_lowwind",
+  "case": "O2",
+  "zw_grid_import_mwh": 1420.0,
+  "zw_green_share_pct": 77.4,
+  "zw_import_cost_cny": 551185.0,
+  "system_energy_cost_cny": 546437.1,
+  "storage_dis_mwh": 161.5
+ },
+ {
+  "kind": "storage",
+  "cap": 150,
+  "day": "winter_lowwind",
+  "case": "O2",
+  "zw_grid_import_mwh": 1423.6,
+  "zw_green_share_pct": 77.4,
+  "zw_import_cost_cny": 545340.5,
+  "system_energy_cost_cny": 527302.4,
+  "storage_dis_mwh": 242.2
+ },
+ {
+  "kind": "storage",
+  "cap": 200,
+  "day": "winter_lowwind",
+  "case": "O2",
+  "zw_grid_import_mwh": 1472.6,
+  "zw_green_share_pct": 76.7,
+  "zw_import_cost_cny": 548884.9,
+  "system_energy_cost_cny": 512486.9,
+  "storage_dis_mwh": 323.0
+ }
+]

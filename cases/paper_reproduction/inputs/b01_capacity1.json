@@ -1,0 +1,61 @@
+{
+  "name": "B01_SYNTHETIC_capacity1_fixed1_firm2",
+  "synthetic": true,
+  "note": "Synthetic counterexample for capacity-vs-load validation; NOT original-paper accuracy.",
+  "network_case": "custom",
+  "network": {
+    "buses": [
+      {
+        "name": "one",
+        "vn_kv": 100
+      }
+    ],
+    "ext_grids": [
+      {
+        "bus": 0,
+        "import_max_mw": 2
+      }
+    ]
+  },
+  "data_centers": [
+    {
+      "name": "DC",
+      "bus": 0,
+      "cap_it_mw": 1,
+      "pue": 1,
+      "interactive_mw": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "batch_mwh": 0
+    }
+  ],
+  "jobs": [],
+  "pv": [],
+  "storage": [],
+  "carbon_weight": 0,
+  "objective_mode": "cost",
+  "network_domain": "physical"
+}

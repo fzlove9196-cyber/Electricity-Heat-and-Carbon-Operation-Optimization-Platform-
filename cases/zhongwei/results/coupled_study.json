@@ -1,0 +1,1227 @@
+{
+ "summer": [
+  {
+   "case": "常数PUE 基线(无协同)",
+   "objective": -1723129,
+   "cost": -2088031,
+   "emis_t": 4561.3,
+   "dc_mwh": 7771.6,
+   "dc_peak_mw": 335.9,
+   "pue_avg": 1.2181
+  },
+  {
+   "case": "常数PUE 优化",
+   "objective": -2087821,
+   "cost": -2449077,
+   "emis_t": 4515.7,
+   "dc_mwh": 7766.7,
+   "dc_peak_mw": 375.0,
+   "pue_avg": 1.2168
+  },
+  {
+   "case": "耦合 基线(定送风24°C)",
+   "objective": -1635427,
+   "cost": -2013169,
+   "emis_t": 4721.8,
+   "dc_mwh": 8053.7,
+   "dc_peak_mw": 351.8,
+   "pue_avg": 1.262,
+   "pue_min": 1.217,
+   "pue_max": 1.314,
+   "tin_min": 24.0,
+   "tin_max": 24.0,
+   "margin_k": 8.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 1354.3,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 1.9095836023552692e-14,
+    "elec": 0.0,
+    "heat": null
+   }
+  },
+  {
+   "case": "耦合 优化(预冷+蓄冷)",
+   "objective": -2022145,
+   "cost": -2395746,
+   "emis_t": 4670.0,
+   "dc_mwh": 8045.9,
+   "dc_peak_mw": 385.4,
+   "pue_avg": 1.261,
+   "pue_min": 1.121,
+   "pue_max": 1.408,
+   "tin_min": 18.0,
+   "tin_max": 27.0,
+   "margin_k": 5.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 1343.6,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 2,
+     "chiller_n1": 16,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 3,
+     "chiller_n1": 18,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 3,
+     "chiller_n1": 18,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 0,
+     "t_min": 6,
+     "ramp": 4,
+     "chiller_n1": 8,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 5.081733644995978e-13,
+    "elec": 0.0,
+    "heat": null
+   }
+  },
+  {
+   "case": "耦合 优化 + DR",
+   "objective": -2154863,
+   "cost": -2528265,
+   "emis_t": 4667.5,
+   "dc_mwh": 8059.3,
+   "dc_peak_mw": 384.1,
+   "pue_avg": 1.263,
+   "pue_min": 1.063,
+   "pue_max": 1.408,
+   "tin_min": 18.0,
+   "tin_max": 30.85,
+   "margin_k": 1.15,
+   "h_above_rec": 6,
+   "cooling_mwh": 1356.4,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 4,
+     "ramp": 4,
+     "chiller_n1": 17,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 9,
+     "ramp": 5,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 9,
+     "ramp": 5,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 0,
+     "t_min": 6,
+     "ramp": 4,
+     "chiller_n1": 8,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 2.7000623958883807e-13,
+    "elec": 0.0,
+    "heat": null
+   },
+   "dr": [
+    {
+     "name": "宁夏晚高峰削峰",
+     "req": 120.0,
+     "got": 75.617,
+     "rev": 151233.2
+    },
+    {
+     "name": "午间新能源填谷",
+     "req": 90.0,
+     "got": 0.0,
+     "rev": 0.0
+    }
+   ]
+  }
+ ],
+ "summer_attr": {
+  "total_saving": 519436.1,
+  "steps": {
+   "baseline": -1635427.0,
+   "shift_only": -1903783.9,
+   "shift_migration": -1951617.6,
+   "full": -2154863.2
+  },
+  "parts": [
+   {
+    "id": "shift",
+    "name": "负荷时移（批处理/任务移到低价、风光充裕时段）",
+    "saving": 268356.8,
+    "share_pct": 51.7
+   },
+   {
+    "id": "migration",
+    "name": "跨中心迁移",
+    "saving": 47833.8,
+    "share_pct": 9.2
+   },
+   {
+    "id": "storage",
+    "name": "储能套利/削峰",
+    "saving": 55875.9,
+    "share_pct": 10.8
+   },
+   {
+    "id": "virtual_cold",
+    "name": "虚拟储冷（预冷热惯性 + 蓄冷罐）",
+    "saving": 14651.8,
+    "share_pct": 2.8
+   },
+   {
+    "id": "dr",
+    "name": "需求响应补偿",
+    "saving": 132717.8,
+    "share_pct": 25.6
+   }
+  ],
+  "terms": [
+   {
+    "term": "grid_purchase",
+    "name": "外网购电",
+    "baseline": 1073962.8,
+    "optimized": 878542.3,
+    "saving": 195420.5
+   },
+   {
+    "term": "local_gen",
+    "name": "本地发电",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "export_revenue",
+    "name": "外送收入(负)",
+    "baseline": -3087131.9,
+    "optimized": -3262480.1,
+    "saving": 175348.2
+   },
+   {
+    "term": "curtail_penalty",
+    "name": "弃电惩罚",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "storage_degradation",
+    "name": "储能损耗",
+    "baseline": 0.0,
+    "optimized": 2553.4,
+    "saving": -2553.4
+   },
+   {
+    "term": "ppa",
+    "name": "PPA 结算",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "demand_charge",
+    "name": "需量电费",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "unserved_penalty",
+    "name": "任务未完成惩罚",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "carbon",
+    "name": "碳成本项",
+    "baseline": 377742.0,
+    "optimized": 373401.8,
+    "saving": 4340.2
+   },
+   {
+    "term": "thermal_penalty",
+    "name": "超推荐温度惩罚",
+    "baseline": 0.0,
+    "optimized": 4352.7,
+    "saving": -4352.7
+   },
+   {
+    "term": "heat_revenue",
+    "name": "售热收入(负)",
+    "baseline": -0.0,
+    "optimized": -0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "dr_revenue",
+    "name": "需求响应收益(负)",
+    "baseline": 0,
+    "optimized": -151233.2,
+    "saving": 151233.2
+   }
+  ],
+  "physical": {
+   "curtail_reduction_mwh": 0.0,
+   "grid_import_reduction_mwh": 109.19,
+   "peak_import_reduction_mw": -11.09,
+   "storage_discharge_mwh": 242.25,
+   "migrated_mwh": 170.32,
+   "pue_avg_baseline": 1.2621,
+   "pue_avg_optimized": 1.2627,
+   "cooling_reduction_mwh": -2.09,
+   "heat_delivered_mwh": 0.0,
+   "heat_carbon_offset_t": 0.0,
+   "dr_delivered_mwh": 75.62,
+   "dr_requested_mwh": 210.0
+  },
+  "text": "相对基线，目标函数降低 519,436 元/日。按“基线→仅时移→+迁移→+储能”顺序反事实分解：负荷时移（批处理/任务移到低价、风光充裕时段） 268,357 元（51.7%）；跨中心迁移 47,834 元（9.2%）；储能套利/削峰 55,876 元（10.8%）；虚拟储冷（预冷热惯性 + 蓄冷罐） 14,652 元（2.8%）；需求响应补偿 132,718 元（25.6%）。最大贡献来自「负荷时移（批处理/任务移到低价、风光充裕时段）」。弃电减少 0.0 MWh，对应弃电惩罚项变化 0 元（惩罚为引导性虚拟成本，非真实支出）。",
+  "method": "顺序反事实：分别求解“允许时移但禁用迁移与储能”“允许时移+迁移但禁用储能”两个附加 LP（热耦合/DR 场景再依次放开 虚拟储冷→余热→DR）；各杠杆贡献 = 相邻情景目标差。分解次序会影响交互效应的归属。"
+ },
+ "heatwave": [
+  {
+   "case": "热浪 基线",
+   "objective": -1534365,
+   "cost": -1924884,
+   "emis_t": 4881.5,
+   "dc_mwh": 8330.0,
+   "dc_peak_mw": 366.4,
+   "pue_avg": 1.306,
+   "pue_min": 1.262,
+   "pue_max": 1.355,
+   "tin_min": 24.0,
+   "tin_max": 24.0,
+   "margin_k": 8.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 1630.7,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 1.4765966227514582e-14,
+    "elec": 0.0,
+    "heat": null
+   }
+  },
+  {
+   "case": "热浪 优化(含DR)",
+   "objective": -2083106,
+   "cost": -2469326,
+   "emis_t": 4827.7,
+   "dc_mwh": 8334.8,
+   "dc_peak_mw": 392.7,
+   "pue_avg": 1.305,
+   "pue_min": 1.088,
+   "pue_max": 1.461,
+   "tin_min": 18.0,
+   "tin_max": 32.0,
+   "margin_k": 0.0,
+   "h_above_rec": 6,
+   "cooling_mwh": 1630.8,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 3,
+     "ramp": 5,
+     "chiller_n1": 20,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 3,
+     "ramp": 3,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 3,
+     "ramp": 3,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 1,
+     "t_min": 6,
+     "ramp": 7,
+     "chiller_n1": 8,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 2.435773804876362e-12,
+    "elec": 0.0,
+    "heat": null
+   },
+   "dr": [
+    {
+     "name": "宁夏晚高峰削峰",
+     "req": 120.0,
+     "got": 91.769,
+     "rev": 183538.7
+    }
+   ]
+  },
+  {
+   "case": "热浪 优化 无DR",
+   "objective": -1926527,
+   "cost": -2312547,
+   "emis_t": 4825.2,
+   "dc_mwh": 8317.5,
+   "dc_peak_mw": 394.7,
+   "pue_avg": 1.303,
+   "pue_min": 1.144,
+   "pue_max": 1.461,
+   "tin_min": 18.0,
+   "tin_max": 32.0,
+   "margin_k": 0.0,
+   "h_above_rec": 2,
+   "cooling_mwh": 1615.2,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 1,
+     "chiller_n1": 16,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 2,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 1,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 1,
+     "t_min": 6,
+     "ramp": 7,
+     "chiller_n1": 8,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 7.638334409421077e-14,
+    "elec": 0.0,
+    "heat": null
+   }
+  },
+  {
+   "case": "热浪 优化 允许上限收紧至27°C",
+   "objective": -2080111,
+   "cost": -2466175,
+   "emis_t": 4825.8,
+   "dc_mwh": 8331.8,
+   "dc_peak_mw": 392.7,
+   "pue_avg": 1.305,
+   "pue_min": 1.091,
+   "pue_max": 1.458,
+   "tin_min": 18.0,
+   "tin_max": 27.0,
+   "margin_k": 0.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 1628.2,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 2,
+     "t_min": 3,
+     "ramp": 2,
+     "chiller_n1": 18,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 11,
+     "t_min": 3,
+     "ramp": 1,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 10,
+     "t_min": 3,
+     "ramp": 1,
+     "chiller_n1": 21,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 5,
+     "t_min": 6,
+     "ramp": 4,
+     "chiller_n1": 8,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 5.828670879282072e-14,
+    "elec": 0.0,
+    "heat": null
+   },
+   "dr": [
+    {
+     "name": "宁夏晚高峰削峰",
+     "req": 120.0,
+     "got": 84.787,
+     "rev": 169574.0
+    }
+   ]
+  }
+ ],
+ "heatwave_tin": {
+  "ZW_EXIST": [
+   23.78,
+   23.62,
+   23.46,
+   23.32,
+   23.21,
+   23.12,
+   23.07,
+   18.07,
+   18.0,
+   19.72,
+   20.14,
+   20.39,
+   20.62,
+   20.86,
+   21.1,
+   21.32,
+   21.52,
+   18.0,
+   18.0,
+   23.0,
+   28.0,
+   30.71,
+   25.71,
+   20.71
+  ],
+  "ZW_NEW_A": [
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   22.0,
+   24.54,
+   25.08,
+   25.34,
+   25.59,
+   24.59,
+   20.3,
+   18.0,
+   18.0,
+   18.0,
+   18.78,
+   23.78,
+   27.0,
+   28.66,
+   23.66,
+   22.91
+  ],
+  "ZW_NEW_B": [
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   27.0,
+   26.76,
+   21.76,
+   24.38,
+   24.93,
+   25.2,
+   25.45,
+   24.75,
+   20.32,
+   18.0,
+   18.0,
+   18.0,
+   22.0,
+   27.0,
+   27.0,
+   30.19,
+   25.19,
+   20.65
+  ],
+  "SH_EAST": [
+   23.94,
+   23.88,
+   23.82,
+   23.77,
+   23.72,
+   23.7,
+   18.7,
+   18.0,
+   18.0,
+   18.0,
+   18.0,
+   22.0,
+   27.0,
+   32.0,
+   27.0,
+   22.0,
+   18.0,
+   18.0,
+   23.0,
+   27.0,
+   27.57,
+   22.57,
+   23.82,
+   23.96
+  ]
+ },
+ "winter": [
+  {
+   "case": "常数PUE 基线",
+   "objective": -1550480,
+   "cost": -1915382,
+   "emis_t": 4561.3,
+   "dc_mwh": 7771.6,
+   "dc_peak_mw": 335.9,
+   "pue_avg": 1.2181
+  },
+  {
+   "case": "耦合 基线",
+   "objective": -1885153,
+   "cost": -2214300,
+   "emis_t": 4114.3,
+   "dc_mwh": 7009.3,
+   "dc_peak_mw": 303.5,
+   "pue_avg": 1.099,
+   "pue_min": 1.097,
+   "pue_max": 1.102,
+   "tin_min": 24.0,
+   "tin_max": 24.0,
+   "margin_k": 8.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 309.9,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 1.7763568394002505e-14,
+    "elec": 0.0,
+    "heat": null
+   }
+  },
+  {
+   "case": "耦合 优化 无余热",
+   "objective": -2209327,
+   "cost": -2537805,
+   "emis_t": 4106.0,
+   "dc_mwh": 7086.4,
+   "dc_peak_mw": 345.4,
+   "pue_avg": 1.11,
+   "pue_min": 1.052,
+   "pue_max": 1.206,
+   "tin_min": 18.0,
+   "tin_max": 27.89,
+   "margin_k": 4.11,
+   "h_above_rec": 3,
+   "cooling_mwh": 384.1,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 0,
+     "t_min": 6,
+     "ramp": 5,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 2.375877272697835e-12,
+    "elec": 0.0,
+    "heat": null
+   },
+   "dr": [
+    {
+     "name": "宁夏晚高峰削峰",
+     "req": 120.0,
+     "got": 11.66,
+     "rev": 23319.9
+    }
+   ]
+  },
+  {
+   "case": "耦合 优化 +余热+DR",
+   "objective": -2368759,
+   "cost": -2667213,
+   "emis_t": 3730.7,
+   "dc_mwh": 7348.5,
+   "dc_peak_mw": 363.4,
+   "pue_avg": 1.096,
+   "pue_min": 1.05,
+   "pue_max": 1.153,
+   "tin_min": 18.0,
+   "tin_max": 30.58,
+   "margin_k": 1.42,
+   "h_above_rec": 3,
+   "cooling_mwh": 292.0,
+   "violations": 0,
+   "heat_mwh": 1316.54,
+   "heat_rev": 157984.8,
+   "heat_offset_t": 526.6,
+   "binding": {
+    "ZW_EXIST": {
+     "t_allow_max": 0,
+     "t_min": 6,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_A": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "ZW_NEW_B": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 5,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "SH_EAST": {
+     "t_allow_max": 0,
+     "t_min": 6,
+     "ramp": 5,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 2.0383694732117874e-12,
+    "elec": 0.0,
+    "heat": 1.509903313490213e-14
+   },
+   "dr": [
+    {
+     "name": "宁夏晚高峰削峰",
+     "req": 120.0,
+     "got": 30.883,
+     "rev": 61766.5
+    }
+   ]
+  }
+ ],
+ "winter_attr": {
+  "total_saving": 483605.8,
+  "steps": {
+   "baseline": -1885152.7,
+   "shift_only": -2088472.0,
+   "shift_migration": -2126526.9,
+   "full": -2368758.5
+  },
+  "parts": [
+   {
+    "id": "shift",
+    "name": "负荷时移（批处理/任务移到低价、风光充裕时段）",
+    "saving": 203319.3,
+    "share_pct": 42.0
+   },
+   {
+    "id": "migration",
+    "name": "跨中心迁移",
+    "saving": 38054.9,
+    "share_pct": 7.9
+   },
+   {
+    "id": "storage",
+    "name": "储能套利/削峰",
+    "saving": 55875.9,
+    "share_pct": 11.6
+   },
+   {
+    "id": "virtual_cold",
+    "name": "虚拟储冷（预冷热惯性 + 蓄冷罐）",
+    "saving": 5914.6,
+    "share_pct": 1.2
+   },
+   {
+    "id": "heat",
+    "name": "余热回收供热（含虚拟储热）",
+    "saving": 123954.3,
+    "share_pct": 25.6
+   },
+   {
+    "id": "dr",
+    "name": "需求响应补偿",
+    "saving": 56486.8,
+    "share_pct": 11.7
+   }
+  ],
+  "terms": [
+   {
+    "term": "grid_purchase",
+    "name": "外网购电",
+    "baseline": 816294.4,
+    "optimized": 679378.1,
+    "saving": 136916.3
+   },
+   {
+    "term": "local_gen",
+    "name": "本地发电",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "export_revenue",
+    "name": "外送收入(负)",
+    "baseline": -3030594.2,
+    "optimized": -3132322.8,
+    "saving": 101728.7
+   },
+   {
+    "term": "curtail_penalty",
+    "name": "弃电惩罚",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "storage_degradation",
+    "name": "储能损耗",
+    "baseline": 0.0,
+    "optimized": 2553.4,
+    "saving": -2553.4
+   },
+   {
+    "term": "ppa",
+    "name": "PPA 结算",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "demand_charge",
+    "name": "需量电费",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "unserved_penalty",
+    "name": "任务未完成惩罚",
+    "baseline": 0.0,
+    "optimized": 0.0,
+    "saving": 0.0
+   },
+   {
+    "term": "carbon",
+    "name": "碳成本项",
+    "baseline": 329147.1,
+    "optimized": 298454.4,
+    "saving": 30692.7
+   },
+   {
+    "term": "thermal_penalty",
+    "name": "超推荐温度惩罚",
+    "baseline": 0.0,
+    "optimized": 2929.7,
+    "saving": -2929.7
+   },
+   {
+    "term": "heat_revenue",
+    "name": "售热收入(负)",
+    "baseline": -0.0,
+    "optimized": -157984.8,
+    "saving": 157984.8
+   },
+   {
+    "term": "dr_revenue",
+    "name": "需求响应收益(负)",
+    "baseline": 0,
+    "optimized": -61766.5,
+    "saving": 61766.5
+   }
+  ],
+  "physical": {
+   "curtail_reduction_mwh": 0.0,
+   "grid_import_reduction_mwh": 89.4,
+   "peak_import_reduction_mw": -11.28,
+   "storage_discharge_mwh": 242.25,
+   "migrated_mwh": 140.13,
+   "pue_avg_baseline": 1.0987,
+   "pue_avg_optimized": 1.096,
+   "cooling_reduction_mwh": 17.95,
+   "heat_delivered_mwh": 1316.54,
+   "heat_carbon_offset_t": 526.62,
+   "dr_delivered_mwh": 30.88,
+   "dr_requested_mwh": 120.0
+  },
+  "text": "相对基线，目标函数降低 483,606 元/日。按“基线→仅时移→+迁移→+储能”顺序反事实分解：负荷时移（批处理/任务移到低价、风光充裕时段） 203,319 元（42.0%）；跨中心迁移 38,055 元（7.9%）；储能套利/削峰 55,876 元（11.6%）；虚拟储冷（预冷热惯性 + 蓄冷罐） 5,915 元（1.2%）；余热回收供热（含虚拟储热） 123,954 元（25.6%）；需求响应补偿 56,487 元（11.7%）。最大贡献来自「负荷时移（批处理/任务移到低价、风光充裕时段）」。弃电减少 0.0 MWh，对应弃电惩罚项变化 0 元（惩罚为引导性虚拟成本，非真实支出）。",
+  "method": "顺序反事实：分别求解“允许时移但禁用迁移与储能”“允许时移+迁移但禁用储能”两个附加 LP（热耦合/DR 场景再依次放开 虚拟储冷→余热→DR）；各杠杆贡献 = 相邻情景目标差。分解次序会影响交互效应的归属。"
+ },
+ "helinger": [
+  {
+   "case": "常数PUE 基线",
+   "objective": 2304024,
+   "cost": 2024466,
+   "emis_t": 3494.5,
+   "dc_mwh": 5230.1,
+   "dc_peak_mw": 226.5,
+   "pue_avg": 1.1693
+  },
+  {
+   "case": "耦合 基线",
+   "objective": 2126657,
+   "cost": 1863703,
+   "emis_t": 3286.9,
+   "dc_mwh": 4905.9,
+   "dc_peak_mw": 212.7,
+   "pue_avg": 1.097,
+   "pue_min": 1.096,
+   "pue_max": 1.099,
+   "tin_min": 24.0,
+   "tin_max": 24.0,
+   "margin_k": 8.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 209.5,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "移动_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "电信_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "并行科技_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "中数云科_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "BJ_研发": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 0,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 1.5987211554602254e-14,
+    "elec": 0.0,
+    "heat": null
+   }
+  },
+  {
+   "case": "耦合 优化 无余热",
+   "objective": 1942434,
+   "cost": 1680113,
+   "emis_t": 3279.0,
+   "dc_mwh": 4908.3,
+   "dc_peak_mw": 257.2,
+   "pue_avg": 1.098,
+   "pue_min": 1.08,
+   "pue_max": 1.119,
+   "tin_min": 18.0,
+   "tin_max": 27.0,
+   "margin_k": 5.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 211.0,
+   "violations": 0,
+   "heat_mwh": 0.0,
+   "heat_rev": 0.0,
+   "heat_offset_t": 0.0,
+   "binding": {
+    "移动_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "电信_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 1,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "并行科技_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 0,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "中数云科_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 1,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "BJ_研发": {
+     "t_allow_max": 0,
+     "t_min": 4,
+     "ramp": 5,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 4.768221512074788e-10,
+    "elec": 0.0,
+    "heat": null
+   }
+  },
+  {
+   "case": "耦合 优化 +余热",
+   "objective": 1891345,
+   "cost": 1649433,
+   "emis_t": 3023.9,
+   "dc_mwh": 5155.9,
+   "dc_peak_mw": 271.8,
+   "pue_avg": 1.088,
+   "pue_min": 1.05,
+   "pue_max": 1.119,
+   "tin_min": 18.0,
+   "tin_max": 27.0,
+   "margin_k": 5.0,
+   "h_above_rec": 0,
+   "cooling_mwh": 168.3,
+   "violations": 0,
+   "heat_mwh": 1056.0,
+   "heat_rev": 116160.0,
+   "heat_offset_t": 422.4,
+   "binding": {
+    "移动_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 4,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "电信_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 4,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "并行科技_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "中数云科_HLGE": {
+     "t_allow_max": 0,
+     "t_min": 8,
+     "ramp": 3,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    },
+    "BJ_研发": {
+     "t_allow_max": 0,
+     "t_min": 4,
+     "ramp": 5,
+     "chiller_n1": 0,
+     "it_vs_cooling": 0
+    }
+   },
+   "bal": {
+    "thermal": 4.2938985700402554e-11,
+    "elec": 0.0,
+    "heat": 2.1316282072803006e-14
+   }
+  }
+ ],
+ "elapsed_s": 12.1
+}

@@ -1,0 +1,614 @@
+{
+ "title": "数据中心协同仿真优化平台 · 使用帮助",
+ "updated": "2026-11-10",
+ "home": "welcome",
+ "sections": [
+  {
+   "id": "start",
+   "title": "开始使用",
+   "pages": [
+    "welcome",
+    "quickstart",
+    "capabilities",
+    "ui-tour"
+   ]
+  },
+  {
+   "id": "model",
+   "title": "资源与建模",
+   "pages": [
+    "projects-scenarios",
+    "templates",
+    "resource-library",
+    "binding",
+    "config-builder",
+    "topology",
+    "scenario-json"
+   ]
+  },
+  {
+   "id": "sim",
+   "title": "仿真优化",
+   "pages": [
+    "versioned-tasks",
+    "workbench",
+    "research-mode",
+    "timestep",
+    "integer-jobs",
+    "annual-cfe",
+    "grid-feedback",
+    "gpu-sla",
+    "annual-optimization"
+   ]
+  },
+  {
+   "id": "ops",
+   "title": "三级运行与交易",
+   "pages": [
+    "tier",
+    "market"
+   ]
+  },
+  {
+   "id": "review",
+   "title": "结果复盘",
+   "pages": [
+    "results-export",
+    "paper-reproduction"
+   ]
+  },
+  {
+   "id": "kit",
+   "title": "知识·工具·设置",
+   "pages": [
+    "knowledge-cards",
+    "simulators-settings"
+   ]
+  },
+  {
+   "id": "params",
+   "title": "参数配置手册",
+   "pages": [
+    "params-overview",
+    "params-axis-library",
+    "params-datacenter",
+    "params-thermal-cooling",
+    "params-storage",
+    "params-sources-network",
+    "params-heat",
+    "params-jobs",
+    "params-price-carbon",
+    "params-cfe",
+    "params-grid-gpu",
+    "params-solver"
+   ]
+  },
+  {
+   "id": "ref",
+   "title": "参考",
+   "pages": [
+    "workflows-prompts",
+    "faq-errors",
+    "limitations",
+    "glossary"
+   ]
+  }
+ ],
+ "pages": {
+  "welcome": {
+   "title": "欢迎使用在线帮助",
+   "section": "开始使用",
+   "keywords": [
+    "帮助",
+    "手册",
+    "使用帮助",
+    "介绍",
+    "概览"
+   ],
+   "view": "chat"
+  },
+  "quickstart": {
+   "title": "五分钟上手",
+   "section": "开始使用",
+   "keywords": [
+    "快速上手",
+    "入门",
+    "第一次",
+    "5分钟",
+    "教程"
+   ],
+   "view": "foundation"
+  },
+  "capabilities": {
+   "title": "产品能做什么、不能做什么",
+   "section": "开始使用",
+   "keywords": [
+    "能力",
+    "状态",
+    "已实现",
+    "未实现",
+    "部分实现"
+   ],
+   "view": "chat"
+  },
+  "ui-tour": {
+   "title": "界面导览",
+   "section": "开始使用",
+   "keywords": [
+    "界面",
+    "导航",
+    "快捷键",
+    "F1",
+    "Ctrl+K",
+    "深链接"
+   ],
+   "view": "chat"
+  },
+  "projects-scenarios": {
+   "title": "项目、多场景与发布版本",
+   "section": "资源与建模",
+   "keywords": [
+    "项目",
+    "场景",
+    "草稿",
+    "版本",
+    "发布",
+    "签出",
+    "写回"
+   ],
+   "view": "foundation"
+  },
+  "templates": {
+   "title": "基础模板库",
+   "section": "资源与建模",
+   "keywords": [
+    "模板",
+    "参考场景"
+   ],
+   "view": "templates"
+  },
+  "resource-library": {
+   "title": "通用数据与设备模型库",
+   "section": "资源与建模",
+   "keywords": [
+    "资源库",
+    "数据",
+    "气象",
+    "电价",
+    "碳因子",
+    "负荷",
+    "设备模型"
+   ],
+   "view": "resources"
+  },
+  "binding": {
+   "title": "数据绑定与时间轴对齐",
+   "section": "资源与建模",
+   "keywords": [
+    "绑定",
+    "替换",
+    "axis_mismatch",
+    "时间轴"
+   ],
+   "view": "foundation"
+  },
+  "config-builder": {
+   "title": "配置构建器",
+   "section": "资源与建模",
+   "keywords": [
+    "配置",
+    "场景配置",
+    "表单"
+   ],
+   "view": "config"
+  },
+  "topology": {
+   "title": "模型拓扑 / 能流：查看、编辑与校验",
+   "section": "资源与建模",
+   "keywords": [
+    "拓扑",
+    "模型编辑",
+    "节点",
+    "线路"
+   ],
+   "view": "model"
+  },
+  "scenario-json": {
+   "title": "场景表单 (JSON)（高级）",
+   "section": "资源与建模",
+   "keywords": [
+    "JSON",
+    "导入",
+    "导出",
+    "场景文件"
+   ],
+   "view": "scenario"
+  },
+  "versioned-tasks": {
+   "title": "版本化仿真任务：冻结、运行、追溯与重跑",
+   "section": "仿真优化",
+   "keywords": [
+    "任务",
+    "冻结",
+    "快照",
+    "重跑",
+    "目标",
+    "软限时"
+   ],
+   "view": "tasks"
+  },
+  "workbench": {
+   "title": "仿真工作台：对话 + 六步透明工作流",
+   "section": "仿真优化",
+   "keywords": [
+    "工作台",
+    "对话",
+    "六步",
+    "工作流",
+    "Mock"
+   ],
+   "view": "chat"
+  },
+  "research-mode": {
+   "title": "研究模式",
+   "section": "仿真优化",
+   "keywords": [
+    "研究模式",
+    "Pareto",
+    "寻优",
+    "多目标"
+   ],
+   "view": "chat",
+   "step": "research"
+  },
+  "timestep": {
+   "title": "时间步：1 小时与 15 分钟",
+   "section": "仿真优化",
+   "keywords": [
+    "15分钟",
+    "15min",
+    "时间步",
+    "展开"
+   ],
+   "view": "foundation"
+  },
+  "integer-jobs": {
+   "title": "整数连续作业：截止、取消与重启",
+   "section": "仿真优化",
+   "keywords": [
+    "整数",
+    "连续任务",
+    "作业"
+   ],
+   "view": "foundation"
+  },
+  "annual-cfe": {
+   "title": "年度 CFE 采购（opt_cfe）",
+   "section": "仿真优化",
+   "keywords": [
+    "CFE",
+    "24/7",
+    "无碳电力",
+    "年度"
+   ],
+   "view": "foundation"
+  },
+  "grid-feedback": {
+   "title": "电网再出清与边际碳反馈（opt_grid_feedback）",
+   "section": "仿真优化",
+   "keywords": [
+    "电网反馈",
+    "LMCE",
+    "LMP",
+    "信号"
+   ],
+   "view": "foundation"
+  },
+  "gpu-sla": {
+   "title": "GPU 离散功率帽与吞吐 SLA（opt_gpu）",
+   "section": "仿真优化",
+   "keywords": [
+    "GPU",
+    "SLA",
+    "DVFS",
+    "功率上限"
+   ],
+   "view": "foundation"
+  },
+  "annual-optimization": {
+   "title": "年度 8760 寻优与多目标（工作台原入口）",
+   "section": "仿真优化",
+   "keywords": [
+    "8760",
+    "年度寻优",
+    "投资"
+   ],
+   "view": "chat"
+  },
+  "tier": {
+   "title": "三级运行：日前 → 日内 → 实时",
+   "section": "三级运行与交易",
+   "keywords": [
+    "三级运行",
+    "日前",
+    "日内",
+    "实时",
+    "滚动",
+    "包络"
+   ],
+   "view": "tier"
+  },
+  "market": {
+   "title": "电力交易运营沙盘（P0）",
+   "section": "三级运行与交易",
+   "keywords": [
+    "交易",
+    "沙盘",
+    "报价",
+    "403",
+    "市场"
+   ],
+   "view": "market"
+  },
+  "results-export": {
+   "title": "结果复盘与导出包",
+   "section": "结果复盘",
+   "keywords": [
+    "结果",
+    "导出",
+    "ZIP",
+    "交流校核",
+    "日志"
+   ],
+   "view": "chat",
+   "step": "results"
+  },
+  "paper-reproduction": {
+   "title": "原文案例 / 福利与生命周期审计专页",
+   "section": "结果复盘",
+   "keywords": [
+    "论文",
+    "复现",
+    "对照"
+   ],
+   "view": "foundation"
+  },
+  "knowledge-cards": {
+   "title": "知识库与技能卡",
+   "section": "知识·工具·设置",
+   "keywords": [
+    "知识库",
+    "技能卡",
+    "经验"
+   ],
+   "view": "kb"
+  },
+  "simulators-settings": {
+   "title": "仿真器状态与 LLM 设置",
+   "section": "知识·工具·设置",
+   "keywords": [
+    "仿真器",
+    "设置",
+    "LLM",
+    "MATPOWER"
+   ],
+   "view": "settings"
+  },
+  "params-overview": {
+   "title": "参数配置手册：总览与阅读方法",
+   "section": "参数配置手册",
+   "keywords": [
+    "参数",
+    "参数配置",
+    "参数配置手册",
+    "校验",
+    "范围"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-axis-library": {
+   "title": "时间轴与资源字段",
+   "section": "参数配置手册",
+   "keywords": [
+    "时间轴",
+    "axis",
+    "资源单位",
+    "step_minutes"
+   ],
+   "view": "foundation"
+  },
+  "params-datacenter": {
+   "title": "数据中心参数",
+   "section": "参数配置手册",
+   "keywords": [
+    "数据中心",
+    "PUE",
+    "IT负荷",
+    "功率模型"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-thermal-cooling": {
+   "title": "热管理与散热参数（thermal）",
+   "section": "参数配置手册",
+   "keywords": [
+    "热",
+    "冷却",
+    "冷机",
+    "COP",
+    "TES",
+    "温度"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-storage": {
+   "title": "储能与 UPS 参数",
+   "section": "参数配置手册",
+   "keywords": [
+    "储能",
+    "电池",
+    "SOC",
+    "效率"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-sources-network": {
+   "title": "电源与网络参数（风光 / 火电 / 外网 / 线路）",
+   "section": "参数配置手册",
+   "keywords": [
+    "电源",
+    "光伏",
+    "风电",
+    "电网",
+    "线路",
+    "节点"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-heat": {
+   "title": "热网与余热参数",
+   "section": "参数配置手册",
+   "keywords": [
+    "余热",
+    "供暖",
+    "热泵",
+    "热网"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-jobs": {
+   "title": "作业与截止参数",
+   "section": "参数配置手册",
+   "keywords": [
+    "任务参数",
+    "作业",
+    "负荷迁移",
+    "jobs"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-price-carbon": {
+   "title": "电价、碳核算、VCC 与需求响应参数",
+   "section": "参数配置手册",
+   "keywords": [
+    "电价",
+    "碳价",
+    "碳排放因子",
+    "分时电价"
+   ],
+   "view": "chat",
+   "step": "params"
+  },
+  "params-cfe": {
+   "title": "年度 CFE 参数（opt_cfe）",
+   "section": "参数配置手册",
+   "keywords": [
+    "CFE参数",
+    "matching",
+    "grid_cfe",
+    "匹配规则"
+   ],
+   "view": "foundation"
+  },
+  "params-grid-gpu": {
+   "title": "电网反馈与 GPU 独立模式参数",
+   "section": "参数配置手册",
+   "keywords": [
+    "电网反馈参数",
+    "GPU参数",
+    "flex",
+    "sla_windows"
+   ],
+   "view": "foundation"
+  },
+  "params-solver": {
+   "title": "求解器参数：软限时与交流校核",
+   "section": "参数配置手册",
+   "keywords": [
+    "求解器",
+    "软限时",
+    "time_limit_s",
+    "交流校核",
+    "ac_check",
+    "HiGHS"
+   ],
+   "view": "chat",
+   "step": "solver"
+  },
+  "workflows-prompts": {
+   "title": "典型流程与示例提示词",
+   "section": "参考",
+   "keywords": [
+    "流程",
+    "示例",
+    "提示词",
+    "prompt"
+   ],
+   "view": "chat"
+  },
+  "faq-errors": {
+   "title": "常见问题与报错",
+   "section": "参考",
+   "keywords": [
+    "报错",
+    "错误",
+    "FAQ",
+    "常见问题",
+    "失败"
+   ],
+   "view": "chat"
+  },
+  "limitations": {
+   "title": "已知限制与诚实声明",
+   "section": "参考",
+   "keywords": [
+    "限制",
+    "诚实声明",
+    "已知问题",
+    "测试"
+   ],
+   "view": "chat"
+  },
+  "glossary": {
+   "title": "术语表",
+   "section": "参考",
+   "keywords": [
+    "术语",
+    "名词",
+    "缩写"
+   ],
+   "view": "chat"
+  }
+ },
+ "context": {
+  "foundation": "projects-scenarios",
+  "templates": "templates",
+  "resources": "resource-library",
+  "config": "config-builder",
+  "model": "topology",
+  "scenario": "scenario-json",
+  "tasks": "versioned-tasks",
+  "chat": "workbench",
+  "chat:goal": "workbench",
+  "chat:params": "params-overview",
+  "chat:model": "workbench",
+  "chat:solver": "params-solver",
+  "chat:run": "results-export",
+  "chat:results": "results-export",
+  "chat:research": "research-mode",
+  "tier": "tier",
+  "market": "market",
+  "kb": "knowledge-cards",
+  "cards": "knowledge-cards",
+  "sims": "simulators-settings",
+  "settings": "simulators-settings",
+  "default": "welcome"
+ }
+}

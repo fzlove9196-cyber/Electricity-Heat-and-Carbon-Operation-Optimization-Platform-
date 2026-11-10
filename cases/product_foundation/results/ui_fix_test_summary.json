@@ -1,0 +1,70 @@
+{
+  "completed": "2026-11-06T13:40:13.409914+08:00",
+  "full_pytest": "236 passed, 311 warnings",
+  "foundation_tests": 35,
+  "pure_js_contract": "passed (Node; no browser)",
+  "code_hash": "7a4d4f8a684982fdb8f8010719cad83546d068794c354813b6da3804162b39a3",
+  "assets": {
+    "app/static/foundation.js": "8a2e1caedf1830b6fca491e0e59ea4ba1a0538a8a19434c4d5ce5d7306b77ff5",
+    "app/static/foundation_binding.js": "7feb63b8f9f5a0d736753b5bc81059aff475301ef511c862dda48ba073efb509",
+    "app/static/style.css": "9d4a4ab2016dde6a896cb3ceeed68c11340945034575adf9925220e3ba9c0a6f"
+  },
+  "health": {
+    "ok": true,
+    "mock": true
+  },
+  "all_preexisting_records_unchanged": {
+    "project": true,
+    "scenario": true,
+    "version": true,
+    "task": true,
+    "template": true,
+    "library": true
+  },
+  "pytest_log": "logs/product_foundation_ui_fix_pytest.log",
+  "http_evidence": "cases/product_foundation/results/ui_fix_http_validation.json",
+  "retest_manifest": "cases/product_foundation/results/ui_retest_manifest.json",
+  "real_browser_retest": {
+    "status": "passed",
+    "verified_at": "2026-11-06T14:41:09.236974+08:00",
+    "project_id": "99101d7b2cb243cd",
+    "project_name": "UI复验-绑定修复-20261106-1336",
+    "evidence": {
+      "screenshots_dir": "screens/foundation/retest/",
+      "screenshots": [
+        "01-axis-mismatch-expected.png",
+        "02-replace-success.png",
+        "03-published-v2-v1-preserved.png",
+        "04-v2-frozen-public-weather.png",
+        "05-v1-frozen-example-weather.png",
+        "06-pue-1-40-result-expired.png",
+        "07-written-back-draft.png",
+        "08-template-cards-wrapped.png",
+        "09-pue-140-v2-run.png"
+      ],
+      "binding_scenario": {
+        "id": "4a5f775f1a014e1b",
+        "draft_revision": 3,
+        "binding_resource_id": "1354cb8e225b4319",
+        "v1": "27a077eee08a4846",
+        "v2": "00aa3c1c67a24137",
+        "v2_created": "2026-11-06T13:42:22.735673+08:00",
+        "v2_axis_location": "中卫"
+      },
+      "edit_scenario": {
+        "id": "fc9f7df8b1c74ca7",
+        "draft_revision": 3,
+        "v1": "4a48f8155fb943e5",
+        "v2": "c1346629e8d645f5",
+        "v2_created": "2026-11-06T13:47:49.909987+08:00",
+        "v2_dc_a_pue": 1.4,
+        "task_v2": "c5386adbfe94",
+        "task_v2_status": "completed",
+        "task_v2_cost_cny": 2095412.7,
+        "task_v1_baseline": "3370411c685746be",
+        "task_v1_cost_cny": 2091848.9
+      }
+    },
+    "note": "Live /api/foundation catalog+versions+tasks checked; A/B checklist outcomes match screenshots. Summary field previously said pending parent computerUse."
+  }
+}

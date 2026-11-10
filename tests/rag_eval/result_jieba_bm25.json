@@ -1,0 +1,138 @@
+{
+ "summary": {
+  "label": "jieba_bm25_only",
+  "n": 12,
+  "hit1": 0.583,
+  "hit3": 0.75,
+  "avg_latency_ms": 18,
+  "p95_latency_ms": 18,
+  "config": {
+   "embed": "none(BM25 only)",
+   "rerank": "off",
+   "tokenizer": "jieba",
+   "store": "lancedb"
+  }
+ },
+ "rows": [
+  {
+   "query": "Alibaba GPU trace 数据集",
+   "hit1": true,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "03_开源项目与数据集.md#1",
+    "03_开源项目与数据集.md#3",
+    "03_开源项目与数据集.md#0"
+   ]
+  },
+  {
+   "query": "PUE 参考值",
+   "hit1": true,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "04_参数参考值.md#0",
+    "02_算电协同建模方法笔记.md#0"
+   ]
+  },
+  {
+   "query": "碳感知调度 碳强度",
+   "hit1": false,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "03_开源项目与数据集.md#0",
+    "01_算电协同文献综述.md#3",
+    "03_开源项目与数据集.md#1"
+   ]
+  },
+  {
+   "query": "AI训练 功率波动",
+   "hit1": true,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "01_算电协同文献综述.md#5",
+    "02_算电协同建模方法笔记.md#3",
+    "02_算电协同建模方法笔记.md#2"
+   ]
+  },
+  {
+   "query": "national grid carbon emission factor",
+   "hit1": false,
+   "hit3": false,
+   "latency_ms": 18,
+   "top": [
+    "01_算电协同文献综述.md#7"
+   ]
+  },
+  {
+   "query": "H100 GPU peak and idle power",
+   "hit1": false,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "02_算电协同建模方法笔记.md#0",
+    "01_算电协同文献综述.md#6",
+    "04_参数参考值.md#1"
+   ]
+  },
+  {
+   "query": "东数西算 绿电占比要求",
+   "hit1": true,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "04_参数参考值.md#0",
+    "02_算电协同建模方法笔记.md#2"
+   ]
+  },
+  {
+   "query": "spatial migration latency and bandwidth constraints",
+   "hit1": false,
+   "hit3": false,
+   "latency_ms": 18,
+   "top": []
+  },
+  {
+   "query": "distributionally robust scheduling under uncertainty",
+   "hit1": true,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "01_算电协同文献综述.md#4"
+   ]
+  },
+  {
+   "query": "Azure LLM inference trace",
+   "hit1": true,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "03_开源项目与数据集.md#1",
+    "03_开源项目与数据集.md#2",
+    "03_开源项目与数据集.md#3"
+   ]
+  },
+  {
+   "query": "储能 SOC 约束怎么设置",
+   "hit1": true,
+   "hit3": true,
+   "latency_ms": 18,
+   "top": [
+    "ess_guide.md#0",
+    "02_算电协同建模方法笔记.md#2",
+    "02_算电协同建模方法笔记.md#1"
+   ]
+  },
+  {
+   "query": "UPS frequency regulation demonstration",
+   "hit1": false,
+   "hit3": false,
+   "latency_ms": 18,
+   "top": [
+    "01_算电协同文献综述.md#7"
+   ]
+  }
+ ]
+}

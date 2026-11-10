@@ -1,0 +1,130 @@
+{
+ "generated": "2026-11-06T01:24:23 (Asia/Shanghai)",
+ "retrieved": "2026-11-06 (Asia/Shanghai)",
+ "sources": [
+  {
+   "id": "B1",
+   "name": "IEEE 14/30/57/118 bus (pandapower 3.5.6 bundled, from MATPOWER / UW PSTCA)",
+   "url": "https://github.com/e2nIEE/pandapower ; https://matpower.org",
+   "license": "pandapower BSD-3; MATPOWER BSD-3; PSTCA public",
+   "files": {
+    "case118.json": "453ba77bcec279dc9e0edddc91eb7e1001aff9a904080724bd33db6f504f14eb",
+    "case14.json": "8ac322eef71cde15fb293ac91bdab319216438e596d73da7fb33c3d832f19c31",
+    "case30.json": "4724ebc4e61f469bcb8eab7d0c0175252574c2acd086782adb07da43ca139c27",
+    "case57.json": "c5755043c0139df2686ffcd407ead82855f51b53ed83517143afad533d528fe5"
+   }
+  },
+  {
+   "id": "B2",
+   "name": "SPECpower_ssj2008 published results (40 sampled, every 29th of index)",
+   "url": "https://www.spec.org/power_ssj2008/results/",
+   "license": "SPEC public results; fair-use citation per SPEC Fair Use Rule",
+   "files": {
+    "power_ssj2008-20071128-00001.txt": "8955eb85cee392fb77e8d9e96dfa4da45b0b88b008b2675ab3dc56543aa6185e",
+    "power_ssj2008-20080506-00053.txt": "eb9d0c6e555fc8a8652f9a8ae6fbadc447e4712dfabde9f20850d17255c560bc",
+    "power_ssj2008-20081113-00097.txt": "553cb5dcc3f17ace79a258bae89431abf3c6581895992cbe6f73b80890de4470",
+    "power_ssj2008-20090330-00142.txt": "5fefc1867bddfaa6a49a97a902dae85bc945f5894dc1580f7948c529f0fa865e",
+    "power_ssj2008-20090825-00190.txt": "e73726117cd28286a9f2642ac942c22b6b2718ea62f7bef7bb8f294796fdaf83",
+    "power_ssj2008-20100315-00240.txt": "409234f58b5a8c52ac69e8bfca9db0f38152d7bacf22e3ed7d47d38377a91bef",
+    "power_ssj2008-20100727-00276.txt": "dfd31aef81902d097fdb10890ee76e33bdd48502eae63fb1e3b1e738ffeceb5b",
+    "power_ssj2008-20101021-00306.txt": "e6c8cc6d693271b9c652f2c4bcd912a1672c3541f86ebb73fe776bcad814d44e",
+    "power_ssj2008-20110206-00348.txt": "2c0d03b472ac72efb0db088d59c0814c3dd4263e9f01845d51f0bd1c226f6a9b",
+    "power_ssj2008-20110601-00380.txt": "0d57e752c3d1b4799c1ac006d4bd03ab161455a905ea4a232714220a54365cf4",
+    "power_ssj2008-20111212-00415.txt": "1eed3314c499fb1b4f0ace97c2a693d6d9f81b76d03c5135252fe4afefc73656",
+    "power_ssj2008-20120427-00455.txt": "0a0f4cef3990c5df1b7598225e2560bff23aad76a7719e602a6c62b5f8f2b34b",
+    "power_ssj2008-20120522-00473.txt": "afad929b616c82a8beb2b23e06c208471ce1feb2d2291ae01359f37ed9466eec",
+    "power_ssj2008-20120821-00528.txt": "92a8ea4745ca8b40a97507dcf61e7b3f37888ba1dc72ff98fe9311d8def60b10",
+    "power_ssj2008-20121030-00571.txt": "6da6de4ac160881a0bcf0c779cb11001df00ed62544a4eefa0c307e9394feeaa",
+    "power_ssj2008-20130605-00612.txt": "4b49cc6b4f7b9cd76b4e2b9099be99f465dbb5cfd3112979e31a5240b5f4d94a",
+    "power_ssj2008-20140401-00653.txt": "8b988ee79ce926ebc8855013869d2e677850a8dbeb0d80e183c196580597d0b0",
+    "power_ssj2008-20150721-00701.txt": "a98b1af3ae390cd921e3d712f3730bc51fe943ba589a12e07f4ddd5b5ef4c837",
+    "power_ssj2008-20170315-00746.txt": "891cdf934821dec7895b67707b99aed96afdc28495c57ff5bd9101383e693bb1",
+    "power_ssj2008-20180410-00808.txt": "ede37312749514e76481fa4fdf8a5aeeca68a37d4c20beb81badea2c244e2971",
+    "power_ssj2008-20180827-00844.txt": "ee2bd1d4c30335a828fbc8e539bf42547730e72bf3f96e3386c52b804e79fa4d",
+    "power_ssj2008-20190311-00889.txt": "c39c11545d38201312a9b007c74a9f87c55a359e3b42804f8e33b30f451ef90e",
+    "power_ssj2008-20190313-00935.txt": "7e13db5c98414f83e8eb12ab5ba3f2c1b8e0723d6b79fb3c69b76a73b26334c8",
+    "power_ssj2008-20190520-00969.txt": "3b0753896d876cf59257fcd001c7138f55456754c6a21270c3873178983dae13",
+    "power_ssj2008-20191008-01009.txt": "ce47ec3f842f86c2c85eff74a7570160e4dc461ca09097116305501364d6b04c",
+    "power_ssj2008-20200918-01046.txt": "8235de02d5a2d502a974f51a31c4fa24ed94ec8bb1ca96ca34166202bdb54635",
+    "power_ssj2008-20210518-01096.txt": "0458223f5efa4c9c6fa896e79c95da974a8ff20851165c16623778c3e1e69289",
+    "power_ssj2008-20211020-01134.txt": "16e0e494eb3c662c2969923635f657a36974e45b2887fb780dda76f09c38a129",
+    "power_ssj2008-20220215-01166.txt": "fd06f0cf0dd55c88b0fa4a75c067c7da8f5133d0267db95c97b2d0450c29ffb0",
+    "power_ssj2008-20221204-01204.txt": "aee0bd8ccbb214d5424845cb36fbf0776b412182c6f638bf0d002a08e1cd1f68",
+    "power_ssj2008-20230328-01237.txt": "b838a03c9a5ea28334d0b2d50c70c900bbc63f6bdbceb6005f604c908f119649",
+    "power_ssj2008-20230606-01275.txt": "f480a20dc8d6153256084b880fcd98a4a75870d7684be833e14e59e5e207fdb6",
+    "power_ssj2008-20230829-01308.txt": "ad7f54c155c4f1b79e9ce3b393eda7c1e6fb883823a3738d19e8fc9726e61218",
+    "power_ssj2008-20231205-01346.txt": "64645f90c91cbaa9a13c35e635e61c391d4b803ae9509328741071e1f94403d6",
+    "power_ssj2008-20240312-01380.txt": "71291132a5260a4d0f4cfdbc10e6e162121f8a5b6d19ea4666d95508973bb1f4",
+    "power_ssj2008-20240520-01414.txt": "2c2be35668ae87f456df320a3a1dbc8a78495eabbb3ca1fa86fcc47fb856bc43",
+    "power_ssj2008-20240923-01457.txt": "90cd4deeefa8bf44978acda8edca7a4dd8372548192523e8965ba3a1680e170b",
+    "power_ssj2008-20250208-01489.txt": "1518ac7d80f11827178299a8988770a1c65b8b5af1567b60e5ff4eef16bc309e",
+    "power_ssj2008-20250407-01521.txt": "ec5883340fddf32517f10d69d821310a3b9c4b89853def27a554d3f19fc00a9e",
+    "power_ssj2008-20260209-01555.txt": "c2c372e97f72778cf6d19fc7f7201f9dd74c9b5f55813531c9a095cb0b687e13",
+    "selected.txt": "22d66c0fef875368c6605a8dce0f1c6677be80d6420e1f1fac50437031366624"
+   }
+  },
+  {
+   "id": "B3",
+   "name": "AEMO NEM aggregated price & demand SA1 2023-12/2024-01",
+   "url": "https://aemo.com.au/aemo/data/nem/priceanddemand/PRICE_AND_DEMAND_202401_SA1.csv",
+   "license": "AEMO copyright permissions (general use with attribution)",
+   "files": {
+    "aemo_NSW1_202407.csv": "c5058ee196504d812e7745aabcf60af20d47c25448e02321fbd53462ed4b6bfe",
+    "aemo_SA1_202312.csv": "3113efe4395c000df503e415733ed3c0ed9d0de39e01705a4242a44e02255b82",
+    "aemo_SA1_202401.csv": "b0e3a569fe9a83b28f5be9c1f05211659348cefe6f43510df6b0667c9398ee0b",
+    "aemo_SA1_202407.csv": "18741badb34eade22f07dcfc38839bf54e6683c5aa54c87dd26af29b168a4eb5"
+   }
+  },
+  {
+   "id": "B3w",
+   "name": "Open-Meteo historical weather API (ERA5) Adelaide hourly T2m",
+   "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-34.93&longitude=138.6&start_date=2023-12-01&end_date=2024-01-31&hourly=temperature_2m",
+   "license": "CC BY 4.0",
+   "files": {
+    "openmeteo_adelaide_202312_202401.json": "984f782a9da60bcf73c120c2fb5ea651895800683c0434ad662469a65f19f77a"
+   }
+  },
+  {
+   "id": "B4",
+   "name": "Building Data Genome 2 electricity_cleaned.csv",
+   "url": "https://github.com/buds-lab/building-data-genome-project-2",
+   "license": "CC BY 4.0",
+   "files": {
+    "bdg2_electricity_cleaned.csv": "b6ffc9b4dfcefe5c753594730a08ae822b0d50fec6815abb8f185591e6c630a3"
+   }
+  }
+ ],
+ "b4_aggregate": {
+  "script": "bench_dr_bdg2_agg.py",
+  "result": "results/b4agg_dr_bdg2.json",
+  "result_sha256": "fec78908a623851edfddf58afbfdb02eb005ac60023bd9cbe03f53f9f4d2988d",
+  "events_csv_sha256": "8facf14c6a955129fc6cd5b59e5126031d538d559d5e9131f5ef556b314bb497",
+  "raw": "bdg2_electricity_cleaned.csv (same hash as B4)"
+ },
+ "b4_methods": {
+  "script": "bench_dr_methods.py",
+  "result": "results/b4m_dr_methods.json",
+  "result_sha256": "db2ae6ca60daf1417acf30c67aa0cd5e10239fc599c84a558256a173bb49f68e",
+  "weather": {
+   "url": "https://media.githubusercontent.com/media/buds-lab/building-data-genome-project-2/master/data/weather/weather.csv",
+   "license": "CC BY 4.0",
+   "sha256": "a8189f1c6acdf3b9933a9e6354b8e7c1278cd56a7075929623a17565d44f04bd"
+  },
+  "references": [
+   "CAISO BPM for Demand Response §5.4 https://bpmcm.caiso.com/BPM%20Document%20Library/Demand%20Response/BPM_for_Demand_Response_V11_Redline.pdf",
+   "DNV KEMA for AEMO 2013 Baseline Consumption Methodology Phase I https://www.aemo.com.au/-/media/files/initiatives/wdr/baseline-consumption-methodology---phase-i-reportpdf.pdf",
+   "PJM Empirical Analysis of DR Baseline Methods https://www.nyiso.com/documents/20142/1393792/PJM_Baseline_Analysis_Mid-Course_Update.pdf",
+   "CAISO BAWG 2017 Nexant https://www.caiso.com/documents/2017baselineaccuracyworkgroupfinalproposalnexant.pdf",
+   "Coughlin et al. 2008 LBNL-63728 https://eta-publications.lbl.gov/sites/default/files/report-lbnl-63728.pdf",
+   "Mathieu et al. 2011 IEEE TSG doi:10.1109/TSG.2011.2145010 https://eta-publications.lbl.gov/sites/default/files/LBNL-4944E.pdf"
+  ]
+ },
+ "default_vs_physics_fix": {
+  "transformer_tap": "物理修正，默认启用，不提供为默认回退（仅 SDCO_DC_IGNORE_TAP=1 用于复现旧错误）",
+  "dr_baseline": "默认方法仍为 similar_days_avg、无日类型过滤（向后兼容）；日类型过滤/adjusted 为可选"
+ },
+ "code_snapshots_before_fix": {
+  "sdco_engine.py.before_fix": "5675b16a22df9800385bbe6377c73c22b920651c3cc2c5f5fd8bae2e2d250664",
+  "market_core.py.before_fix": "75eaccc3dd8ee21c750cdf288a3f678da1924eca6b0d3186f1900b6f525a7194"
+ }
+}

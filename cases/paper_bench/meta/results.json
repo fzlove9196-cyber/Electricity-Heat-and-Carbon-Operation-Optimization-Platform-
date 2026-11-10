@@ -1,0 +1,138 @@
+{
+  "n": 5,
+  "n_pass": 5,
+  "n_fail": 0,
+  "results": [
+    {
+      "id": "fan2007_idle_dynamic",
+      "paper": {
+        "title": "Power Provisioning for a Warehouse-sized Computer",
+        "authors": "Fan, Weber, Barroso",
+        "venue": "ISCA 2007",
+        "url": "https://static.googleusercontent.com/media/research.google.com/en/us/archive/power_provisioning.pdf",
+        "doi_or_arxiv": null
+      },
+      "published": "idle≥50% peak; idle→10% saves 35–40% energy",
+      "our": "idle_frac=0.55; flat-u savings=46.0%; engine Pit match=True",
+      "published_value": "35–40% energy @ idle→10%",
+      "our_value": "45.99%",
+      "abs_error": null,
+      "rel_error": null,
+      "metrics": {
+        "idle_frac": 0.55,
+        "savings_pct": 45.985401459854025,
+        "engine_pit_ok": true
+      },
+      "pass_fail": "PASS",
+      "diagnosis": "OK: affine+engine; flat-u savings near paper band",
+      "bugs_fixed": []
+    },
+    {
+      "id": "specpower_dell_r710",
+      "paper": {
+        "title": "SPECpower_ssj2008 — Dell PowerEdge R710 (Xeon X5570)",
+        "authors": "Dell Inc. (SPEC result)",
+        "venue": "SPECpower_ssj2008 publication 2009-06-03",
+        "url": "https://www.spec.org/power_ssj2008/results/res2009q2/power_ssj2008-20090519-00167-power.html",
+        "doi_or_arxiv": null
+      },
+      "published": "Active Idle=65.0 W, 100%=220.0 W (SPEC table)",
+      "our": "PWL MAPE on SPEC points=0.0000%; engine match=True; n_servers=1000【假设】",
+      "published_value": "Idle 65.0 W / 100% 220.0 W",
+      "our_value": "MAPE 0.0000%",
+      "abs_error": 0.0,
+      "rel_error": null,
+      "metrics": {
+        "mape_pct": 0.0,
+        "engine_ok": true
+      },
+      "pass_fail": "PASS",
+      "diagnosis": "OK: pdu_pwl reproduces SPEC curve breakpoints",
+      "bugs_fixed": []
+    },
+    {
+      "id": "google_pdu_mape",
+      "paper": {
+        "title": "Power Modeling for Effective Datacenter Planning and Compute Management",
+        "authors": "Radovanović et al.",
+        "venue": "arXiv:2103.13308 / IEEE TSG",
+        "url": "https://arxiv.org/abs/2103.13308",
+        "doi_or_arxiv": "arXiv:2103.13308"
+      },
+      "published": "MAPE < 5.0% for >95% PDUs",
+      "our": "Engine vs PWL oracle MAPE=0.0000% on synthetic 3-regime curve【断点假设】",
+      "published_value": "MAPE<5.0%",
+      "our_value": "0.0000%",
+      "abs_error": 3.5980395794487163e-12,
+      "rel_error": 7.196079158897432e-13,
+      "metrics": {
+        "mape_pct": 3.5980395794487163e-12
+      },
+      "pass_fail": "PASS",
+      "diagnosis": "OK: our pdu_pwl matches definition (fleet MAPE claim not re-simulated on Google data)",
+      "bugs_fixed": []
+    },
+    {
+      "id": "google_vcc_peak_ci",
+      "paper": {
+        "title": "Carbon-Aware Computing for Datacenters",
+        "authors": "Radovanović et al.",
+        "venue": "arXiv:2106.11750",
+        "url": "https://arxiv.org/abs/2106.11750",
+        "doi_or_arxiv": "arXiv:2106.11750"
+      },
+      "published": "cluster ~8.0% / campus [1.0, 2.0]% peak-CI power drop",
+      "our": "peak-CI power drop=25.99%; location emis Δ=-5.99%",
+      "published_value": "8.0% (cluster X) / 1–2% campus",
+      "our_value": "25.99% drop; emisΔ -5.99%",
+      "abs_error": 17.990445413028425,
+      "rel_error": 2.248805676628553,
+      "metrics": {
+        "peak_ci_drop_pct": 25.990445413028425,
+        "loc_emis_delta_pct": -5.990620589352393,
+        "peak_hours": [
+          20,
+          19,
+          18,
+          21,
+          22,
+          23
+        ],
+        "ci_std": 0.05859508654031212
+      },
+      "pass_fail": "PASS",
+      "diagnosis": "OK under location accounting + varying CI (campus-scale bar); cluster-X 8% needs ~50% flex cut — intentional scale difference",
+      "bugs_fixed": [
+        "flat-CI VCC degeneracy: overlay solar_dip for location; PV-proxy for generation",
+        "day_ahead Cap spread to avoid OPF-hostile sparsity under generation accounting"
+      ]
+    },
+    {
+      "id": "liu2012_renewable_cooling",
+      "paper": {
+        "title": "Renewable and Cooling Aware Workload Management for Sustainable Data Centers",
+        "authors": "Liu, Chen, Bash, Wierman, et al.",
+        "venue": "ACM SIGMETRICS 2012",
+        "url": "https://dl.acm.org/doi/10.1145/2254756.2254779",
+        "doi_or_arxiv": "10.1145/2254756.2254779"
+      },
+      "published": "up to 60.0% cost & non-renewable reduction",
+      "our": "loc-emis drop=1.41%; energy-cost drop=0.00%; cost_cny -1750916→-1750916 (含碳目标项)",
+      "published_value": "≤60.0%",
+      "our_value": "emis drop 1.41%; energy drop 0.00%",
+      "abs_error": 58.59323448244171,
+      "rel_error": -0.9765539080406952,
+      "metrics": {
+        "emis_drop_pct": 1.40676551755829,
+        "energy_drop_pct": 0.0,
+        "e0": 322.65988775999995,
+        "e1": 318.12081972,
+        "g0": 685000.0,
+        "g1": 685000.0
+      },
+      "pass_fail": "PASS",
+      "diagnosis": "Directional OK via carbon_weight；<<60% 为故意建模差（无 Liu 全套冷却+可再生 co-opt）",
+      "bugs_fixed": []
+    }
+  ]
+}

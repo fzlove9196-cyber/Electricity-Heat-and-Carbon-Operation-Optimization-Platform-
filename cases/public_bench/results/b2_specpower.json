@@ -1,0 +1,1659 @@
+{
+ "n_servers": 38,
+ "summary": {
+  "mape_identity": {
+   "median": 26.334738670728235,
+   "p90": 35.40154332571136,
+   "max": 45.31134406506323
+  },
+  "mape_idle_dynamic": {
+   "median": 9.645239697085735,
+   "p90": 14.905826537936598,
+   "max": 19.334413014734533
+  },
+  "mape_pwl3": {
+   "median": 6.6838652767433935,
+   "p90": 10.163742445416718,
+   "max": 15.165311930378634
+  },
+  "mape_pwl5": {
+   "median": 3.2107908185842837,
+   "p90": 4.276147216785981,
+   "max": 5.242762629658746
+  },
+  "mape_idle_dynamic_same_holdout": {
+   "median": 9.506331187535288,
+   "p90": 15.288427361038075,
+   "max": 20.067098422753634
+  },
+  "maxape_idle_dynamic": {
+   "median": 18.263827662806836,
+   "p90": 28.648942672772456,
+   "max": 35.06617413215255
+  },
+  "idle_frac": {
+   "median": 0.25628317260970324,
+   "p90": 0.3828726107433603,
+   "max": 0.7192307692307692
+  },
+  "avail<=2012": {
+   "n": 14,
+   "idle_frac_median": 0.33052876888460303,
+   "idle_dynamic_mape_median": 4.98947832086812,
+   "identity_mape_median": 32.41531990547584
+  },
+  "avail>=2018": {
+   "n": 21,
+   "idle_frac_median": 0.1936695278969957,
+   "idle_dynamic_mape_median": 10.754830735510836,
+   "identity_mape_median": 24.61985957844772
+  }
+ },
+ "criteria": {
+  "idle_dynamic_median_mape_le_5": false,
+  "pwl3_median_mape_le_3": false,
+  "pwl3_better_than_idle_dynamic": true,
+  "pwl5_median_mape_le_3": false,
+  "pwl5_p90_mape_le_5": true
+ },
+ "per_server": [
+  {
+   "file": "power_ssj2008-20071128-00001.txt",
+   "vendor": "Fujitsu Siemens Computers",
+   "model": "PRIMERGY RX300 S3 (Intel Xeon L5335)",
+   "avail": "Sep-2007",
+   "idle_frac": 0.7192307692307692,
+   "mape_identity": 45.31134406506323,
+   "mape_idle_dynamic": 2.236849254048691,
+   "mape_pwl3": 0.6578208539002114,
+   "mape_pwl5": 0.2764839061262464,
+   "mape_idle_dynamic_same_holdout": 2.3136449977513327,
+   "maxape_idle_dynamic": 3.330870693383302
+  },
+  {
+   "file": "power_ssj2008-20080506-00053.txt",
+   "vendor": "Hewlett-Packard Company",
+   "model": "ProLiant DL180 G5 (2.50 GHz, Intel Xeon",
+   "avail": "Jul-2008",
+   "idle_frac": 0.5608465608465608,
+   "mape_identity": 42.08588503104369,
+   "mape_idle_dynamic": 3.591556426031997,
+   "mape_pwl3": 0.9654983887625219,
+   "mape_pwl5": 0.3162980378454565,
+   "mape_idle_dynamic_same_holdout": 3.677922492783058,
+   "maxape_idle_dynamic": 4.807104239547911
+  },
+  {
+   "file": "power_ssj2008-20081113-00097.txt",
+   "vendor": "Hewlett-Packard Company",
+   "model": "ProLiant DL585 G5 (2.70GHz, AMD Opteron",
+   "avail": "Nov-2008",
+   "idle_frac": 0.5738963531669866,
+   "mape_identity": 40.63099426233851,
+   "mape_idle_dynamic": 1.4944976619749344,
+   "mape_pwl3": 1.2698347061836555,
+   "mape_pwl5": 1.1756398589404118,
+   "mape_idle_dynamic_same_holdout": 1.6354018800898404,
+   "maxape_idle_dynamic": 3.5435743648133635
+  },
+  {
+   "file": "power_ssj2008-20090330-00142.txt",
+   "vendor": "IBM Corporation",
+   "model": "IBM System x3650 M2",
+   "avail": "Jun-2009",
+   "idle_frac": 0.3336065573770492,
+   "mape_identity": 33.35965370954426,
+   "mape_idle_dynamic": 4.255011613297982,
+   "mape_pwl3": 3.146911616042933,
+   "mape_pwl5": 1.1421342391833367,
+   "mape_idle_dynamic_same_holdout": 4.085178683570747,
+   "maxape_idle_dynamic": 11.292462311557781
+  },
+  {
+   "file": "power_ssj2008-20090825-00190.txt",
+   "vendor": "Dell Inc.",
+   "model": "PowerEdge R610 (Intel Xeon L5530, 2.40 GHz)",
+   "avail": "Aug-2009",
+   "idle_frac": 0.3488372093023256,
+   "mape_identity": 35.16099461697977,
+   "mape_idle_dynamic": 7.068131002007708,
+   "mape_pwl3": 6.049621198937365,
+   "mape_pwl5": 1.6484119755470785,
+   "mape_idle_dynamic_same_holdout": 6.672226179029496,
+   "maxape_idle_dynamic": 17.039490564717404
+  },
+  {
+   "file": "power_ssj2008-20100315-00240.txt",
+   "vendor": "Fujitsu",
+   "model": "PRIMERGY RX300 S6 (Intel Xeon X5670)",
+   "avail": "Apr-2010",
+   "idle_frac": 0.3179591836734694,
+   "mape_identity": 30.788899914819044,
+   "mape_idle_dynamic": 6.769885977484047,
+   "mape_pwl3": 6.895303361141279,
+   "mape_pwl5": 2.3751333329098605,
+   "mape_idle_dynamic_same_holdout": 6.202082818375069,
+   "maxape_idle_dynamic": 17.672079622839178
+  },
+  {
+   "file": "power_ssj2008-20100727-00276.txt",
+   "vendor": "NEC Corporation",
+   "model": "Express5800/B120b",
+   "avail": "Apr-2010",
+   "idle_frac": 0.3991130820399113,
+   "mape_identity": 32.0277910477638,
+   "mape_idle_dynamic": 5.571217862639594,
+   "mape_pwl3": 5.413963328279834,
+   "mape_pwl5": 1.3918208394120701,
+   "mape_idle_dynamic_same_holdout": 5.022102653277518,
+   "maxape_idle_dynamic": 9.669931940674301
+  },
+  {
+   "file": "power_ssj2008-20101021-00306.txt",
+   "vendor": "Acer Incorporated",
+   "model": "Acer AR385 F1 (AMD Opteron 6174, 2.20 GHz)",
+   "avail": "Oct-2010",
+   "idle_frac": 0.3175824175824176,
+   "mape_identity": 35.96282364608505,
+   "mape_idle_dynamic": 9.593132216161013,
+   "mape_pwl3": 4.9135572882674685,
+   "mape_pwl5": 2.6168649684919987,
+   "mape_idle_dynamic_same_holdout": 9.528321740106875,
+   "maxape_idle_dynamic": 20.147864184008753
+  },
+  {
+   "file": "power_ssj2008-20110206-00348.txt",
+   "vendor": "Hitachi, Ltd.",
+   "model": "HA8000/RS110 (CK1)",
+   "avail": "Dec-2010",
+   "idle_frac": 0.3759124087591241,
+   "mape_identity": 30.615107777830524,
+   "mape_idle_dynamic": 4.505875108900782,
+   "mape_pwl3": 1.9468312751127717,
+   "mape_pwl5": 1.739448597258787,
+   "mape_idle_dynamic_same_holdout": 5.718477536124269,
+   "maxape_idle_dynamic": 9.333101344850874
+  },
+  {
+   "file": "power_ssj2008-20110601-00380.txt",
+   "vendor": "Fujitsu",
+   "model": "PRIMERGY RX100 S7 (Intel Xeon E3-1260L)",
+   "avail": "Jun-2011",
+   "idle_frac": 0.3111888111888112,
+   "mape_identity": 29.389214386190144,
+   "mape_idle_dynamic": 2.6747804049553743,
+   "mape_pwl3": 2.843765173262324,
+   "mape_pwl5": 1.178814557170439,
+   "mape_idle_dynamic_same_holdout": 2.572456598620522,
+   "maxape_idle_dynamic": 4.683611938019998
+  },
+  {
+   "file": "power_ssj2008-20111212-00415.txt",
+   "vendor": "NEC Corporation",
+   "model": "Express5800/E120b-1",
+   "avail": "Oct-2011",
+   "idle_frac": 0.3155,
+   "mape_identity": 32.80284876318789,
+   "mape_idle_dynamic": 5.473081532835458,
+   "mape_pwl3": 5.547162675032931,
+   "mape_pwl5": 2.264634667157635,
+   "mape_idle_dynamic_same_holdout": 5.089711053422849,
+   "maxape_idle_dynamic": 16.96931869584885
+  },
+  {
+   "file": "power_ssj2008-20120427-00455.txt",
+   "vendor": "Huawei Technologies Co., Ltd",
+   "model": "RH2288 V2",
+   "avail": "Mar-2012",
+   "idle_frac": 0.3242236024844721,
+   "mape_identity": 28.35490521491733,
+   "mape_idle_dynamic": 6.98525384810792,
+   "mape_pwl3": 7.004514117308696,
+   "mape_pwl5": 2.829688050981207,
+   "mape_idle_dynamic_same_holdout": 6.914459674193969,
+   "maxape_idle_dynamic": 12.93283478742556
+  },
+  {
+   "file": "power_ssj2008-20120522-00473.txt",
+   "vendor": "Acer Incorporated",
+   "model": "Acer AT350 F2",
+   "avail": "May-2012",
+   "idle_frac": 0.32745098039215687,
+   "mape_identity": 29.50003146931858,
+   "mape_idle_dynamic": 2.9248378128196606,
+   "mape_pwl3": 1.9377848135978295,
+   "mape_pwl5": 2.048840994913614,
+   "mape_idle_dynamic_same_holdout": 3.038920796379203,
+   "maxape_idle_dynamic": 4.363681139652951
+  },
+  {
+   "file": "power_ssj2008-20121030-00571.txt",
+   "vendor": "Dell Inc.",
+   "model": "PowerEdge M520 (Intel Xeon E5-2470 (2.30",
+   "avail": "Oct-2012",
+   "idle_frac": 0.17949975478175575,
+   "mape_identity": 19.166461539492726,
+   "mape_idle_dynamic": 14.057943547758772,
+   "mape_pwl3": 5.105187260357461,
+   "mape_pwl5": 3.326265900097805,
+   "mape_idle_dynamic_same_holdout": 14.331808595088816,
+   "maxape_idle_dynamic": 22.312065539655368
+  },
+  {
+   "file": "power_ssj2008-20130605-00612.txt",
+   "vendor": "Huawei Technologies Co., Ltd",
+   "model": "RH2288 V2",
+   "avail": "Apr-2013",
+   "idle_frac": 0.26714975845410627,
+   "mape_identity": 23.73977555635695,
+   "mape_idle_dynamic": 8.26815314302739,
+   "mape_pwl3": 6.472427192345507,
+   "mape_pwl5": 2.5653929353812055,
+   "mape_idle_dynamic_same_holdout": 9.029043406486375,
+   "maxape_idle_dynamic": 15.356224259542707
+  },
+  {
+   "file": "power_ssj2008-20150721-00701.txt",
+   "vendor": "Dell Inc.",
+   "model": "PowerEdge FC630 (Intel Xeon E5-2699 v3 2.30",
+   "avail": "Jun-2015",
+   "idle_frac": 0.18152866242038215,
+   "mape_identity": 22.049015481240495,
+   "mape_idle_dynamic": 9.543989975695617,
+   "mape_pwl3": 8.621878741429237,
+   "mape_pwl5": 3.511713437654973,
+   "mape_idle_dynamic_same_holdout": 10.148076342916951,
+   "maxape_idle_dynamic": 17.085134006077148
+  },
+  {
+   "file": "power_ssj2008-20170315-00746.txt",
+   "vendor": "Fujitsu",
+   "model": "FUJITSU Server PRIMERGY TX1330 M3",
+   "avail": "May-2017",
+   "idle_frac": 0.2421875,
+   "mape_identity": 20.8816513974767,
+   "mape_idle_dynamic": 9.862571049728103,
+   "mape_pwl3": 4.120819214402509,
+   "mape_pwl5": 3.1720687351285837,
+   "mape_idle_dynamic_same_holdout": 11.456214111925654,
+   "maxape_idle_dynamic": 19.95160143308291
+  },
+  {
+   "file": "power_ssj2008-20180410-00808.txt",
+   "vendor": "Hewlett Packard Enterprise",
+   "model": "ProLiant DL385 Gen10",
+   "avail": "Jan-2018",
+   "idle_frac": 0.2721476510067114,
+   "mape_identity": 29.685511533262265,
+   "mape_idle_dynamic": 9.457302705936925,
+   "mape_pwl3": 9.319839394786804,
+   "mape_pwl5": 4.530692830572949,
+   "mape_idle_dynamic_same_holdout": 9.344790561033605,
+   "maxape_idle_dynamic": 24.38715666627372
+  },
+  {
+   "file": "power_ssj2008-20180827-00844.txt",
+   "vendor": "Hewlett Packard Enterprise",
+   "model": "ProLiant DL360 Gen10",
+   "avail": "Jun-2018",
+   "idle_frac": 0.16413502109704642,
+   "mape_identity": 18.526192089132547,
+   "mape_idle_dynamic": 6.57377064224273,
+   "mape_pwl3": 4.806429934707712,
+   "mape_pwl5": 3.935113587558999,
+   "mape_idle_dynamic_same_holdout": 7.752760647086804,
+   "maxape_idle_dynamic": 13.671720656487915
+  },
+  {
+   "file": "power_ssj2008-20190311-00889.txt",
+   "vendor": "Hewlett Packard Enterprise",
+   "model": "Synergy 660 Gen10 Compute Module",
+   "avail": "Apr-2019",
+   "idle_frac": 0.1936695278969957,
+   "mape_identity": 21.39033212188585,
+   "mape_idle_dynamic": 10.253990304508187,
+   "mape_pwl3": 7.859875284949116,
+   "mape_pwl5": 3.3463454084927595,
+   "mape_idle_dynamic_same_holdout": 11.12571454075026,
+   "maxape_idle_dynamic": 16.66118214288356
+  },
+  {
+   "file": "power_ssj2008-20190313-00935.txt",
+   "vendor": "Fujitsu",
+   "model": "FUJITSU Server PRIMERGY RX2540 M5",
+   "avail": "Jun-2019",
+   "idle_frac": 0.1753012048192771,
+   "mape_identity": 22.017090833843692,
+   "mape_idle_dynamic": 7.528221705136964,
+   "mape_pwl3": 7.638774024212967,
+   "mape_pwl5": 3.90526091426312,
+   "mape_idle_dynamic_same_holdout": 7.424727951130176,
+   "maxape_idle_dynamic": 23.540294875465204
+  },
+  {
+   "file": "power_ssj2008-20190520-00969.txt",
+   "vendor": "New H3C Technologies Co., Ltd.",
+   "model": "H3C UniServer B5700 G3",
+   "avail": "Jan-2019",
+   "idle_frac": 0.12252042007001167,
+   "mape_identity": 19.605664756161982,
+   "mape_idle_dynamic": 13.100164716272559,
+   "mape_pwl3": 10.754591943123899,
+   "mape_pwl5": 4.294025203686051,
+   "mape_idle_dynamic_same_holdout": 14.387739278913047,
+   "maxape_idle_dynamic": 21.958108343084856
+  },
+  {
+   "file": "power_ssj2008-20191008-01009.txt",
+   "vendor": "Fujitsu",
+   "model": "FUJITSU Server PRIMERGY TX1320 M4",
+   "avail": "Oct-2019",
+   "idle_frac": 0.2910714285714286,
+   "mape_identity": 21.704157184072205,
+   "mape_idle_dynamic": 15.185313283904147,
+   "mape_pwl3": 4.004108717605316,
+   "mape_pwl5": 1.6102785770472539,
+   "mape_idle_dynamic_same_holdout": 15.732678465681788,
+   "maxape_idle_dynamic": 23.113036369817774
+  },
+  {
+   "file": "power_ssj2008-20200918-01046.txt",
+   "vendor": "ASUSTeK Computer Inc.",
+   "model": "RS620SA-E10-RS12",
+   "avail": "Sep-2020",
+   "idle_frac": 0.2,
+   "mape_identity": 32.765915124653475,
+   "mape_idle_dynamic": 14.786046503950503,
+   "mape_pwl3": 8.188108262102766,
+   "mape_pwl5": 3.9983575377794622,
+   "mape_idle_dynamic_same_holdout": 14.48438935242452,
+   "maxape_idle_dynamic": 35.06617413215255
+  },
+  {
+   "file": "power_ssj2008-20210518-01096.txt",
+   "vendor": "Fujitsu",
+   "model": "PRIMERGY RX2540 M6",
+   "avail": "May-2021",
+   "idle_frac": 0.2393617021276596,
+   "mape_identity": 22.913548433945465,
+   "mape_idle_dynamic": 9.697347178010455,
+   "mape_pwl3": 6.925151940550474,
+   "mape_pwl5": 3.3600626391561796,
+   "mape_idle_dynamic_same_holdout": 11.136742951959889,
+   "maxape_idle_dynamic": 17.134328358208947
+  },
+  {
+   "file": "power_ssj2008-20211020-01134.txt",
+   "vendor": "New H3C Technologies Co., Ltd.",
+   "model": "H3C UniServer R4900 G5",
+   "avail": "May-2021",
+   "idle_frac": 0.19540229885057472,
+   "mape_identity": 23.64876659379555,
+   "mape_idle_dynamic": 14.496103605682231,
+   "mape_pwl3": 10.005234067980219,
+   "mape_pwl5": 3.661960556404914,
+   "mape_idle_dynamic_same_holdout": 15.621565062926745,
+   "maxape_idle_dynamic": 27.258208725142595
+  },
+  {
+   "file": "power_ssj2008-20220215-01166.txt",
+   "vendor": "Hewlett Packard Enterprise",
+   "model": "ProLiant ML30 Gen10 Plus",
+   "avail": "Mar-2022",
+   "idle_frac": 0.2487179487179487,
+   "mape_identity": 25.579175916496677,
+   "mape_idle_dynamic": 18.804364451451818,
+   "mape_pwl3": 8.864990761686164,
+   "mape_pwl5": 3.2495129020399838,
+   "mape_idle_dynamic_same_holdout": 19.546325700351385,
+   "maxape_idle_dynamic": 28.844917257683218
+  },
+  {
+   "file": "power_ssj2008-20221204-01204.txt",
+   "vendor": "ASUSTeK Computer Inc.",
+   "model": "RS720A-E12-RS12",
+   "avail": "Nov-2022",
+   "idle_frac": 0.1523579201934704,
+   "mape_identity": 25.724883698212096,
+   "mape_idle_dynamic": 15.334929250026166,
+   "mape_pwl3": 15.165311930378634,
+   "mape_pwl5": 5.242762629658746,
+   "mape_idle_dynamic_same_holdout": 15.145654060228642,
+   "maxape_idle_dynamic": 24.441437959025905
+  },
+  {
+   "file": "power_ssj2008-20230328-01237.txt",
+   "vendor": "Hewlett Packard Enterprise",
+   "model": "ProLiant ML110 Gen11",
+   "avail": "Mar-2023",
+   "idle_frac": 0.26384839650145775,
+   "mape_identity": 30.27162515875797,
+   "mape_idle_dynamic": 10.07847899284645,
+   "mape_pwl3": 10.097159770358807,
+   "mape_pwl5": 4.6084892905321,
+   "mape_idle_dynamic_same_holdout": 9.65336677643088,
+   "maxape_idle_dynamic": 28.56495356495356
+  },
+  {
+   "file": "power_ssj2008-20230606-01275.txt",
+   "vendor": "ASUSTeK Computer Inc.",
+   "model": "RS720A-E12-RS12",
+   "avail": "Jun-2023",
+   "idle_frac": 0.19325153374233128,
+   "mape_identity": 26.760849117012555,
+   "mape_idle_dynamic": 11.682778509276712,
+   "mape_pwl3": 11.386066958019699,
+   "mape_pwl5": 3.780907936319417,
+   "mape_idle_dynamic_same_holdout": 10.693378179386263,
+   "maxape_idle_dynamic": 28.209528182942407
+  },
+  {
+   "file": "power_ssj2008-20230829-01308.txt",
+   "vendor": "Dell Inc.",
+   "model": "PowerEdge R7615 (AMD EPYC 9654P, 2.40 GHz)",
+   "avail": "Feb-2023",
+   "idle_frac": 0.2230547550432277,
+   "mape_identity": 31.256879766935302,
+   "mape_idle_dynamic": 10.754830735510836,
+   "mape_pwl3": 8.12944038438969,
+   "mape_pwl5": 3.7468634039812314,
+   "mape_idle_dynamic_same_holdout": 10.36672319816468,
+   "maxape_idle_dynamic": 27.915354194130295
+  },
+  {
+   "file": "power_ssj2008-20231205-01346.txt",
+   "vendor": "xFusion Digital Technologies Co., Ltd",
+   "model": "FusionServer 2288H V7",
+   "avail": "Jan-2023",
+   "idle_frac": 0.18389423076923078,
+   "mape_identity": 17.752519444306074,
+   "mape_idle_dynamic": 19.334413014734533,
+   "mape_pwl3": 4.93881953566164,
+   "mape_pwl5": 4.268485222400237,
+   "mape_idle_dynamic_same_holdout": 20.067098422753634,
+   "maxape_idle_dynamic": 32.451082964183165
+  },
+  {
+   "file": "power_ssj2008-20240312-01380.txt",
+   "vendor": "Fujitsu",
+   "model": "FUJITSU Server PRIMERGY RX2530 M7",
+   "avail": "Apr-2024",
+   "idle_frac": 0.18387096774193548,
+   "mape_identity": 23.427473653056964,
+   "mape_idle_dynamic": 9.992175243605658,
+   "mape_pwl3": 10.319102020551838,
+   "mape_pwl5": 3.857153748563579,
+   "mape_idle_dynamic_same_holdout": 9.399795553519214,
+   "maxape_idle_dynamic": 24.931314293016417
+  },
+  {
+   "file": "power_ssj2008-20240520-01414.txt",
+   "vendor": "Lenovo Global Technology",
+   "model": "ThinkSystem SD550 V3",
+   "avail": "Apr-2024",
+   "idle_frac": 0.2680722891566265,
+   "mape_identity": 22.737381501238808,
+   "mape_idle_dynamic": 12.0491668159109,
+   "mape_pwl3": 3.8234843288879867,
+   "mape_pwl5": 1.9207713260481678,
+   "mape_idle_dynamic_same_holdout": 11.642014981307657,
+   "maxape_idle_dynamic": 17.75823803380493
+  },
+  {
+   "file": "power_ssj2008-20240923-01457.txt",
+   "vendor": "Lenovo Global Technology",
+   "model": "Think System SR645 V3",
+   "avail": "Nov-2024",
+   "idle_frac": 0.1677762982689747,
+   "mape_identity": 28.295729780089076,
+   "mape_idle_dynamic": 12.019507377980416,
+   "mape_pwl3": 8.99478663277561,
+   "mape_pwl5": 3.4118339073628996,
+   "mape_idle_dynamic_same_holdout": 12.033945302970057,
+   "maxape_idle_dynamic": 30.906501647984612
+  },
+  {
+   "file": "power_ssj2008-20250208-01489.txt",
+   "vendor": "Hewlett Packard Enterprise",
+   "model": "ProLiant Compute DL380a Gen12",
+   "avail": "Mar-2025",
+   "idle_frac": 0.3373493975903614,
+   "mape_identity": 25.90862822444392,
+   "mape_idle_dynamic": 10.094882323179377,
+   "mape_pwl3": 4.477720096535244,
+   "mape_pwl5": 1.9026498248292136,
+   "mape_idle_dynamic_same_holdout": 10.087764660746224,
+   "maxape_idle_dynamic": 12.95019623514341
+  },
+  {
+   "file": "power_ssj2008-20250407-01521.txt",
+   "vendor": "ASUSTeK Computer Inc.",
+   "model": "RS720A-E13-RS8U",
+   "avail": "Dec-2024",
+   "idle_frac": 0.1875,
+   "mape_identity": 24.61985957844772,
+   "mape_idle_dynamic": 9.46149026501691,
+   "mape_pwl3": 9.816083330398541,
+   "mape_pwl5": 2.6221028345846764,
+   "mape_idle_dynamic_same_holdout": 8.458445280729514,
+   "maxape_idle_dynamic": 18.769417291808743
+  },
+  {
+   "file": "power_ssj2008-20260209-01555.txt",
+   "vendor": "Lenovo Global Technology",
+   "model": "Think System SR665 V3",
+   "avail": "Jan-2026",
+   "idle_frac": 0.1480978260869565,
+   "mape_identity": 24.694734296911324,
+   "mape_idle_dynamic": 10.098801783436896,
+   "mape_pwl3": 9.420391113733126,
+   "mape_pwl5": 3.586280707921077,
+   "mape_idle_dynamic_same_holdout": 9.484340634963702,
+   "maxape_idle_dynamic": 24.3335846860076
+  }
+ ],
+ "raw": [
+  {
+   "file": "power_ssj2008-20071128-00001.txt",
+   "sha256": "8955eb85cee392fb77e8d9e96dfa4da45b0b88b008b2675ab3dc56543aa6185e",
+   "util": [
+    0.991,
+    0.899,
+    0.8029999999999999,
+    0.708,
+    0.6,
+    0.498,
+    0.401,
+    0.297,
+    0.20199999999999999,
+    0.099
+   ],
+   "power_w": [
+    260.0,
+    256.0,
+    250.0,
+    245.0,
+    238.0,
+    231.0,
+    224.0,
+    215.0,
+    207.0,
+    197.0
+   ],
+   "idle_w": 187.0
+  },
+  {
+   "file": "power_ssj2008-20080506-00053.txt",
+   "sha256": "eb9d0c6e555fc8a8652f9a8ae6fbadc447e4712dfabde9f20850d17255c560bc",
+   "util": [
+    0.997,
+    0.894,
+    0.797,
+    0.7040000000000001,
+    0.602,
+    0.505,
+    0.4,
+    0.303,
+    0.19899999999999998,
+    0.10099999999999999
+   ],
+   "power_w": [
+    189.0,
+    184.0,
+    178.0,
+    172.0,
+    164.0,
+    156.0,
+    146.0,
+    137.0,
+    127.0,
+    117.0
+   ],
+   "idle_w": 106.0
+  },
+  {
+   "file": "power_ssj2008-20081113-00097.txt",
+   "sha256": "553cb5dcc3f17ace79a258bae89431abf3c6581895992cbe6f73b80890de4470",
+   "util": [
+    0.982,
+    0.902,
+    0.8009999999999999,
+    0.7020000000000001,
+    0.598,
+    0.499,
+    0.39899999999999997,
+    0.303,
+    0.19699999999999998,
+    0.1
+   ],
+   "power_w": [
+    521.0,
+    501.0,
+    480.0,
+    459.0,
+    437.0,
+    417.0,
+    398.0,
+    381.0,
+    351.0,
+    313.0
+   ],
+   "idle_w": 299.0
+  },
+  {
+   "file": "power_ssj2008-20090330-00142.txt",
+   "sha256": "5fefc1867bddfaa6a49a97a902dae85bc945f5894dc1580f7948c529f0fa865e",
+   "util": [
+    0.995,
+    0.9,
+    0.8009999999999999,
+    0.7040000000000001,
+    0.598,
+    0.501,
+    0.4,
+    0.301,
+    0.2,
+    0.099
+   ],
+   "power_w": [
+    244.0,
+    229.0,
+    214.0,
+    199.0,
+    182.0,
+    167.0,
+    153.0,
+    139.0,
+    125.0,
+    110.0
+   ],
+   "idle_w": 81.4
+  },
+  {
+   "file": "power_ssj2008-20090825-00190.txt",
+   "sha256": "e73726117cd28286a9f2642ac942c22b6b2718ea62f7bef7bb8f294796fdaf83",
+   "util": [
+    0.997,
+    0.898,
+    0.7979999999999999,
+    0.698,
+    0.605,
+    0.503,
+    0.401,
+    0.301,
+    0.198,
+    0.10099999999999999
+   ],
+   "power_w": [
+    172.0,
+    161.0,
+    149.0,
+    139.0,
+    131.0,
+    122.0,
+    114.0,
+    107.0,
+    98.0,
+    86.0
+   ],
+   "idle_w": 60.0
+  },
+  {
+   "file": "power_ssj2008-20100315-00240.txt",
+   "sha256": "409234f58b5a8c52ac69e8bfca9db0f38152d7bacf22e3ed7d47d38377a91bef",
+   "util": [
+    0.996,
+    0.9,
+    0.8009999999999999,
+    0.701,
+    0.599,
+    0.498,
+    0.39799999999999996,
+    0.301,
+    0.19899999999999998,
+    0.1
+   ],
+   "power_w": [
+    245.0,
+    224.0,
+    203.0,
+    186.0,
+    172.0,
+    159.0,
+    148.0,
+    137.0,
+    127.0,
+    115.0
+   ],
+   "idle_w": 77.9
+  },
+  {
+   "file": "power_ssj2008-20100727-00276.txt",
+   "sha256": "dfd31aef81902d097fdb10890ee76e33bdd48502eae63fb1e3b1e738ffeceb5b",
+   "util": [
+    0.9990000000000001,
+    0.9009999999999999,
+    0.8,
+    0.7020000000000001,
+    0.6,
+    0.501,
+    0.401,
+    0.301,
+    0.2,
+    0.099
+   ],
+   "power_w": [
+    902.0,
+    814.0,
+    733.0,
+    691.0,
+    650.0,
+    608.0,
+    568.0,
+    533.0,
+    499.0,
+    458.0
+   ],
+   "idle_w": 360.0
+  },
+  {
+   "file": "power_ssj2008-20101021-00306.txt",
+   "sha256": "e6c8cc6d693271b9c652f2c4bcd912a1672c3541f86ebb73fe776bcad814d44e",
+   "util": [
+    0.996,
+    0.898,
+    0.799,
+    0.698,
+    0.602,
+    0.5,
+    0.4,
+    0.298,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    273.0,
+    260.0,
+    246.0,
+    231.0,
+    216.0,
+    198.0,
+    179.0,
+    161.0,
+    147.0,
+    132.0
+   ],
+   "idle_w": 86.7
+  },
+  {
+   "file": "power_ssj2008-20110206-00348.txt",
+   "sha256": "2c0d03b472ac72efb0db088d59c0814c3dd4263e9f01845d51f0bd1c226f6a9b",
+   "util": [
+    0.997,
+    0.9009999999999999,
+    0.7959999999999999,
+    0.7,
+    0.598,
+    0.503,
+    0.39899999999999997,
+    0.29600000000000004,
+    0.19899999999999998,
+    0.099
+   ],
+   "power_w": [
+    137.0,
+    127.0,
+    118.0,
+    107.0,
+    94.4,
+    85.3,
+    78.4,
+    71.7,
+    68.4,
+    62.0
+   ],
+   "idle_w": 51.5
+  },
+  {
+   "file": "power_ssj2008-20110601-00380.txt",
+   "sha256": "0d57e752c3d1b4799c1ac006d4bd03ab161455a905ea4a232714220a54365cf4",
+   "util": [
+    0.99,
+    0.899,
+    0.7959999999999999,
+    0.708,
+    0.597,
+    0.5,
+    0.4,
+    0.301,
+    0.2,
+    0.099
+   ],
+   "power_w": [
+    57.2,
+    53.8,
+    48.3,
+    44.3,
+    39.7,
+    36.4,
+    33.3,
+    30.1,
+    26.7,
+    22.7
+   ],
+   "idle_w": 17.8
+  },
+  {
+   "file": "power_ssj2008-20111212-00415.txt",
+   "sha256": "1eed3314c499fb1b4f0ace97c2a693d6d9f81b76d03c5135252fe4afefc73656",
+   "util": [
+    0.991,
+    0.9009999999999999,
+    0.802,
+    0.7020000000000001,
+    0.599,
+    0.501,
+    0.4,
+    0.3,
+    0.19899999999999998,
+    0.10099999999999999
+   ],
+   "power_w": [
+    200.0,
+    189.0,
+    176.0,
+    163.0,
+    145.0,
+    132.0,
+    123.0,
+    112.0,
+    103.0,
+    92.8
+   ],
+   "idle_w": 63.1
+  },
+  {
+   "file": "power_ssj2008-20120427-00455.txt",
+   "sha256": "0a0f4cef3990c5df1b7598225e2560bff23aad76a7719e602a6c62b5f8f2b34b",
+   "util": [
+    0.996,
+    0.898,
+    0.802,
+    0.701,
+    0.599,
+    0.499,
+    0.402,
+    0.301,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    161.0,
+    146.0,
+    131.0,
+    117.0,
+    106.0,
+    100.0,
+    94.2,
+    87.3,
+    80.2,
+    72.5
+   ],
+   "idle_w": 52.2
+  },
+  {
+   "file": "power_ssj2008-20120522-00473.txt",
+   "sha256": "afad929b616c82a8beb2b23e06c208471ce1feb2d2291ae01359f37ed9466eec",
+   "util": [
+    0.996,
+    0.9,
+    0.8,
+    0.701,
+    0.6,
+    0.501,
+    0.401,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    255.0,
+    240.0,
+    212.0,
+    198.0,
+    182.0,
+    165.0,
+    147.0,
+    130.0,
+    117.0,
+    105.0
+   ],
+   "idle_w": 83.5
+  },
+  {
+   "file": "power_ssj2008-20121030-00571.txt",
+   "sha256": "6da6de4ac160881a0bcf0c779cb11001df00ed62544a4eefa0c307e9394feeaa",
+   "util": [
+    0.9940000000000001,
+    0.899,
+    0.8,
+    0.7,
+    0.599,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    4078.0,
+    3416.0,
+    3027.0,
+    2634.0,
+    2247.0,
+    1954.0,
+    1771.0,
+    1465.0,
+    1240.0,
+    1067.0
+   ],
+   "idle_w": 732.0
+  },
+  {
+   "file": "power_ssj2008-20130605-00612.txt",
+   "sha256": "4b49cc6b4f7b9cd76b4e2b9099be99f465dbb5cfd3112979e31a5240b5f4d94a",
+   "util": [
+    0.998,
+    0.898,
+    0.8,
+    0.698,
+    0.6,
+    0.5,
+    0.401,
+    0.301,
+    0.201,
+    0.1
+   ],
+   "power_w": [
+    207.0,
+    187.0,
+    162.0,
+    143.0,
+    127.0,
+    113.0,
+    106.0,
+    97.4,
+    88.3,
+    78.3
+   ],
+   "idle_w": 55.3
+  },
+  {
+   "file": "power_ssj2008-20150721-00701.txt",
+   "sha256": "a98b1af3ae390cd921e3d712f3730bc51fe943ba589a12e07f4ddd5b5ef4c837",
+   "util": [
+    1.001,
+    0.9129999999999999,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    1256.0,
+    1105.0,
+    948.0,
+    823.0,
+    721.0,
+    658.0,
+    593.0,
+    525.0,
+    455.0,
+    382.0
+   ],
+   "idle_w": 228.0
+  },
+  {
+   "file": "power_ssj2008-20170315-00746.txt",
+   "sha256": "891cdf934821dec7895b67707b99aed96afdc28495c57ff5bd9101383e693bb1",
+   "util": [
+    0.9990000000000001,
+    0.899,
+    0.804,
+    0.7020000000000001,
+    0.598,
+    0.49700000000000005,
+    0.39799999999999996,
+    0.301,
+    0.19899999999999998,
+    0.099
+   ],
+   "power_w": [
+    51.2,
+    47.1,
+    41.0,
+    34.8,
+    29.7,
+    26.1,
+    23.4,
+    21.4,
+    19.4,
+    16.7
+   ],
+   "idle_w": 12.4
+  },
+  {
+   "file": "power_ssj2008-20180410-00808.txt",
+   "sha256": "ede37312749514e76481fa4fdf8a5aeeca68a37d4c20beb81badea2c244e2971",
+   "util": [
+    0.998,
+    0.899,
+    0.7979999999999999,
+    0.6990000000000001,
+    0.6,
+    0.499,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    298.0,
+    271.0,
+    248.0,
+    220.0,
+    199.0,
+    193.0,
+    179.0,
+    165.0,
+    150.0,
+    136.0
+   ],
+   "idle_w": 81.1
+  },
+  {
+   "file": "power_ssj2008-20180827-00844.txt",
+   "sha256": "ee2bd1d4c30335a828fbc8e539bf42547730e72bf3f96e3386c52b804e79fa4d",
+   "util": [
+    0.996,
+    0.902,
+    0.799,
+    0.7,
+    0.599,
+    0.498,
+    0.4,
+    0.299,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    237.0,
+    217.0,
+    191.0,
+    163.0,
+    144.0,
+    126.0,
+    109.0,
+    94.1,
+    80.7,
+    68.1
+   ],
+   "idle_w": 38.9
+  },
+  {
+   "file": "power_ssj2008-20190311-00889.txt",
+   "sha256": "c39c11545d38201312a9b007c74a9f87c55a359e3b42804f8e33b30f451ef90e",
+   "util": [
+    0.998,
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    1864.0,
+    1667.0,
+    1411.0,
+    1237.0,
+    1084.0,
+    954.0,
+    857.0,
+    773.0,
+    692.0,
+    603.0
+   ],
+   "idle_w": 361.0
+  },
+  {
+   "file": "power_ssj2008-20190313-00935.txt",
+   "sha256": "7e13db5c98414f83e8eb12ab5ba3f2c1b8e0723d6b79fb3c69b76a73b26334c8",
+   "util": [
+    0.998,
+    0.899,
+    0.8009999999999999,
+    0.7,
+    0.6,
+    0.499,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    332.0,
+    303.0,
+    269.0,
+    235.0,
+    208.0,
+    183.0,
+    163.0,
+    146.0,
+    129.0,
+    112.0
+   ],
+   "idle_w": 58.2
+  },
+  {
+   "file": "power_ssj2008-20190520-00969.txt",
+   "sha256": "3b0753896d876cf59257fcd001c7138f55456754c6a21270c3873178983dae13",
+   "util": [
+    0.9990000000000001,
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    5999.0,
+    5261.0,
+    4380.0,
+    3725.0,
+    3195.0,
+    2775.0,
+    2470.0,
+    2183.0,
+    1892.0,
+    1584.0
+   ],
+   "idle_w": 735.0
+  },
+  {
+   "file": "power_ssj2008-20191008-01009.txt",
+   "sha256": "ce47ec3f842f86c2c85eff74a7570160e4dc461ca09097116305501364d6b04c",
+   "util": [
+    1.003,
+    0.897,
+    0.8,
+    0.6990000000000001,
+    0.601,
+    0.498,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    56.0,
+    48.1,
+    42.5,
+    37.7,
+    33.6,
+    29.6,
+    26.1,
+    23.5,
+    21.2,
+    18.8
+   ],
+   "idle_w": 16.3
+  },
+  {
+   "file": "power_ssj2008-20200918-01046.txt",
+   "sha256": "8235de02d5a2d502a974f51a31c4fa24ed94ec8bb1ca96ca34166202bdb54635",
+   "util": [
+    0.997,
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    1140.0,
+    1071.0,
+    1001.0,
+    929.0,
+    853.0,
+    785.0,
+    696.0,
+    627.0,
+    565.0,
+    492.0
+   ],
+   "idle_w": 228.0
+  },
+  {
+   "file": "power_ssj2008-20210518-01096.txt",
+   "sha256": "0458223f5efa4c9c6fa896e79c95da974a8ff20851165c16623778c3e1e69289",
+   "util": [
+    1.0,
+    0.899,
+    0.799,
+    0.701,
+    0.6,
+    0.501,
+    0.401,
+    0.299,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    564.0,
+    489.0,
+    437.0,
+    378.0,
+    335.0,
+    302.0,
+    274.0,
+    249.0,
+    224.0,
+    198.0
+   ],
+   "idle_w": 135.0
+  },
+  {
+   "file": "power_ssj2008-20211020-01134.txt",
+   "sha256": "16e0e494eb3c662c2969923635f657a36974e45b2887fb780dda76f09c38a129",
+   "util": [
+    0.998,
+    0.899,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.39899999999999997,
+    0.3,
+    0.201,
+    0.1
+   ],
+   "power_w": [
+    609.0,
+    541.0,
+    423.0,
+    365.0,
+    325.0,
+    290.0,
+    267.0,
+    242.0,
+    215.0,
+    183.0
+   ],
+   "idle_w": 119.0
+  },
+  {
+   "file": "power_ssj2008-20220215-01166.txt",
+   "sha256": "fd06f0cf0dd55c88b0fa4a75c067c7da8f5133d0267db95c97b2d0450c29ffb0",
+   "util": [
+    1.0,
+    0.898,
+    0.797,
+    0.701,
+    0.599,
+    0.499,
+    0.402,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    78.0,
+    62.3,
+    53.0,
+    47.2,
+    42.3,
+    38.1,
+    34.2,
+    31.3,
+    28.7,
+    25.5
+   ],
+   "idle_w": 19.4
+  },
+  {
+   "file": "power_ssj2008-20221204-01204.txt",
+   "sha256": "aee0bd8ccbb214d5424845cb36fbf0776b412182c6f638bf0d002a08e1cd1f68",
+   "util": [
+    0.995,
+    0.9,
+    0.799,
+    0.7,
+    0.599,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    827.0,
+    686.0,
+    576.0,
+    499.0,
+    446.0,
+    414.0,
+    381.0,
+    343.0,
+    304.0,
+    260.0
+   ],
+   "idle_w": 126.0
+  },
+  {
+   "file": "power_ssj2008-20230328-01237.txt",
+   "sha256": "b838a03c9a5ea28334d0b2d50c70c900bbc63f6bdbceb6005f604c908f119649",
+   "util": [
+    1.001,
+    0.9,
+    0.8009999999999999,
+    0.7,
+    0.6,
+    0.499,
+    0.39899999999999997,
+    0.299,
+    0.19899999999999998,
+    0.1
+   ],
+   "power_w": [
+    343.0,
+    321.0,
+    285.0,
+    252.0,
+    232.0,
+    216.0,
+    202.0,
+    190.0,
+    176.0,
+    162.0
+   ],
+   "idle_w": 90.5
+  },
+  {
+   "file": "power_ssj2008-20230606-01275.txt",
+   "sha256": "f480a20dc8d6153256084b880fcd98a4a75870d7684be833e14e59e5e207fdb6",
+   "util": [
+    0.997,
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.499,
+    0.39899999999999997,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    652.0,
+    590.0,
+    511.0,
+    462.0,
+    433.0,
+    402.0,
+    369.0,
+    338.0,
+    297.0,
+    249.0
+   ],
+   "idle_w": 126.0
+  },
+  {
+   "file": "power_ssj2008-20230829-01308.txt",
+   "sha256": "ad7f54c155c4f1b79e9ce3b393eda7c1e6fb883823a3738d19e8fc9726e61218",
+   "util": [
+    0.9940000000000001,
+    0.9009999999999999,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.299,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    347.0,
+    327.0,
+    301.0,
+    269.0,
+    249.0,
+    231.0,
+    211.0,
+    190.0,
+    168.0,
+    145.0
+   ],
+   "idle_w": 77.4
+  },
+  {
+   "file": "power_ssj2008-20231205-01346.txt",
+   "sha256": "64645f90c91cbaa9a13c35e635e61c391d4b803ae9509328741071e1f94403d6",
+   "util": [
+    1.002,
+    0.9,
+    0.802,
+    0.7,
+    0.6,
+    0.5,
+    0.39899999999999997,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    832.0,
+    734.0,
+    608.0,
+    502.0,
+    435.0,
+    369.0,
+    334.0,
+    269.0,
+    241.0,
+    213.0
+   ],
+   "idle_w": 153.0
+  },
+  {
+   "file": "power_ssj2008-20240312-01380.txt",
+   "sha256": "71291132a5260a4d0f4cfdbc10e6e162121f8a5b6d19ea4666d95508973bb1f4",
+   "util": [
+    0.9990000000000001,
+    0.9,
+    0.799,
+    0.6990000000000001,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    930.0,
+    829.0,
+    711.0,
+    630.0,
+    570.0,
+    517.0,
+    468.0,
+    422.0,
+    376.0,
+    329.0
+   ],
+   "idle_w": 171.0
+  },
+  {
+   "file": "power_ssj2008-20240520-01414.txt",
+   "sha256": "2c2be35668ae87f456df320a3a1dbc8a78495eabbb3ca1fa86fcc47fb856bc43",
+   "util": [
+    0.996,
+    0.9,
+    0.7979999999999999,
+    0.6990000000000001,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    1660.0,
+    1558.0,
+    1229.0,
+    1102.0,
+    1004.0,
+    900.0,
+    816.0,
+    719.0,
+    620.0,
+    531.0
+   ],
+   "idle_w": 445.0
+  },
+  {
+   "file": "power_ssj2008-20240923-01457.txt",
+   "sha256": "90cd4deeefa8bf44978acda8edca7a4dd8372548192523e8965ba3a1680e170b",
+   "util": [
+    0.998,
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    751.0,
+    675.0,
+    625.0,
+    579.0,
+    531.0,
+    482.0,
+    433.0,
+    383.0,
+    329.0,
+    273.0
+   ],
+   "idle_w": 126.0
+  },
+  {
+   "file": "power_ssj2008-20250208-01489.txt",
+   "sha256": "1518ac7d80f11827178299a8988770a1c65b8b5af1567b60e5ff4eef16bc309e",
+   "util": [
+    0.997,
+    0.9,
+    0.8009999999999999,
+    0.7,
+    0.601,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    581.0,
+    500.0,
+    461.0,
+    416.0,
+    379.0,
+    350.0,
+    322.0,
+    279.0,
+    247.0,
+    221.0
+   ],
+   "idle_w": 196.0
+  },
+  {
+   "file": "power_ssj2008-20250407-01521.txt",
+   "sha256": "ec5883340fddf32517f10d69d821310a3b9c4b89853def27a554d3f19fc00a9e",
+   "util": [
+    0.996,
+    0.9,
+    0.799,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    800.0,
+    680.0,
+    589.0,
+    546.0,
+    504.0,
+    462.0,
+    413.0,
+    362.0,
+    315.0,
+    265.0
+   ],
+   "idle_w": 150.0
+  },
+  {
+   "file": "power_ssj2008-20260209-01555.txt",
+   "sha256": "c2c372e97f72778cf6d19fc7f7201f9dd74c9b5f55813531c9a095cb0b687e13",
+   "util": [
+    0.9990000000000001,
+    0.898,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1
+   ],
+   "power_w": [
+    736.0,
+    620.0,
+    574.0,
+    533.0,
+    488.0,
+    442.0,
+    392.0,
+    340.0,
+    284.0,
+    227.0
+   ],
+   "idle_w": 109.0
+  }
+ ]
+}

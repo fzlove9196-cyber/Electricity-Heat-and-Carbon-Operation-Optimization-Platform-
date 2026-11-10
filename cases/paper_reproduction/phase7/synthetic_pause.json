@@ -1,0 +1,85 @@
+{
+  "model_kind": "opt_gpu",
+  "name": "SYNTHETIC discrete cap+work control",
+  "n_steps": 3,
+  "dt_hours": 1,
+  "gpus": [
+    {
+      "id": "G0",
+      "idle_power_w": 50,
+      "source": {
+        "kind": "SYNTHETIC explicit idle50W"
+      }
+    },
+    {
+      "id": "G1",
+      "idle_power_w": 50,
+      "source": {
+        "kind": "SYNTHETIC explicit idle50W"
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job",
+      "gpu_ids": [
+        "G0",
+        "G1"
+      ],
+      "actions": [
+        {
+          "id": "cap200",
+          "cap_w": 200,
+          "power_w_per_gpu": 200,
+          "normalized_rate": 0.75,
+          "source": {
+            "kind": "SYNTHETIC analytic control"
+          }
+        },
+        {
+          "id": "cap400",
+          "cap_w": 400,
+          "power_w_per_gpu": 400,
+          "normalized_rate": 1,
+          "source": {
+            "kind": "SYNTHETIC analytic control"
+          }
+        }
+      ],
+      "reference_action": "cap400",
+      "baseline_rate": [
+        1,
+        1,
+        0
+      ],
+      "required_work_h": 2,
+      "deadline_h": 3,
+      "flex": 3,
+      "sla_windows": [
+        {
+          "start_h": 0,
+          "end_h": 2
+        }
+      ],
+      "allow_pause": true,
+      "pause_power_w_per_gpu": 50,
+      "source": {
+        "kind": "SYNTHETIC exact2 unthrottled ganghours, fixed2GPU"
+      }
+    }
+  ],
+  "price_usd_kwh": [
+    1,
+    1,
+    1
+  ],
+  "power_limit_kw": [
+    null,
+    0.1,
+    null
+  ],
+  "sla_window_semantics": "synthetic_short_window",
+  "source": {
+    "kind": "SYNTHETIC, not paper accuracy"
+  }
+}

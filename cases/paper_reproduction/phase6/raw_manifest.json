@@ -1,0 +1,45 @@
+{
+  "files": [
+    {
+      "file": "rts_bus.csv",
+      "bytes": 7003,
+      "sha256": "cec3f776222812d43eaeaf7ac85b577719dc565f354a04e120c12a647ddb710e",
+      "git_blob_sha1": "0295a8c5d6634874d9253b2222d9fb995e65bcba",
+      "source": "https://raw.githubusercontent.com/GridMod/RTS-GMLC/master/RTS_Data/SourceData/bus.csv"
+    },
+    {
+      "file": "rts_branch.csv",
+      "bytes": 7142,
+      "sha256": "e92d16d13b1c5d2899f7871c0c99c3eb94605528beef157bf9e1ccbcffe5ef4e",
+      "git_blob_sha1": "ab9e5a6b7f38ed74e0b8f035333b6a6776f05163",
+      "source": "https://raw.githubusercontent.com/GridMod/RTS-GMLC/master/RTS_Data/SourceData/branch.csv"
+    },
+    {
+      "file": "rts_gen.csv",
+      "bytes": 32451,
+      "sha256": "988466f29132b73739de60c9204dd4a2a9ceb0adf572e5966c086611272f4068",
+      "git_blob_sha1": "f7811443081656378ff00a15578129d73e83f048",
+      "source": "https://raw.githubusercontent.com/GridMod/RTS-GMLC/master/RTS_Data/SourceData/gen.csv"
+    },
+    {
+      "file": "rts_day_ahead_load.csv",
+      "bytes": 423702,
+      "sha256": "7a9470d32d49068a91334cb36db54cceb2feb5cb1f702b0fa0847af8bac6cf21",
+      "git_blob_sha1": "6f0ef99beb7fd06fd9aecbfd8eb73d2e9393742e",
+      "source": "https://raw.githubusercontent.com/GridMod/RTS-GMLC/master/RTS_Data/timeseries_data_files/Load/DAY_AHEAD_regional_Load.csv"
+    }
+  ],
+  "raw_dimensions": {
+    "buses": 73,
+    "generators": 158,
+    "lines": 120,
+    "source_hours": 8784
+  },
+  "subset_indices": [
+    1416,
+    1417,
+    1418,
+    1419
+  ],
+  "conversion": "cost=MMBtu/MWh*USD/MMBtu+VOM; tCO2/MWh=MMBtu/MWh*lb/MMBtu*0.00045359237; rates are explicit modelling variant"
+}

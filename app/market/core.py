@@ -1,0 +1,718 @@
+"""P0 核心：资源台账、规则包、日前MILP申报+物理可行检查、沙盘出清、日内调整、实时分解跟踪、DR基线考核、结算、审批流。
+
+建模约定（全部透明、可在结果 assumptions 中查阅）：
+- 设施功率 = IT × k_t，k_t = 1 + 1/COP(T_out,t) + other_frac；COP = clip(cop_ref − slope·(T−T_ref), cop_min, cop_max)。
+- 热安全（日前）：IT_t ≤ min(cap_it, 冷机N−1容量×降额(T_out))，降额 = 1 − 1%/K·max(0, T_out−35)【假设】。
+- 热安全（实时）：单节点 RC（C = c_air + c_mass），冷却削减 ΔQ 使温升 ΔT=ΔQ·Δt/C，须 T ≤ t_rec_max 且 |dT/dt| ≤ ramp_max。
+- 价格：沙盘日前价 = 场景分时价 × da_price_factor × (1 ± 确定性扰动)；实时价在此基础上按 rt_price_spread 扰动（seed 固定）。
+- 所有收益均为【沙盘测算】，不是现场收益。
+"""
+from __future__ import annotations
+import copy, csv, io, json, math, os, time, uuid
+import numpy as np
+from scipy.optimize import milp, LinearConstraint, Bounds
+from scipy.sparse import lil_matrix
+from . import store
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+CASES = os.path.abspath(os.path.join(HERE, "..", "..", "cases"))
+H = 24
+OPS_MODE = "sandbox"
+REAL_SUBMIT_MSG = "真实外部下单不可执行：本平台为沙盘（sandbox），未对接任何电力交易中心；请导出文件后由持证人员在官方系统人工申报。"
+
+class MarketError(ValueError): pass
+
+# ---------------------------------------------------------------- 规则包
+def list_rules():
+    out = []
+    for f in sorted(os.listdir(os.path.join(HERE, "rules"))):
+        if f.endswith(".json"): out.append(json.load(open(os.path.join(HERE, "rules", f), encoding="utf-8")))
+    for r in store.load("rules_custom.json", {}).values(): out.append(r)
+    return out
+
+def get_rule(rule_id):
+    for r in list_rules():
+        if r["id"] == rule_id: return r
+    raise MarketError(f"未知规则包 {rule_id}")
+
+def save_custom_rule(rule: dict, actor="user"):
+    base = get_rule(rule.get("base", "demo_ningxia")) if rule.get("base") else {}
+    r = {**copy.deepcopy(base), **{k: v for k, v in rule.items() if k != "base"}}
+    for k in ("id", "province"):
+        if not r.get(k): raise MarketError(f"规则包缺少 {k}")
+    r["official"] = False; r.setdefault("label", r["id"] + "【用户配置·假设】")
+    d = store.load("rules_custom.json", {}); d[r["id"]] = r; store.save("rules_custom.json", d)
+    store.audit("rule.save", actor, r["id"], {"province": r["province"]}); return r
+
+# ---------------------------------------------------------------- 资源台账
+CASE_FILES = {"zhongwei": "zhongwei/zhongwei_summer_coupled.json",
+              "ulanqab": "ulanqab_21vianet/ulanqab_21vianet_summer.json",
+              "shaoguan": "shaoguan/shaoguan_summer.json"}
+PROV_RULE = {"ningxia": "demo_ningxia", "northwest": "demo_ningxia", "mengxi": "demo_mengxi", "guangdong": "demo_guangdong"}
+PROV_ALIAS = {"northwest": "ningxia"}
+
+def _assumed_ups(dc):
+    p = round(0.1 * dc["cap_it_mw"], 2)
+    return {"type": "ups", "name": dc["name"] + "_UPS", "site": dc["site"], "province": dc["province"], "power_mw": p,
+            "energy_mwh": round(p * 0.25, 3), "eta": 0.95, "soc0": 0.9, "soc_max": 1.0, "reserve_frac": None,
+            "source": "【假设】UPS 10%·IT 功率、15 min 储能；备用 SOC 底线取规则包 ups_reserve_floor_frac"}
+
+def _assumed_diesel(dc):
+    p = round(0.15 * dc["cap_it_mw"], 2)
+    return {"type": "diesel", "name": dc["name"] + "_DG", "site": dc["site"], "province": dc["province"], "pmax_mw": p,
+            "pmin_mw": round(0.3 * p, 2), "cost_cny_mwh": 2200.0, "emission_t_mwh": 0.75,
+            "source": "【假设】柴发 15%·IT、最小出力30%、2200元/MWh；示范规则默认禁止参与市场/DR"}
+
+def resources_from_case(key: str, with_backup=True):
+    """从仓库真实案例场景（参数来源见案例 sources）派生资源；省份取 bus_region。"""
+    sc = json.load(open(os.path.join(CASES, CASE_FILES[key]), encoding="utf-8"))
+    reg = sc.get("bus_region", {}); res = []
+    temps = sc.get("outdoor_temp_profiles") or {}
+    for dc in sc["data_centers"]:
+        prov = reg.get(str(dc["bus"]), "unknown"); prov = PROV_ALIAS.get(prov, prov)
+        th = dc.get("thermal", {})
+        T = temps.get(reg.get(str(dc["bus"]), ""), sc.get("outdoor_temp_c") or [25] * H)
+        r = {"type": "dc", "name": dc["name"], "site": key, "province": prov, "bus": dc["bus"],
+             "account_no": f"DEMO-{key.upper()}-{dc['name']}", "voltage_kv": 110, "contract_id": f"AGG-{key}-001",
+             "exclusive": True, "cap_it_mw": dc["cap_it_mw"], "pue_nominal": dc["pue"],
+             "interactive_mw": [min(x, dc["cap_it_mw"]) for x in dc["interactive_mw"]], "batch_mwh": dc["batch_mwh"],
+             "outdoor_temp_c": [float(x) for x in T[:H]],
+             "thermal": {k: th.get(k, d) for k, d in dict(c_air_mwh_k=0.01 * dc["cap_it_mw"], c_mass_mwh_k=0.08 * dc["cap_it_mw"],
+                         t0_c=24.0, t_min_c=18.0, t_rec_max_c=27.0, t_allow_max_c=32.0, ramp_max_k_h=5.0,
+                         chiller_cap_mw_th=1.3 * dc["cap_it_mw"], chiller_units=5, cop_ref=5.5, cop_t_ref_c=25.0,
+                         cop_slope_per_k=0.12, cop_min=2.5, cop_max=8.0, other_frac=0.05, tes_mwh_th=0.0).items()},
+             "source": f"cases/{CASE_FILES[key]}（户号/合同号为【示例】）"}
+        res.append(r)
+    for s_ in sc.get("storage", []):
+        prov = PROV_ALIAS.get(reg.get(str(s_["bus"]), "unknown"), reg.get(str(s_["bus"]), "unknown"))
+        res.append({"type": "ess", "name": s_["name"], "site": key, "province": prov, "bus": s_["bus"],
+                    "energy_mwh": s_["energy_mwh"], "power_mw": s_["power_mw"], "eta": s_.get("eta_ch", 0.95),
+                    "soc0": s_.get("soc0", 0.5), "soc_min": s_.get("soc_min", 0.1), "soc_max": s_.get("soc_max", 0.95),
+                    "source": f"cases/{CASE_FILES[key]}"})
+    if with_backup:
+        for r in [x for x in res if x["type"] == "dc"]:
+            res += [_assumed_ups(r), _assumed_diesel(r)]
+    for i, r in enumerate(res): r["id"] = f"{key}-{r['type']}-{i}"
+    return res, sc.get("price_cny_kwh", [0.5] * H), sc.get("name")
+
+def _validate_portfolio(p):
+    if p.get("dt_hours",1)!=1 or any(r.get("dt_hours",1)!=1 for r in p["resources"]): raise MarketError("市场沙盘仅支持1h；15min资源不能隐式按1h")
+    if len(p.get("price_cny_kwh",[]))!=24: raise MarketError("市场沙盘电价必须24点/1h")
+    rule = get_rule(p["rule_id"]); prov = rule["province"]
+    bad = [r["name"] for r in p["resources"] if r.get("province") != prov]
+    if bad: raise MarketError(f"规则包 {rule['id']}（{prov}）不可混用：资源 {bad} 不属于该省，必须拆分为独立组合")
+    seen = {}
+    for q in store.load("portfolios.json", {}).values():
+        if q["id"] == p["id"]: continue
+        for r in q["resources"]:
+            if r.get("account_no") and r.get("exclusive"): seen[r["account_no"]] = q["id"]
+    dup = [r["account_no"] for r in p["resources"] if r.get("account_no") in seen]
+    if dup: raise MarketError(f"户号 {dup} 已被其他聚合组合独占绑定（{[seen[d] for d in dup]}）")
+
+def create_portfolio(name, rule_id, resources, price_cny_kwh=None, actor="user", pid=None, excluded=None, source=""):
+    p = {"id": pid or "pf-" + uuid.uuid4().hex[:8], "name": name, "rule_id": rule_id, "mode": OPS_MODE,
+         "resources": resources, "price_cny_kwh": price_cny_kwh or [0.5] * H, "excluded": excluded or [],
+         "source": source, "created": time.time()}
+    _validate_portfolio(p)
+    d = store.load("portfolios.json", {}); d[p["id"]] = p; store.save("portfolios.json", d)
+    store.audit("portfolio.create", actor, p["id"], {"rule": rule_id, "n_res": len(resources), "excluded": p["excluded"]})
+    return p
+
+def portfolio_from_case(key, actor="user", with_backup=True):
+    res, price, scname = resources_from_case(key, with_backup)
+    provs = {}
+    for r in res: provs.setdefault(r["province"], []).append(r)
+    main = max(provs, key=lambda k: sum(r.get("cap_it_mw", 0) + r.get("power_mw", 0) for r in provs[k]))
+    rule_id = PROV_RULE[main]
+    excluded = [{"name": r["name"], "province": r["province"], "reason": f"跨省（{r['province']}≠{main}），按规则包不可混用，已剔除"}
+                for k, v in provs.items() if k != main for r in v]
+    return create_portfolio(f"{key} 组合（{scname}）", rule_id, provs[main], price, actor, pid=f"pf-{key}",
+                            excluded=excluded, source=CASE_FILES[key])
+
+def list_portfolios(): return list(store.load("portfolios.json", {}).values())
+
+def get_portfolio(pid):
+    d = store.load("portfolios.json", {})
+    if pid not in d:
+        key = pid[3:] if pid.startswith("pf-") else pid
+        if key in CASE_FILES: return portfolio_from_case(key, "system")
+        raise MarketError(f"未知组合 {pid}")
+    return d[pid]
+
+def _cop(th, T): return float(np.clip(th["cop_ref"] - th["cop_slope_per_k"] * (T - th["cop_t_ref_c"]), th["cop_min"], th["cop_max"]))
+def _k(dc, t): th = dc["thermal"]; return 1 + 1 / _cop(th, dc["outdoor_temp_c"][t]) + th["other_frac"]
+def _therm_cap(dc, t):
+    th = dc["thermal"]; n = th["chiller_units"]; T = dc["outdoor_temp_c"][t]
+    return min(dc["cap_it_mw"], th["chiller_cap_mw_th"] * (n - 1) / n * (1 - 0.01 * max(0.0, T - 35)))
+
+def capability(p):
+    """可调能力/热安全台账：每资源上下调 MW、能量、热约束。"""
+    rule = get_rule(p["rule_id"]); rows = []
+    for r in p["resources"]:
+        if r["type"] == "dc":
+            caps = [_therm_cap(r, t) for t in range(H)]
+            up = [round((caps[t] - r["interactive_mw"][t]) * _k(r, t), 2) for t in range(H)]
+            th = r["thermal"]; C = th["c_air_mwh_k"] + th["c_mass_mwh_k"]
+            rows.append({"id": r["id"], "name": r["name"], "type": "dc", "batch_mwh": r["batch_mwh"],
+                         "flex_up_mw_max": max(up), "flex_down_mw_max": round(max(r["interactive_mw"]) * 0 + r["batch_mwh"] / H * 1.25, 2),
+                         "thermal_cap_it_mw_min": round(min(caps), 2), "thermal_headroom_k": th["t_rec_max_c"] - th["t0_c"],
+                         "cooling_inertia_mwh_th": round(C * (th["t_rec_max_c"] - th["t0_c"]), 2),
+                         "cooling_shed_mw_th_max": round(C * th["ramp_max_k_h"], 2), "c_total_mwh_k": round(C, 3),
+                         "pue_model_range": [round(min(_k(r, t) for t in range(H)), 3), round(max(_k(r, t) for t in range(H)), 3)]})
+        elif r["type"] == "ess":
+            rows.append({"id": r["id"], "name": r["name"], "type": "ess", "power_mw": r["power_mw"],
+                         "energy_usable_mwh": round(r["energy_mwh"] * (r["soc_max"] - r["soc_min"]), 2)})
+        elif r["type"] == "ups":
+            fl = r.get("reserve_frac") or rule["ups_reserve_floor_frac"]
+            rows.append({"id": r["id"], "name": r["name"], "type": "ups", "power_mw": r["power_mw"], "reserve_floor": fl,
+                         "energy_usable_mwh": round(r["energy_mwh"] * max(0, r["soc0"] - fl), 3)})
+        elif r["type"] == "diesel":
+            rows.append({"id": r["id"], "name": r["name"], "type": "diesel", "pmax_mw": r["pmax_mw"],
+                         "market_allowed": rule["diesel_allowed_market"], "dr_allowed": rule["diesel_allowed_dr"]})
+    return {"portfolio": p["id"], "rule": rule["id"], "resources": rows,
+            "excluded": p.get("excluded", []), "note": "热安全参数来自案例 thermal（多数为【假设】RC 参数）"}
+
+# ---------------------------------------------------------------- 价格（沙盘）
+def prices(p, seed=7):
+    rule = get_rule(p["rule_id"]); rng = np.random.default_rng(seed)
+    base = np.array(p.get("price_override") or [x * rule["da_price_factor"] for x in p["price_cny_kwh"]], float)
+    da = base * (1 + rng.uniform(-0.05, 0.05, H))
+    rt = da * (1 + rng.uniform(-rule["rt_price_spread"], rule["rt_price_spread"], H))
+    da = np.clip(da, rule["price_floor_cny_mwh"], rule["price_cap_cny_mwh"]); rt = np.clip(rt, rule["price_floor_cny_mwh"], rule["price_cap_cny_mwh"])
+    return {"forecast": base.round(2).tolist(), "da": da.round(2).tolist(), "rt": rt.round(2).tolist(),
+            "id": ((da + rt) / 2).round(2).tolist(),
+            "note": "【沙盘假设价】基于案例分时电价×规则包系数+确定性扰动(seed)；可用 CSV 导入替换"}
+
+# ---------------------------------------------------------------- 组合优化（MILP，HiGHS）
+def _water_fill(rooms, need):
+    """在各小时上限 rooms 内尽量均匀地分配 need（注水法）；无约束时 = need/H 均布（与旧行为一致）。"""
+    rooms = [max(0.0, float(r)) for r in rooms]; n = len(rooms); alloc = [0.0]*n
+    free = list(range(n)); left = float(min(need, sum(rooms)))
+    while free and left > 1e-12:
+        lvl = left/len(free); capped = [t for t in free if rooms[t] - alloc[t] <= lvl + 1e-12]
+        if not capped:
+            for t in free: alloc[t] += lvl
+            break
+        for t in capped: left -= rooms[t] - alloc[t]; alloc[t] = rooms[t]
+        free = [t for t in free if t not in capped]
+    return alloc
+
+def optimize(p, price, *, target=None, dev_pen=0.0, fix=None, from_t=0, inter_scale=None, temp_delta=None,
+             allow_diesel=None, baseline=False):
+    """min Σ price·g + 柴发成本 + 循环成本 + dev_pen·|g−target|。
+    fix: 已执行时段的上次解（t<from_t 锁定）。baseline=True：未优化对照（批处理均布、储能/UPS/柴发不动）。"""
+    rule = get_rule(p["rule_id"]); R = copy.deepcopy(p["resources"])
+    dcs = [r for r in R if r["type"] == "dc"]; ess = [r for r in R if r["type"] in ("ess", "ups")]
+    dgs = [r for r in R if r["type"] == "diesel"]
+    if allow_diesel is None: allow_diesel = rule["diesel_allowed_market"]
+    for d in dcs:
+        if inter_scale: d["interactive_mw"] = [x * inter_scale.get(t, 1.0) for t, x in enumerate(d["interactive_mw"])]
+        if temp_delta: d["outdoor_temp_c"] = [x + temp_delta.get(t, 0.0) for t, x in enumerate(d["outdoor_temp_c"])]
+    idx = {}; n = 0
+    def V(key):
+        nonlocal n; idx[key] = n; n += 1; return n - 1
+    for t in range(H):
+        for i, _ in enumerate(dcs): V(("b", i, t))
+        for j, _ in enumerate(ess): V(("ch", j, t)); V(("dis", j, t)); V(("soc", j, t))
+        for m, _ in enumerate(dgs): V(("pg", m, t)); V(("u", m, t))
+        V(("g", t)); V(("dp", t)); V(("dm", t))
+    if fix:
+        for i, _ in enumerate(dcs): V(("un", i))
+    lb = np.zeros(n); ub = np.full(n, np.inf); c = np.zeros(n); integ = np.zeros(n)
+    if fix:
+        _unpen = 10.0*max(float(rule["price_cap_cny_mwh"]), float(np.max(np.abs(price))))
+        for i, _ in enumerate(dcs): c[idx[("un", i)]] = _unpen
+    A = lil_matrix((10 * H * (len(dcs) + len(ess) + len(dgs) + 3) + 10, n)); lo = []; hi = []; row = [0]
+    def add(coefs, l, h):
+        for k, v in coefs: A[row[0], idx[k]] += v
+        lo.append(l); hi.append(h); row[0] += 1
+    warn = []
+    for i, d in enumerate(dcs):
+        tot = 0.0
+        for t in range(H):
+            cap = _therm_cap(d, t); room = max(0.0, cap - d["interactive_mw"][t])
+            if d["interactive_mw"][t] > cap + 1e-6: warn.append(f"{d['name']} t={t} 交互负载超过热安全容量")
+            ub[idx[("b", i, t)]] = room; tot += room
+        need = min(d["batch_mwh"], tot)
+        if need < d["batch_mwh"] - 1e-6: warn.append(f"{d['name']} 批处理 {d['batch_mwh']} MWh 超出热安全可容纳 {tot:.1f}")
+        if baseline:
+            # 均布基线；某些小时热安全余量 < 均值时，旧实现静默丢弃该部分批处理（公开基准 B3 发现：
+            # 基线电量偏少→"未优化"成本被低估）。现按注水法把差额补到仍有余量的小时，保证与优化方案同电量。
+            rooms = [ub[idx[("b", i, t)]] for t in range(H)]
+            alloc = _water_fill(rooms, need)
+            if any(r < need / H - 1e-9 for r in rooms):
+                warn.append(f"{d['name']} 基线均布受热安全余量限制，差额已按注水法补到其余小时")
+            for t in range(H): lb[idx[("b", i, t)]] = ub[idx[("b", i, t)]] = alloc[t]
+        else:
+            if fix:   # 日内滚动：已执行时段锁定后，剩余热安全余量可能不足以补完批处理 → 旧实现 MILP 不可行，
+                      # 调用方静默沿用旧计划（公开基准 B3 发现热违约）。改为软约束：未完成量 un 高罚，可行且透明。
+                add([(("b", i, t), 1.0) for t in range(H)] + [(("un", i), 1.0)], need, need)
+            else:
+                add([(("b", i, t), 1.0) for t in range(H)], need, need)
+    for j, e in enumerate(ess):
+        E = e["energy_mwh"]; eta = e["eta"]
+        smin = (e.get("reserve_frac") or rule["ups_reserve_floor_frac"]) if e["type"] == "ups" else e["soc_min"]
+        for t in range(H):
+            ub[idx[("ch", j, t)]] = 0 if baseline else e["power_mw"]; ub[idx[("dis", j, t)]] = 0 if baseline else e["power_mw"]
+            lb[idx[("soc", j, t)]] = smin * E; ub[idx[("soc", j, t)]] = e["soc_max"] * E
+            prev = [] if t == 0 else [(("soc", j, t - 1), -1.0)]
+            s0 = e["soc0"] * E if t == 0 else 0.0
+            add([(("soc", j, t), 1.0), (("ch", j, t), -eta), (("dis", j, t), 1 / eta)] + prev, s0, s0)
+            c[idx[("dis", j, t)]] += 5.0   # 循环成本【假设】5元/MWh
+        lb[idx[("soc", j, H - 1)]] = max(lb[idx[("soc", j, H - 1)]], min(e["soc0"], e["soc_max"]) * E - 1e-6)
+    for m, g in enumerate(dgs):
+        for t in range(H):
+            integ[idx[("u", m, t)]] = 1; ub[idx[("u", m, t)]] = 1 if (allow_diesel and not baseline) else 0
+            ub[idx[("pg", m, t)]] = g["pmax_mw"]; c[idx[("pg", m, t)]] = g["cost_cny_mwh"]
+            add([(("pg", m, t), 1.0), (("u", m, t), -g["pmax_mw"])], -np.inf, 0)
+            add([(("pg", m, t), 1.0), (("u", m, t), -g["pmin_mw"])], 0, np.inf)
+    fixed_load = np.zeros(H)
+    for t in range(H):
+        co = [(("g", t), 1.0)]
+        for i, d in enumerate(dcs):
+            k = _k(d, t); co.append((("b", i, t), -k)); fixed_load[t] += k * d["interactive_mw"][t]
+        for j, _ in enumerate(ess): co += [(("ch", j, t), -1.0), (("dis", j, t), 1.0)]
+        for m, _ in enumerate(dgs): co.append((("pg", m, t), 1.0))
+        add(co, fixed_load[t], fixed_load[t])
+        c[idx[("g", t)]] = price[t]
+        if target is not None:
+            add([(("g", t), 1.0), (("dp", t), -1.0), (("dm", t), 1.0)], target[t], target[t])
+            c[idx[("dp", t)]] = dev_pen; c[idx[("dm", t)]] = dev_pen
+        else:
+            ub[idx[("dp", t)]] = ub[idx[("dm", t)]] = 0
+    if fix:
+        for key, v in fix["x"].items():
+            k = tuple(json.loads(key))
+            if k in idx and len(k) >= 2 and k[-1] < from_t and k[0] in ("b", "ch", "dis", "pg", "u"):
+                lb[idx[k]] = ub[idx[k]] = v
+    A = A.tocsr()[:row[0]]
+    res = milp(c, constraints=LinearConstraint(A, lo, hi), bounds=Bounds(lb, ub), integrality=integ,
+               options={"time_limit": 30, "mip_rel_gap": 1e-4})
+    if res.x is None: return {"ok": False, "status": res.message, "warnings": warn}
+    x = res.x
+    out = {"ok": True, "status": "optimal" if res.status == 0 else res.message, "objective": float(res.fun),
+           "g": [round(float(x[idx[("g", t)]]), 4) for t in range(H)], "fixed_load_mw": fixed_load.round(3).tolist(),
+           "warnings": warn, "per": {}, "n_vars": n, "n_int": int(integ.sum()),
+           "x": {json.dumps(list(k)): float(x[v]) for k, v in idx.items()}}
+    if fix: out["unserved_batch_mwh"] = {d["id"]: round(float(x[idx[("un", i)]]), 4) for i, d in enumerate(dcs)}
+    for i, d in enumerate(dcs):
+        b = [float(x[idx[("b", i, t)]]) for t in range(H)]
+        it = [d["interactive_mw"][t] + b[t] for t in range(H)]
+        out["per"][d["id"]] = {"name": d["name"], "type": "dc", "batch_mw": [round(v, 3) for v in b], "it_mw": [round(v, 3) for v in it],
+                               "facility_mw": [round(it[t] * _k(d, t), 3) for t in range(H)],
+                               "thermal_cap_it_mw": [round(_therm_cap(d, t), 3) for t in range(H)]}
+    for j, e in enumerate(ess):
+        out["per"][e["id"]] = {"name": e["name"], "type": e["type"],
+                               "net_dis_mw": [round(float(x[idx[("dis", j, t)]] - x[idx[("ch", j, t)]]), 3) for t in range(H)],
+                               "soc_mwh": [round(float(x[idx[("soc", j, t)]]), 3) for t in range(H)]}
+    for m, g in enumerate(dgs):
+        out["per"][g["id"]] = {"name": g["name"], "type": "diesel", "p_mw": [round(float(x[idx[("pg", m, t)]]), 3) for t in range(H)]}
+    out["energy_cost_cny"] = round(float(np.dot(price, out["g"])), 2)
+    return out
+
+# ---------------------------------------------------------------- 申报
+def build_bid(p, plan, price, stage="day_ahead"):
+    """量价分段（买方）：seg1 刚性负荷@限价；seg2 计划可调部分@预测价×1.1；seg3 额外可吸纳（热安全/储能余量）@日最低价×0.95。"""
+    rule = get_rule(p["rule_id"]); segs = []
+    pmax = phys_limits(p)["pmax"]; pmin = phys_limits(p)["pmin"]
+    for t in range(H):
+        rigid = max(0.0, min(plan["fixed_load_mw"][t], plan["g"][t]))
+        flex = max(0.0, plan["g"][t] - rigid); extra = max(0.0, pmax[t] - plan["g"][t])
+        s = [{"q_mw": round(rigid, 3), "p": rule["price_cap_cny_mwh"]},
+             {"q_mw": round(flex, 3), "p": round(min(rule["price_cap_cny_mwh"], price[t] * 1.1), 2)},
+             {"q_mw": round(extra * 0.5, 3), "p": round(min(price) * 0.95, 2)}]
+        if s[1]["q_mw"] < rule["min_bid_mw"]: s[0]["q_mw"] = round(s[0]["q_mw"] + s[1]["q_mw"], 3); s[1]["q_mw"] = 0.0
+        s = [x for x in s if x["q_mw"] >= rule["min_bid_mw"] or x is s[0]][:rule["bid_segments_max"]]
+        segs.append({"t": t, "segments": s, "planned_mw": plan["g"][t]})
+    return {"stage": stage, "rule": rule["id"], "hours": segs}
+
+def phys_limits(p):
+    rule = get_rule(p["rule_id"]); pmax = np.zeros(H); pmin = np.zeros(H)
+    for r in p["resources"]:
+        for t in range(H):
+            if r["type"] == "dc":
+                k = _k(r, t); pmax[t] += _therm_cap(r, t) * k; pmin[t] += r["interactive_mw"][t] * k
+            elif r["type"] in ("ess", "ups"): pmax[t] += r["power_mw"]; pmin[t] -= r["power_mw"]
+            elif r["type"] == "diesel" and rule["diesel_allowed_market"]: pmin[t] -= r["pmax_mw"]
+    return {"pmax": pmax.round(3).tolist(), "pmin": np.maximum(pmin, 0).round(3).tolist()}
+
+def check_bid(p, bid, price):
+    """物理可行检查：①分段规则 ②每小时总量∈[Pmin,Pmax] ③按全额中标量重解 MILP（含批处理能量、SOC、热安全N−1）是否可执行。"""
+    rule = get_rule(p["rule_id"]); lim = phys_limits(p); issues = []
+    q = []
+    for h in bid["hours"]:
+        t = h["t"]; segs = h["segments"]; tot = sum(s["q_mw"] for s in segs); q.append(h.get("planned_mw", sum(s["q_mw"] for s in segs[:2])))
+        if len(segs) > rule["bid_segments_max"]: issues.append(f"t={t} 段数 {len(segs)} 超过 {rule['bid_segments_max']}")
+        for s in segs:
+            if not (rule["price_floor_cny_mwh"] <= s["p"] <= rule["price_cap_cny_mwh"]): issues.append(f"t={t} 价格 {s['p']} 越限")
+            if s["q_mw"] < 0: issues.append(f"t={t} 负申报量")
+        ps = [s["p"] for s in segs]
+        if ps != sorted(ps, reverse=True): issues.append(f"t={t} 买方分段价格须单调不增")
+        if tot > lim["pmax"][t] + 1e-3: issues.append(f"t={t} 申报总量 {tot:.2f} > 物理上限 {lim['pmax'][t]:.2f}")
+        if q[-1] < lim["pmin"][t] - 1e-3: issues.append(f"t={t} 计划量 {q[-1]:.2f} < 刚性下限 {lim['pmin'][t]:.2f}")
+    re = optimize(p, price, target=q, dev_pen=1e5)
+    dev = 0.0 if not re["ok"] else float(sum(abs(re["g"][t] - q[t]) for t in range(H)))
+    if not re["ok"] or dev > 1e-2: issues.append(f"计划量组合不可物理执行（重解偏差 {dev:.3f} MWh）")
+    thermal_ok = re["ok"] and all(re["per"][k]["it_mw"][t] <= re["per"][k]["thermal_cap_it_mw"][t] + 1e-6
+                                  for k in re["per"] if re["per"][k]["type"] == "dc" for t in range(H))
+    if not thermal_ok: issues.append("热安全（冷机N−1容量）不满足")
+    return {"feasible": not issues, "issues": issues, "pmax": lim["pmax"], "pmin": lim["pmin"],
+            "redispatch_dev_mwh": round(dev, 4), "thermal_ok": thermal_ok,
+            "method": "分段规则校验 + 上下限 + MILP 重解（scipy/HiGHS，含批处理能量守恒、SOC、UPS备用底线、冷机N−1）"}
+
+def sandbox_clear(bid, clearing_price):
+    """沙盘出清：买方段价 ≥ 出清价即中标。非真实交易中心出清。"""
+    q = []
+    for h in bid["hours"]:
+        pc = clearing_price[h["t"]]; q.append(round(sum(s["q_mw"] for s in h["segments"] if s["p"] >= pc), 4))
+    return {"cleared_mw": q, "price": list(clearing_price), "note": "沙盘出清（买方段价≥沙盘价即中标）【非真实出清】"}
+
+# ---------------------------------------------------------------- 审批 / 台账
+FLOW = {"draft": ["submitted"], "submitted": ["approved", "rejected"], "rejected": ["draft"],
+        "approved": ["sandbox_cleared"], "sandbox_cleared": ["settled"], "settled": []}
+
+def save_bid(p, bid, check, actor="system", parent=None):
+    b = {"id": "bid-" + uuid.uuid4().hex[:8], "portfolio": p["id"], "rule": p["rule_id"], "stage": bid["stage"],
+         "status": "draft", "mode": OPS_MODE, "bid": bid, "check": check, "parent": parent, "created_by": actor,
+         "history": [{"ts": time.time(), "actor": actor, "to": "draft"}]}
+    d = store.load("bids.json", {}); d[b["id"]] = b; store.save("bids.json", d)
+    store.audit("bid.draft", actor, b["id"], {"portfolio": p["id"], "stage": bid["stage"], "feasible": check["feasible"]})
+    return b
+
+def get_bid(bid_id):
+    d = store.load("bids.json", {})
+    if bid_id not in d: raise MarketError(f"未知申报 {bid_id}")
+    return d[bid_id]
+
+def list_bids(portfolio=None):
+    return [b for b in store.load("bids.json", {}).values() if not portfolio or b["portfolio"] == portfolio]
+
+def transition(bid_id, to, actor="user", comment="", payload=None):
+    d = store.load("bids.json", {}); b = d.get(bid_id)
+    if not b: raise MarketError(f"未知申报 {bid_id}")
+    if to == "external_submit":
+        store.audit("bid.external_submit.refused", actor, bid_id, {"reason": REAL_SUBMIT_MSG}, ok=False)
+        raise PermissionError(REAL_SUBMIT_MSG)
+    if to not in FLOW[b["status"]]:
+        store.audit("bid.transition.refused", actor, bid_id, {"from": b["status"], "to": to}, ok=False)
+        raise MarketError(f"状态 {b['status']} 不可转到 {to}（允许 {FLOW[b['status']]}）")
+    if to == "submitted" and not b["check"]["feasible"]:
+        store.audit("bid.transition.refused", actor, bid_id, {"to": to, "why": "物理检查未通过"}, ok=False)
+        raise MarketError("物理可行检查未通过，不能提交审核")
+    if to in ("approved", "rejected") and actor == b["created_by"]:
+        store.audit("bid.transition.refused", actor, bid_id, {"to": to, "why": "审核人不能是编制人"}, ok=False)
+        raise MarketError("四眼原则：审核人不能与编制人相同")
+    b["status"] = to; b["history"].append({"ts": time.time(), "actor": actor, "to": to, "comment": comment})
+    if payload: b.update(payload)
+    d[bid_id] = b; store.save("bids.json", d)
+    store.audit(f"bid.{to}", actor, bid_id, {"comment": comment}); return b
+
+# ---------------------------------------------------------------- 实时：指令分解与跟踪
+RESP = {"ess": 1.0, "batch": 0.97, "cooling": 0.9, "ups": 1.0}
+
+def _rc_temp(dc, shed_th, hours, dt_h=0.25):
+    """单节点 RC：冷却削减 shed_th(MW_th) 持续于 hours，其后以 1.5×削减量回补至 T0。"""
+    th = dc["thermal"]; C = th["c_air_mwh_k"] + th["c_mass_mwh_k"]; T = th["t0_c"]; tr = []
+    steps = int(24 / dt_h)
+    for s in range(steps):
+        t = s * dt_h; h = int(t)
+        q = shed_th.get(h, 0.0) if h in hours else (-min(1.5 * max(shed_th.values() or [0]), (T - th["t0_c"]) * C / dt_h) if T > th["t0_c"] + 1e-6 else 0.0)
+        T = T + q * dt_h / C; tr.append(round(T, 3))
+    return tr
+
+def decompose(p, plan, instr, rule=None):
+    """把调度指令（下调 MW，整点时段）按优先级分解：储能→批处理延后→冷却热惯性→UPS（备用底线上）→柴发（规则禁止则不用）。"""
+    rule = rule or get_rule(p["rule_id"]); hours = instr["hours"]; need = float(instr["mw"])
+    R = {r["id"]: r for r in p["resources"]}; tickets = []; temps = {}
+    ess_used = {}; shed = {}
+    for t in hours:
+        rem = need
+        for rid, r in R.items():  # 储能
+            if rem <= 0: break
+            if r["type"] != "ess": continue
+            pr = plan["per"][rid]; soc = pr["soc_mwh"][t - 1] if t > 0 else r["soc0"] * r["energy_mwh"]
+            soc -= ess_used.get(rid, 0.0)
+            head = min(r["power_mw"] - pr["net_dis_mw"][t], max(0.0, (soc - r["soc_min"] * r["energy_mwh"]) * r["eta"]))
+            a = max(0.0, min(rem, head))
+            if a > 1e-6: tickets.append(dict(t=t, rid=rid, name=r["name"], kind="ess", mw=round(a, 3))); rem -= a; ess_used[rid] = ess_used.get(rid, 0) + a
+        for rid, r in R.items():  # 批处理延后（需后续时段热安全余量回补）
+            if rem <= 0: break
+            if r["type"] != "dc": continue
+            pr = plan["per"][rid]; k = _k(r, t)
+            later = sum(max(0, pr["thermal_cap_it_mw"][u] - pr["it_mw"][u]) for u in range(max(hours) + 1, H))
+            a_it = max(0.0, min(pr["batch_mw"][t], rem / k, later / max(1, len(hours))))
+            if a_it > 1e-6: tickets.append(dict(t=t, rid=rid, name=r["name"], kind="batch", mw=round(a_it * k, 3), it_mw=round(a_it, 3))); rem -= a_it * k
+        for rid, r in R.items():  # 冷却热惯性
+            if rem <= 0: break
+            if r["type"] != "dc": continue
+            th = r["thermal"]; C = th["c_air_mwh_k"] + th["c_mass_mwh_k"]; cop = _cop(th, r["outdoor_temp_c"][t])
+            budget_k = (th["t_rec_max_c"] - th["t0_c"]) / len(hours) * 0.9
+            q_th = min(C * min(budget_k, th["ramp_max_k_h"]), rem * cop)
+            if q_th > 1e-6:
+                tickets.append(dict(t=t, rid=rid, name=r["name"], kind="cooling", mw=round(q_th / cop, 3), q_th=round(q_th, 3)))
+                rem -= q_th / cop; shed.setdefault(rid, {})[t] = q_th
+        for rid, r in R.items():  # UPS
+            if rem <= 0: break
+            if r["type"] != "ups": continue
+            fl = r.get("reserve_frac") or rule["ups_reserve_floor_frac"]
+            e_av = max(0.0, (r["soc0"] - fl) * r["energy_mwh"] - ess_used.get(rid, 0.0))
+            a = max(0.0, min(rem, r["power_mw"], e_av))
+            if a > 1e-6: tickets.append(dict(t=t, rid=rid, name=r["name"], kind="ups", mw=round(a, 3))); rem -= a; ess_used[rid] = ess_used.get(rid, 0) + a
+        if rem > 1e-6:
+            dg = [r for r in R.values() if r["type"] == "diesel"]
+            tickets.append(dict(t=t, rid="-", name="缺口", kind="shortfall", mw=round(rem, 3),
+                                note="柴发按规则包禁止参与DR" if dg and not rule["diesel_allowed_dr"] else "资源不足"))
+    for rid, sh in shed.items():
+        temps[rid] = _rc_temp(R[rid], sh, set(hours))
+    th_ok = all(max(tr) <= R[rid]["thermal"]["t_rec_max_c"] + 1e-6 for rid, tr in temps.items())
+    max_rate = max([abs(tr[i + 1] - tr[i]) / 0.25 for tr in temps.values() for i in range(len(tr) - 1)] or [0])
+    return {"instruction": instr, "tickets": tickets, "temps_15min": temps, "thermal_ok": th_ok,
+            "max_temp_c": {R[k]["name"]: max(v) for k, v in temps.items()}, "max_rate_k_h": round(max_rate, 3),
+            "order": "储能→批处理延后→冷却热惯性→UPS(备用底线上)→柴发(规则禁止)"}
+
+def track(dec, plan_g, steps_per_h=4):
+    """15 min 跟踪：响应系数（储能1.0/批处理0.97/冷却0.9/UPS1.0），首个步长批处理/冷却 70% 爬坡。"""
+    hours = dec["instruction"]["hours"]; need = dec["instruction"]["mw"]; rows = []
+    for t in hours:
+        tk = [x for x in dec["tickets"] if x["t"] == t and x["kind"] != "shortfall"]
+        for s in range(steps_per_h):
+            act = 0.0
+            for x in tk:
+                f = RESP[x["kind"]] * (0.7 if (s == 0 and t == hours[0] and x["kind"] in ("batch", "cooling")) else 1.0)
+                act += x["mw"] * f
+            rows.append({"t": t, "step": s, "cmd_mw": need, "actual_mw": round(act, 3), "err_mw": round(act - need, 3)})
+    hourly = {t: float(np.mean([r["actual_mw"] for r in rows if r["t"] == t])) for t in hours}
+    return {"steps": rows, "hourly_response_mw": hourly,
+            "tracking_rmse_mw": round(float(np.sqrt(np.mean([r["err_mw"] ** 2 for r in rows]))), 3) if rows else 0.0}
+
+# ---------------------------------------------------------------- DR 基线与考核
+def synth_history(load, n_days, seed=11):
+    rng = np.random.default_rng(seed)
+    return [(np.array(load) * rng.uniform(0.97, 1.03) * (1 + rng.normal(0, 0.01, H))).round(3).tolist() for _ in range(n_days)]
+
+def dr_baseline(history, method, event_hours, actual=None, n_days=5, adjust_window_h=2, adjust_cap_pct=20,
+                history_day_types=None, event_day_type=None):
+    """similar_days_avg：最近 n 日去掉日电量最高/最低各 1 日后平均；prior_n_days：最近 n 日平均；
+    adjusted_similar_days：similar_days_avg × 事前修正系数（事件前窗口 实际/基线，限幅 ±cap%）。
+    history_day_types / event_day_type（可选，默认 None=旧行为）：给出每个历史日的日类型（如 'workday'/'weekend'），
+    仅取与事件日同类型的最近 n 日。公开基准 B4（BDG2 建筑负荷）显示：不区分日类型时周末被计入工作日基线，
+    基线系统性偏低、响应被低估。"""
+    if history_day_types is not None and event_day_type is not None:
+        same = [h for h, k in zip(history, history_day_types) if k == event_day_type]
+        if len(same) >= 3: history = same
+    recent = list(history[-n_days:])
+    if method == "prior_n_days" or len(recent) < 3: hist = np.array(recent)
+    else: hist = np.array(sorted(recent, key=sum)[1:-1])
+    base = hist.mean(axis=0); ratio = 1.0; win = []
+    if method == "adjusted_similar_days" and actual is not None:
+        h0 = min(event_hours); win = list(range(max(0, h0 - adjust_window_h - 1), max(0, h0 - 1)))
+        if win:
+            ratio = float(np.sum(np.array(actual)[win]) / max(1e-6, np.sum(base[win])))
+            ratio = float(np.clip(ratio, 1 - adjust_cap_pct / 100, 1 + adjust_cap_pct / 100))
+        base = base * ratio
+    return {"method": method, "baseline_mw": base.round(3).tolist(), "n_samples": len(hist),
+            "adjust_ratio": round(ratio, 4), "adjust_window": win}
+
+def dr_baseline_v2(history, event_hours, *, method="x_of_y", x=10, y=10, history_day_types=None, event_day_type=None,
+                   actual=None, adjust="none", adjust_hours_before=4, adjust_gap_h=1, adjust_cap_pct=20,
+                   history_temps=None, event_temps=None, n_temp_bins=6, lookback_days=30):
+    """可选 DR 基线（不改变 dr_baseline 默认）。公开方法来源：
+      x_of_y      : 最近 y 个同类型日中日电量最高 x 个的逐时平均。CAISO 10-in-10（x=y=10）、PJM High 4 of 5（x=4,y=5）
+                    — CAISO BPM for Demand Response §5.4；DNV KEMA for AEMO 2013 Baseline Phase I 表 9。
+      towt        : 时段(小时)+分段线性气温回归（Mathieu et al. 2011, IEEE TSG, doi:10.1109/TSG.2011.2145010；
+                    LBNL Coughlin 2008 LBNL-63728 的显式气象模型）。每小时独立最小二乘，气温按训练样本等分位分 n_temp_bins 段。
+    事前修正 adjust：'mult' 比例 / 'add' 对称加法（PJM）/ 'none'。窗口 = 事件开始前 adjust_hours_before 小时，剔除紧邻事件的
+      adjust_gap_h 小时（CAISO：前 4 小时去掉最近 1 小时）；mult 限幅 ±adjust_cap_pct%，add 限幅 ±adjust_cap_pct%×窗口基线均值。
+    只使用 history（事件日之前）与事件日 *事件开始前* 的 actual；事件时段 actual 从不读取。"""
+    H_ = np.asarray(history, float)
+    if history_day_types is not None and event_day_type is not None:
+        keep = [i for i, k in enumerate(history_day_types) if k == event_day_type]
+        if len(keep) >= 3: H_ = H_[keep]
+        if history_temps is not None and len(keep) >= 3: history_temps = np.asarray(history_temps, float)[keep]
+    if method == "x_of_y":
+        rec = H_[-y:]; idx = np.argsort(rec.sum(axis=1))[::-1][:x]; base = rec[idx].mean(axis=0)
+    elif method == "towt":
+        Ht = H_[-lookback_days:]; Tt = np.asarray(history_temps, float)[-lookback_days:]; Te = np.asarray(event_temps, float)
+        allT = Tt.ravel(); edges = np.quantile(allT, np.linspace(0, 1, n_temp_bins + 1))[1:-1]
+        def feats(T):
+            T = np.atleast_1d(T); cols = [np.ones_like(T)]; lo = -np.inf
+            prev = np.minimum(T, edges[0]) if len(edges) else T; cols.append(prev)
+            for k in range(len(edges)):
+                hi = edges[k + 1] if k + 1 < len(edges) else np.inf
+                cols.append(np.clip(T, edges[k], hi) - edges[k])
+            return np.vstack(cols).T
+        base = np.zeros(H_.shape[1])
+        for h in range(H_.shape[1]):
+            X = feats(Tt[:, h]); coef, *_ = np.linalg.lstsq(X, Ht[:, h], rcond=1e-6)
+            base[h] = float((feats(np.array([Te[h]])) @ coef)[0])
+    else:
+        raise ValueError(f"unknown method {method}")
+    ratio, shift, win = 1.0, 0.0, []
+    if adjust != "none" and actual is not None:
+        h0 = min(event_hours); win = list(range(max(0, h0 - adjust_hours_before), max(0, h0 - adjust_gap_h)))
+        if win:
+            a = np.asarray(actual, float)[win]; b = base[win]
+            if adjust == "mult":
+                ratio = float(np.clip(a.sum()/max(1e-9, b.sum()), 1 - adjust_cap_pct/100, 1 + adjust_cap_pct/100)); base = base*ratio
+            elif adjust == "add":
+                cap = adjust_cap_pct/100*float(b.mean()); shift = float(np.clip((a - b).mean(), -cap, cap)); base = base + shift
+    return {"method": method, "baseline_mw": base.round(4).tolist(), "adjust": adjust, "adjust_ratio": round(ratio, 4),
+            "adjust_shift": round(shift, 4), "adjust_window": win}
+
+def dr_assess(rule, baseline_mw, actual_mw, hours, declared_mw):
+    d = rule["dr"]; resp = [baseline_mw[t] - actual_mw[t] for t in hours]; avg = float(np.mean(resp))
+    ratio = avg / declared_mw if declared_mw else 0.0
+    eff = [min(max(0.0, r), declared_mw * d["pay_cap_ratio"]) for r in resp]
+    pay = d["comp_price_cny_mwh"] * sum(eff) if ratio >= d["valid_ratio_min"] else 0.0
+    pen = d["penalty_cny_mwh"] * sum(max(0, declared_mw - r) for r in resp) if ratio < d["penalty_ratio_below"] else 0.0
+    return {"response_mw": [round(x, 3) for x in resp], "avg_response_mw": round(avg, 3), "ratio": round(ratio, 4),
+            "valid": ratio >= d["valid_ratio_min"], "payment_cny": round(pay, 2), "penalty_cny": round(pen, 2),
+            "formula": f"有效响应率≥{d['valid_ratio_min']}：补偿={d['comp_price_cny_mwh']}元/MWh×Σmin(响应,{d['pay_cap_ratio']}×申报)；"
+                       f"<{d['penalty_ratio_below']}：考核={d['penalty_cny_mwh']}元/MWh×Σ(申报−响应)"}
+
+# ---------------------------------------------------------------- 结算
+def settle(rule, pr, q_da, q_id, actual, dr=None, diesel_cost=0.0):
+    tol = rule["deviation_tolerance_pct"] / 100; rows = []; tot = dict(da=0, id=0, rt=0, pen=0)
+    for t in range(H):
+        da = q_da[t] * pr["da"][t]; idc = (q_id[t] - q_da[t]) * pr["id"][t]; rt = (actual[t] - q_id[t]) * pr["rt"][t]
+        dev = abs(actual[t] - q_id[t]); allow = tol * max(q_id[t], 1e-6); pen = max(0, dev - allow) * rule["deviation_penalty_cny_mwh"]
+        rows.append({"t": t, "q_da": round(q_da[t], 3), "q_id": round(q_id[t], 3), "actual": round(actual[t], 3),
+                     "dev_mwh": round(actual[t] - q_id[t], 3), "dev_pct": round(100 * (actual[t] - q_id[t]) / max(q_id[t], 1e-6), 3),
+                     "da_cny": round(da, 2), "id_cny": round(idc, 2), "rt_cny": round(rt, 2), "penalty_cny": round(pen, 2)})
+        tot["da"] += da; tot["id"] += idc; tot["rt"] += rt; tot["pen"] += pen
+    drp = (dr or {}).get("payment_cny", 0.0); drn = (dr or {}).get("penalty_cny", 0.0)
+    net = tot["da"] + tot["id"] + tot["rt"] + tot["pen"] + diesel_cost - drp + drn
+    return {"hours": rows, "da_cny": round(tot["da"], 2), "id_cny": round(tot["id"], 2), "rt_cny": round(tot["rt"], 2),
+            "deviation_penalty_cny": round(tot["pen"], 2), "dr_payment_cny": round(drp, 2), "dr_penalty_cny": round(drn, 2),
+            "diesel_cny": round(diesel_cost, 2), "net_cost_cny": round(net, 2),
+            "energy_mwh": round(sum(actual), 3), "abs_dev_mwh": round(sum(abs(r["dev_mwh"]) for r in rows), 3),
+            "n_dev_over_tol": sum(1 for r in rows if r["penalty_cny"] > 0),
+            "formula": f"日前 q_da·p_da + 日内 (q_id−q_da)·p_id + 实时 (实际−q_id)·p_rt + 偏差考核 max(0,|实际−q_id|−{rule['deviation_tolerance_pct']}%·q_id)×{rule['deviation_penalty_cny_mwh']} − DR补偿 + DR考核"}
+
+# ---------------------------------------------------------------- 闭环
+def run_closed_loop(pid, *, actor="operator", reviewer="reviewer", intraday=None, instruction=None, meter_error_pct=1.5,
+                    seed=7, auto_approve=True):
+    """日前申报→检查→审批→沙盘出清→日内调整→实时指令分解跟踪→DR基线考核→结算复盘（含未优化对照）。"""
+    p = get_portfolio(pid); rule = get_rule(p["rule_id"]); pr = prices(p, seed)
+    store.audit("loop.start", actor, pid, {"rule": rule["id"], "seed": seed})
+    # 日前
+    da_plan = optimize(p, pr["forecast"])
+    if not da_plan["ok"]: raise MarketError(f"日前优化不可行：{da_plan['status']}")
+    bid = build_bid(p, da_plan, pr["forecast"]); chk = check_bid(p, bid, pr["forecast"])
+    b = save_bid(p, bid, chk, actor)
+    if auto_approve and chk["feasible"]:
+        transition(b["id"], "submitted", actor); transition(b["id"], "approved", reviewer, "沙盘自动复核")
+    clr = sandbox_clear(bid, pr["da"]); q_da = clr["cleared_mw"]
+    if auto_approve and chk["feasible"]: transition(b["id"], "sandbox_cleared", "sandbox", payload={"clearing": clr})
+    # 日内（默认：午后升温 +3°C、交互负载 +4%）
+    intraday = intraday or {"from_t": 10, "temp_delta": {t: 3.0 for t in range(12, 19)}, "inter_scale": {t: 1.04 for t in range(10, 24)}}
+    f0 = intraday["from_t"]; gate = rule["intraday_gate_closure_h"]
+    td = {int(k): v for k, v in (intraday.get("temp_delta") or {}).items()}; isc = {int(k): v for k, v in (intraday.get("inter_scale") or {}).items()}
+    id_plan = optimize(p, pr["id"], target=q_da, dev_pen=rule["deviation_penalty_cny_mwh"], fix=da_plan, from_t=f0,
+                       temp_delta=td, inter_scale=isc)
+    lim = rule["intraday_adjust_max_pct"] / 100; q_id = []
+    for t in range(H):
+        if t < f0 + gate: q_id.append(q_da[t])
+        else: q_id.append(round(float(np.clip(id_plan["g"][t], q_da[t] * (1 - lim), q_da[t] * (1 + lim))), 4))
+    id_bid = {"stage": "intra_day", "rule": rule["id"], "hours": [{"t": t, "segments": [{"q_mw": q_id[t], "p": rule["price_cap_cny_mwh"]}], "planned_mw": id_plan["g"][t]} for t in range(H)]}
+    id_chk = {"feasible": all(abs(q_id[t] - q_da[t]) <= lim * q_da[t] + 1e-6 for t in range(H)), "issues": [], "gate_closure_h": gate,
+              "locked_hours": list(range(0, min(H, f0 + gate))), "adjust_limit_pct": rule["intraday_adjust_max_pct"]}
+    b2 = save_bid(p, id_bid, id_chk, actor, parent=b["id"])
+    if auto_approve: transition(b2["id"], "submitted", actor); transition(b2["id"], "approved", reviewer); transition(b2["id"], "sandbox_cleared", "sandbox")
+    # 实时：DR 指令
+    if not instruction:   # 默认指令：按可用下调能力的 90% 申报（先做能力评估，再下指令）
+        probe = decompose(p, id_plan, {"hours": [19, 20], "mw": 1e4}, rule)
+        avail = min(sum(x["mw"] for x in probe["tickets"] if x["t"] == t and x["kind"] != "shortfall") for t in (19, 20))
+        instruction = {"type": "dr_down", "hours": [19, 20], "mw": round(0.9 * avail, 1), "source": "沙盘调度指令【假设】（=可用下调能力×0.9）",
+                       "available_mw": round(avail, 3)}
+    dec = decompose(p, id_plan, instruction, rule); trk = track(dec, id_plan["g"])
+    rng = np.random.default_rng(seed + 1)
+    actual = [id_plan["g"][t] * (1 + rng.normal(0, meter_error_pct / 100)) for t in range(H)]
+    for t, v in trk["hourly_response_mw"].items(): actual[t] -= v
+    for x in dec["tickets"]:   # 批处理/冷却在事件后回补
+        if x["kind"] in ("batch", "cooling"):
+            back = [u for u in range(max(instruction["hours"]) + 1, H)]
+            for u in back: actual[u] += x["mw"] * RESP[x["kind"]] / len(back)
+    actual = [round(a, 4) for a in actual]
+    store.audit("rt.dispatch", "sandbox", pid, {"instruction": instruction, "n_tickets": len(dec["tickets"]), "thermal_ok": dec["thermal_ok"]})
+    # DR 基线考核
+    hist = synth_history(da_plan["fixed_load_mw"] if False else id_plan["g"], max(rule["dr"]["n_days"], 5), seed + 2)
+    bl = dr_baseline(hist, rule["dr"]["baseline_method"], instruction["hours"], actual, rule["dr"]["n_days"], rule["dr"]["adjust_window_h"], rule["dr"]["adjust_cap_pct"])
+    dra = dr_assess(rule, bl["baseline_mw"], actual, instruction["hours"], instruction["mw"])
+    # 结算 + 对照
+    dsl = sum(sum(v["p_mw"]) * next(r["cost_cny_mwh"] for r in p["resources"] if r["id"] == k) for k, v in id_plan["per"].items() if v["type"] == "diesel")
+    st = settle(rule, pr, q_da, q_id, actual, dra, dsl)
+    bp = optimize(p, pr["forecast"], baseline=True)
+    bp_act_plan = optimize(p, pr["id"], baseline=True, temp_delta=td, inter_scale=isc)
+    rng2 = np.random.default_rng(seed + 1)
+    cf_actual = [bp_act_plan["g"][t] * (1 + rng2.normal(0, meter_error_pct / 100)) for t in range(H)]
+    cf = settle(rule, pr, bp["g"], bp["g"], cf_actual, None, 0.0)
+    if auto_approve and get_bid(b["id"])["status"] == "sandbox_cleared":
+        transition(b["id"], "settled", "sandbox", payload={"settlement": {k: v for k, v in st.items() if k != "hours"}})
+        transition(b2["id"], "settled", "sandbox")
+    out = {"portfolio": p["id"], "name": p["name"], "rule": rule["id"], "rule_label": rule["label"], "mode": OPS_MODE,
+           "excluded": p.get("excluded", []), "prices": pr,
+           "day_ahead": {"bid_id": b["id"], "plan_g": da_plan["g"], "check": chk, "cleared_mw": q_da, "bid": bid,
+                         "status": da_plan["status"], "n_vars": da_plan["n_vars"], "n_int": da_plan["n_int"], "warnings": da_plan["warnings"]},
+           "intra_day": {"bid_id": b2["id"], "update": {"from_t": f0, "temp_delta": td, "inter_scale": isc}, "plan_g": id_plan["g"], "q_id": q_id, "check": id_chk},
+           "real_time": {"decomposition": dec, "tracking": {k: v for k, v in trk.items()}, "actual_mw": actual},
+           "dr": {"baseline": bl, "assessment": dra, "history_note": "【合成历史】无真实计量时按 seed 合成 n 日样本；可导入计量 CSV 替换"},
+           "settlement": st, "counterfactual": {k: v for k, v in cf.items() if k != "hours"},
+           "kpi": {"net_cost_cny": st["net_cost_cny"], "cf_net_cost_cny": cf["net_cost_cny"],
+                   "saving_cny": round(cf["net_cost_cny"] - st["net_cost_cny"], 2),
+                   "saving_pct": round(100 * (cf["net_cost_cny"] - st["net_cost_cny"]) / cf["net_cost_cny"], 3) if cf["net_cost_cny"] else 0,
+                   "abs_dev_mwh": st["abs_dev_mwh"], "abs_dev_pct": round(100 * st["abs_dev_mwh"] / max(1e-6, sum(q_id)), 3),
+                   "deviation_penalty_cny": st["deviation_penalty_cny"], "dr_ratio": dra["ratio"], "dr_payment_cny": dra["payment_cny"],
+                   "tracking_rmse_mw": trk["tracking_rmse_mw"], "thermal_ok": dec["thermal_ok"] and chk["thermal_ok"],
+                   "max_temp_c": dec["max_temp_c"], "max_rate_k_h": dec["max_rate_k_h"]},
+           "disclaimer": "沙盘测算：价格/规则/历史为【假设】，不代表现场收益；未对接任何交易中心。",
+           "p1_p2_not_done": ["真实省规则原文解析与版本管理", "交易中心/调度直连接口（明确不做）", "15min 出清粒度与多市场联合", "合同/偏差分摊到户号的正式结算对账", "权限/RBAC 与电子签章"]}
+    runs = store.load("runs.json", {}); rid = "run-" + uuid.uuid4().hex[:8]; out["run_id"] = rid
+    runs[rid] = {k: out[k] for k in ("portfolio", "rule", "kpi", "run_id")}; runs[rid]["ts"] = time.time(); store.save("runs.json", runs)
+    store.audit("loop.done", actor, pid, {"run": rid, "kpi": out["kpi"]})
+    return out
+
+# ---------------------------------------------------------------- 文件导入导出
+def export_bid_csv(bid_id):
+    b = get_bid(bid_id); f = io.StringIO(); w = csv.writer(f)
+    w.writerow(["# sandbox", b["id"], b["portfolio"], b["rule"], b["stage"], b["status"], "非真实申报文件"])
+    w.writerow(["hour", "segment", "q_mw", "price_cny_mwh"])
+    for h in b["bid"]["hours"]:
+        for i, s in enumerate(h["segments"]): w.writerow([h["t"], i + 1, s["q_mw"], s["p"]])
+    store.audit("bid.export", "user", bid_id, {"fmt": "csv"}); return f.getvalue()
+
+def export_bid_xlsx(bid_id, path):
+    from openpyxl import Workbook
+    b = get_bid(bid_id); wb = Workbook(); ws = wb.active; ws.title = "bid"
+    ws.append(["沙盘申报（非真实）", b["id"], b["portfolio"], b["rule"], b["stage"], b["status"]])
+    ws.append(["hour", "segment", "q_mw", "price_cny_mwh"])
+    for h in b["bid"]["hours"]:
+        for i, s in enumerate(h["segments"]): ws.append([h["t"], i + 1, s["q_mw"], s["p"]])
+    wb.save(path); store.audit("bid.export", "user", bid_id, {"fmt": "xlsx"}); return path
+
+def import_prices_csv(pid, text, actor="user"):
+    """CSV: hour,price_cny_mwh（24行）→ 覆盖组合沙盘预测价。"""
+    rows = [r for r in csv.reader(io.StringIO(text)) if r and not r[0].startswith("#")]
+    if rows and not rows[0][0].strip().isdigit(): rows = rows[1:]
+    v = [None] * H
+    for r in rows: v[int(r[0])] = float(r[1])
+    if any(x is None for x in v): raise MarketError("价格 CSV 需 24 小时完整")
+    d = store.load("portfolios.json", {}); get_portfolio(pid); d = store.load("portfolios.json", {})
+    d[pid]["price_override"] = v; store.save("portfolios.json", d)
+    store.audit("import.prices", actor, pid, {"n": 24}); return {"ok": True, "prices": v}
+
+def import_meter_csv(text):
+    """CSV: day,hour,mw → 历史计量 list[day][hour]，用于 DR 基线。"""
+    rows = [r for r in csv.reader(io.StringIO(text)) if r and not r[0].startswith("#")]
+    if rows and not rows[0][0].strip().isdigit(): rows = rows[1:]
+    days = {}
+    for r in rows: days.setdefault(r[0], [0.0] * H)[int(r[1])] = float(r[2])
+    return [days[k] for k in sorted(days)]
+
+def import_resources_csv(text):
+    """CSV 资源台账导入：type,name,province,site,account_no,参数... 仅支持 ess/ups/diesel 简表 + dc 引用案例。"""
+    out = []
+    for r in csv.DictReader(io.StringIO(text)):
+        r = {k: (float(v) if v.replace('.', '', 1).isdigit() else v) for k, v in r.items() if v not in (None, "")}
+        out.append(r)
+    return out

@@ -1,0 +1,1404 @@
+{
+  "name": "Zhang2020_endogenous_s6",
+  "synthetic": false,
+  "note": "Published Table I abstract LP; all admissions/routing endogenous; no reference decisions fed to engine. Currency numerical units, not FX.",
+  "network_case": "custom",
+  "network": {
+    "buses": [
+      {
+        "name": "n1",
+        "vn_kv": 100
+      },
+      {
+        "name": "n2",
+        "vn_kv": 100
+      },
+      {
+        "name": "n3",
+        "vn_kv": 100
+      }
+    ],
+    "lines": [
+      {
+        "name": "l12",
+        "from_bus": 0,
+        "to_bus": 1,
+        "length_km": 1,
+        "x_ohm_per_km": 20000,
+        "r_ohm_per_km": 0,
+        "c_nf_per_km": 0,
+        "rating_mva": 5,
+        "service_fee_cny_mwh": 2
+      },
+      {
+        "name": "l13",
+        "from_bus": 0,
+        "to_bus": 2,
+        "length_km": 1,
+        "x_ohm_per_km": 20000,
+        "r_ohm_per_km": 0,
+        "c_nf_per_km": 0,
+        "rating_mva": 10,
+        "service_fee_cny_mwh": 2
+      },
+      {
+        "name": "l23",
+        "from_bus": 1,
+        "to_bus": 2,
+        "length_km": 1,
+        "x_ohm_per_km": 20000,
+        "r_ohm_per_km": 0,
+        "c_nf_per_km": 0,
+        "rating_mva": 10,
+        "service_fee_cny_mwh": 2
+      }
+    ],
+    "ext_grids": [
+      {
+        "bus": 0,
+        "import_max_mw": 0,
+        "export_max_mw": 0
+      }
+    ],
+    "gens": [
+      {
+        "name": "g1",
+        "bus": 0,
+        "pmax_mw": 50,
+        "cost_cny_mwh": 10
+      },
+      {
+        "name": "g2",
+        "bus": 1,
+        "pmax_mw": 30,
+        "cost_cny_mwh": 20
+      },
+      {
+        "name": "g3",
+        "bus": 2,
+        "pmax_mw": 50,
+        "cost_cny_mwh": 10
+      }
+    ],
+    "loads": []
+  },
+  "sources": {
+    "paper": "https://arxiv.org/abs/1910.05443 pp2-5 Table I, eqs1-7",
+    "units": "B=0.5MW/rad, 100kV, x=V^2/B=20000ohm; no angle box in abstract mode"
+  },
+  "hours": 24,
+  "price_kind": "peak_valley",
+  "price_cny_kwh": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "grid_markup_cny_mwh": 0,
+  "data_centers": [
+    {
+      "name": "DC1",
+      "bus": 0,
+      "cap_it_mw": 125,
+      "pue": 1,
+      "interactive_mw": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "batch_mwh": 0,
+      "pf_q_ratio": 0
+    },
+    {
+      "name": "DC2",
+      "bus": 1,
+      "cap_it_mw": 125,
+      "pue": 1,
+      "interactive_mw": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "batch_mwh": 0,
+      "pf_q_ratio": 0
+    },
+    {
+      "name": "DC3",
+      "bus": 2,
+      "cap_it_mw": 125,
+      "pue": 1,
+      "interactive_mw": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "batch_mwh": 0,
+      "pf_q_ratio": 0
+    }
+  ],
+  "storage": [],
+  "pv": [],
+  "mig_max_mw": 1000,
+  "mig_day_share": 1,
+  "pv_curtail_penalty": 500.0,
+  "gen_cost": [
+    420,
+    480,
+    600,
+    650
+  ],
+  "gen_min_share": 0,
+  "load_scale": 1.0,
+  "carbon_factor": 0,
+  "carbon_shape": "flat",
+  "carbon_profiles": {},
+  "bus_region": {},
+  "carbon_source": "not applicable",
+  "carbon_price_cny_t": 100.0,
+  "carbon_weight": 0,
+  "carbon_accounting": "location",
+  "gen_emission_t_mwh": [
+    0.85,
+    0.85,
+    0.45,
+    0.45
+  ],
+  "jobs": [
+    {
+      "id": "origin1h0",
+      "dc": "DC1",
+      "release": 0,
+      "deadline": 1,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h1",
+      "dc": "DC1",
+      "release": 1,
+      "deadline": 2,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h2",
+      "dc": "DC1",
+      "release": 2,
+      "deadline": 3,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h3",
+      "dc": "DC1",
+      "release": 3,
+      "deadline": 4,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h4",
+      "dc": "DC1",
+      "release": 4,
+      "deadline": 5,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h5",
+      "dc": "DC1",
+      "release": 5,
+      "deadline": 6,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h6",
+      "dc": "DC1",
+      "release": 6,
+      "deadline": 7,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h7",
+      "dc": "DC1",
+      "release": 7,
+      "deadline": 8,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h8",
+      "dc": "DC1",
+      "release": 8,
+      "deadline": 9,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h9",
+      "dc": "DC1",
+      "release": 9,
+      "deadline": 10,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h10",
+      "dc": "DC1",
+      "release": 10,
+      "deadline": 11,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h11",
+      "dc": "DC1",
+      "release": 11,
+      "deadline": 12,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h12",
+      "dc": "DC1",
+      "release": 12,
+      "deadline": 13,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h13",
+      "dc": "DC1",
+      "release": 13,
+      "deadline": 14,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h14",
+      "dc": "DC1",
+      "release": 14,
+      "deadline": 15,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h15",
+      "dc": "DC1",
+      "release": 15,
+      "deadline": 16,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h16",
+      "dc": "DC1",
+      "release": 16,
+      "deadline": 17,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h17",
+      "dc": "DC1",
+      "release": 17,
+      "deadline": 18,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h18",
+      "dc": "DC1",
+      "release": 18,
+      "deadline": 19,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h19",
+      "dc": "DC1",
+      "release": 19,
+      "deadline": 20,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h20",
+      "dc": "DC1",
+      "release": 20,
+      "deadline": 21,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h21",
+      "dc": "DC1",
+      "release": 21,
+      "deadline": 22,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h22",
+      "dc": "DC1",
+      "release": 22,
+      "deadline": 23,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin1h23",
+      "dc": "DC1",
+      "release": 23,
+      "deadline": 24,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h0",
+      "dc": "DC2",
+      "release": 0,
+      "deadline": 1,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h1",
+      "dc": "DC2",
+      "release": 1,
+      "deadline": 2,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h2",
+      "dc": "DC2",
+      "release": 2,
+      "deadline": 3,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h3",
+      "dc": "DC2",
+      "release": 3,
+      "deadline": 4,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h4",
+      "dc": "DC2",
+      "release": 4,
+      "deadline": 5,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h5",
+      "dc": "DC2",
+      "release": 5,
+      "deadline": 6,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h6",
+      "dc": "DC2",
+      "release": 6,
+      "deadline": 7,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h7",
+      "dc": "DC2",
+      "release": 7,
+      "deadline": 8,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h8",
+      "dc": "DC2",
+      "release": 8,
+      "deadline": 9,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h9",
+      "dc": "DC2",
+      "release": 9,
+      "deadline": 10,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h10",
+      "dc": "DC2",
+      "release": 10,
+      "deadline": 11,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h11",
+      "dc": "DC2",
+      "release": 11,
+      "deadline": 12,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h12",
+      "dc": "DC2",
+      "release": 12,
+      "deadline": 13,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h13",
+      "dc": "DC2",
+      "release": 13,
+      "deadline": 14,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h14",
+      "dc": "DC2",
+      "release": 14,
+      "deadline": 15,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h15",
+      "dc": "DC2",
+      "release": 15,
+      "deadline": 16,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h16",
+      "dc": "DC2",
+      "release": 16,
+      "deadline": 17,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h17",
+      "dc": "DC2",
+      "release": 17,
+      "deadline": 18,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h18",
+      "dc": "DC2",
+      "release": 18,
+      "deadline": 19,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h19",
+      "dc": "DC2",
+      "release": 19,
+      "deadline": 20,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h20",
+      "dc": "DC2",
+      "release": 20,
+      "deadline": 21,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h21",
+      "dc": "DC2",
+      "release": 21,
+      "deadline": 22,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h22",
+      "dc": "DC2",
+      "release": 22,
+      "deadline": 23,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin2h23",
+      "dc": "DC2",
+      "release": 23,
+      "deadline": 24,
+      "energy_mwh": 45,
+      "max_mw": 45,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 30,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h0",
+      "dc": "DC3",
+      "release": 0,
+      "deadline": 1,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h1",
+      "dc": "DC3",
+      "release": 1,
+      "deadline": 2,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h2",
+      "dc": "DC3",
+      "release": 2,
+      "deadline": 3,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h3",
+      "dc": "DC3",
+      "release": 3,
+      "deadline": 4,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h4",
+      "dc": "DC3",
+      "release": 4,
+      "deadline": 5,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h5",
+      "dc": "DC3",
+      "release": 5,
+      "deadline": 6,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h6",
+      "dc": "DC3",
+      "release": 6,
+      "deadline": 7,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h7",
+      "dc": "DC3",
+      "release": 7,
+      "deadline": 8,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h8",
+      "dc": "DC3",
+      "release": 8,
+      "deadline": 9,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h9",
+      "dc": "DC3",
+      "release": 9,
+      "deadline": 10,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h10",
+      "dc": "DC3",
+      "release": 10,
+      "deadline": 11,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h11",
+      "dc": "DC3",
+      "release": 11,
+      "deadline": 12,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h12",
+      "dc": "DC3",
+      "release": 12,
+      "deadline": 13,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h13",
+      "dc": "DC3",
+      "release": 13,
+      "deadline": 14,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h14",
+      "dc": "DC3",
+      "release": 14,
+      "deadline": 15,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h15",
+      "dc": "DC3",
+      "release": 15,
+      "deadline": 16,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h16",
+      "dc": "DC3",
+      "release": 16,
+      "deadline": 17,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h17",
+      "dc": "DC3",
+      "release": 17,
+      "deadline": 18,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h18",
+      "dc": "DC3",
+      "release": 18,
+      "deadline": 19,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h19",
+      "dc": "DC3",
+      "release": 19,
+      "deadline": 20,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h20",
+      "dc": "DC3",
+      "release": 20,
+      "deadline": 21,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h21",
+      "dc": "DC3",
+      "release": 21,
+      "deadline": 22,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h22",
+      "dc": "DC3",
+      "release": 22,
+      "deadline": 23,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    },
+    {
+      "id": "origin3h23",
+      "dc": "DC3",
+      "release": 23,
+      "deadline": 24,
+      "energy_mwh": 40,
+      "max_mw": 40,
+      "allowed_dcs": [
+        "DC1",
+        "DC2",
+        "DC3"
+      ],
+      "value_cny_mwh": 40,
+      "source": "Zhang2020 TableI demand bid"
+    }
+  ],
+  "links": [
+    {
+      "a": "DC1",
+      "b": "DC2",
+      "bw_mw": 15,
+      "latency_ms": 0,
+      "fee_cny_mwh": 1
+    },
+    {
+      "a": "DC1",
+      "b": "DC3",
+      "bw_mw": 0,
+      "latency_ms": 0,
+      "fee_cny_mwh": 1
+    },
+    {
+      "a": "DC2",
+      "b": "DC3",
+      "bw_mw": 15,
+      "latency_ms": 0,
+      "fee_cny_mwh": 1
+    }
+  ],
+  "mig_energy_mwh_per_mwh": 0.0,
+  "unserved_penalty_cny_mwh": 30,
+  "min_green_share": null,
+  "green_shortfall_penalty_cny_mwh": null,
+  "thermal_mode": "constant_pue",
+  "outdoor_temp_c": [
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0
+  ],
+  "outdoor_temp_profiles": {},
+  "outdoor_rh": 0.35,
+  "outdoor_rh_profiles": {},
+  "heat_network": null,
+  "dr_events": [],
+  "carbon_basis": "average",
+  "carbon_marginal_profiles": {},
+  "vcc_mode": "off",
+  "vcc_stage": "joint",
+  "vcc_carbon_weight": 1.0,
+  "vcc_price_weight": 1.0,
+  "vcc_preserve_daily": true,
+  "vcc_objective_scale": 1.0,
+  "vcc_cap_spread": 0.0,
+  "emergency_mode": false,
+  "layout": {},
+  "objective_mode": "welfare",
+  "migration_fee_basis": "net",
+  "network_domain": "paper_abstract"
+}

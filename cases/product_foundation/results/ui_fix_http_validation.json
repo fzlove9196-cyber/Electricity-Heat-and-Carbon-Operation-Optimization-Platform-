@@ -1,0 +1,59 @@
+{
+  "completed": "2026-11-06T13:35:54.486506+08:00",
+  "root_cause_reproduced": {
+    "code": "axis_mismatch",
+    "resource": {
+      "id": "1354cb8e225b4319",
+      "name": "公开气象·中卫·2024-07-01",
+      "revision": 1
+    },
+    "conflicts": [
+      {
+        "field": "location",
+        "expected": "示例地点",
+        "actual": "中卫"
+      }
+    ],
+    "message": "所选资源 公开气象·中卫·2024-07-01 r1 (1354cb8e225b4319) 与场景时间轴不一致；未保存绑定，也未改变历史版本。location: 期待（场景）='示例地点'，实际（数据）='中卫'"
+  },
+  "explicit_conflict": {
+    "code": "axis_mismatch",
+    "resource": {
+      "id": "1354cb8e225b4319",
+      "name": "公开气象·中卫·2024-07-01",
+      "revision": 1
+    },
+    "conflicts": [
+      {
+        "field": "location",
+        "expected": "示例地点",
+        "actual": "中卫"
+      }
+    ],
+    "message": "所选资源 公开气象·中卫·2024-07-01 r1 (1354cb8e225b4319) 与场景时间轴不一致；未保存绑定，也未改变历史版本。location: 期待（场景）='示例地点'，实际（数据）='中卫'"
+  },
+  "selected_public_id": "1354cb8e225b4319",
+  "saved_binding": [
+    {
+      "resource_id": "1354cb8e225b4319",
+      "target": ""
+    }
+  ],
+  "new_task_id": "26a97338309648a3",
+  "frozen_public_id": "1354cb8e225b4319",
+  "old_snapshot_unchanged": true,
+  "checkout_edit_writeback_stale": true,
+  "all_preexisting_records_unchanged": {
+    "project": true,
+    "scenario": true,
+    "version": true,
+    "task": true,
+    "template": true,
+    "library": true
+  },
+  "probe_scenario_id": "02ab8b99f23c42c6",
+  "ui_fixture_scenarios_untouched": [
+    "4a5f775f1a014e1b",
+    "fc9f7df8b1c74ca7"
+  ]
+}
