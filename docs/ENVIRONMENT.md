@@ -156,3 +156,15 @@ sudo apt-get install -y paraview
 - `artifacts/`、会话、SQLite、向量库、`data/settings.json` 为运行时/业务数据，未纳入版本库。
 - `cases/public_bench/raw/bdg2_electricity_cleaned.csv` 约 167 MB，超过 GitHub 单文件 100 MB 限制，未纳入。可按该目录说明自行下载，SHA-256 已记录。
 - 历史论文复现证据包、本机备份（`/workspace/sim-agent-*-evidence` 等）不在本仓库中。部分验收脚本仍硬编码这些本机路径，需用命令行参数或本地目录改写后才能在其他机器上重放。
+
+## 8. 首次启动时会生成的运行时数据
+
+空的 `data/` 即可部署，不必回放被排除的 `foundation.sqlite3`（约 229 MB，含历史项目/任务，无法从本仓库复原为同一份业务库）。
+
+应用在启动时会：
+
+- 创建 `data/foundation.sqlite3`，写入内置场景模板、合成示例气象/电价/碳/负荷，以及一条示例储能设备；并把仓库内已有的 Open-Meteo 公开气象缓存（`cases/common/climate/` 中卫、韶关、乌兰察布 2024-07-01 日曲线）登记为可追溯资源。也可手动运行 `python scripts/seed_runtime.py`。
+- 若 `KNOWLEDGE_SEED=1`（默认）且知识库尚无文档，则导入 `knowledge_seed/` 下的 Markdown。测试将 `KNOWLEDGE_SEED` 设为 0。
+- 按需创建 `data/sessions/`、`data/market/`、`artifacts/`、`data/lancedb/`、`data/settings.json`（仅在保存设置时）。
+
+历史会话、已完成任务、沙盘旧成交与向量缓存不会随仓库提供；新部署从空库开始。公开基准脚本 `cases/public_bench/bench_dr_bdg2*.py` 仍需要自行下载被排除的 `bdg2_electricity_cleaned.csv`（约 167 MB，见该目录 README）；主应用与 pytest 不依赖该文件。

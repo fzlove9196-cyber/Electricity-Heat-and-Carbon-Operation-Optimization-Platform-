@@ -826,11 +826,19 @@ app.include_router(_foundation_router)
 def health(): return {"ok": True, "mock": settings.get("LLM_MOCK") == "1"}
 
 @app.on_event("startup")
-def _warm_rag():   # 后台预加载本地嵌入/重排模型，避免首个请求等待
-    from .foundation.service import recover_interrupted_tasks
-    recover_interrupted_tasks()
+def _warm_rag():   # 空库时写入模板/气象示例与 knowledge_seed；后台预加载嵌入模型
+    from .foundation import service as F, store as S
+    F.recover_interrupted_tasks()
+    with S.LOCK:
+        F.seed(); F.seed_public_climate()
     import threading
-    if os.getenv("RAG_PRELOAD", "1") == "1": threading.Thread(target=lambda: kb.backend_info(), daemon=True).start()
+    def _bg():
+        try: kb.seed_from_repo()
+        except Exception as e: print("[startup] knowledge seed failed:", e)
+        if os.getenv("RAG_PRELOAD", "1") == "1":
+            try: kb.backend_info()
+            except Exception as e: print("[startup] RAG preload failed:", e)
+    threading.Thread(target=_bg, daemon=True).start()
 
 from .help_api import router as _help_router   # 产品内在线帮助（本地静态手册，不调用 LLM）
 app.include_router(_help_router)

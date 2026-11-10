@@ -32,6 +32,8 @@ source .venv/bin/activate
 
 依赖、求解器与可选外部软件见 [docs/ENVIRONMENT.md](docs/ENVIRONMENT.md)。产品功能设计说明（2026-11-10）见 [docs/product-design/](docs/product-design/)。
 
+空的 `data/` 即可启动：首次启动（或 `python scripts/seed_runtime.py`）会创建基础库、写入模板/示例资源，并在 `KNOWLEDGE_SEED=1`（默认）时导入 `knowledge_seed/`。被排除的历史 SQLite 与 BDG2 用电 CSV 不是启动所必需，详见 `docs/ENVIRONMENT.md` 第 8 节。
+
 ## 功能成熟度（请按标签阅读，勿把部分实现当作已验收）
 
 标签含义：**已实现** = 代码路径可用并有测试或可演示；**部分实现** = 有可用核心，但范围/精度/界面未闭环；**未实现** = 明确不在当前范围或尚未开工；**已知缺陷** = 已观察到、尚未关闭。

@@ -38,5 +38,5 @@ networkx
 scikit-learn
 pillow
 andes
-opendssdirect
+opendssdirect.py
 playwright  # optional: UI screenshot scripts under tests/screens_*.py only

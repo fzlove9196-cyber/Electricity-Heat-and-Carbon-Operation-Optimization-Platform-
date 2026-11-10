@@ -265,6 +265,32 @@ def add_document(path: str, name: str | None = None) -> dict:
 def list_documents():
     with _db() as c: return [dict(r) for r in c.execute("select id,name,created,n_chunks,embed from docs order by created desc")]
 
+def seed_from_repo() -> dict:
+    """Import knowledge_seed/*.md when the knowledge DB has no documents.
+
+    Controlled by KNOWLEDGE_SEED (default 1). Tests should set KNOWLEDGE_SEED=0
+    so they keep an empty isolated DATA_DIR. Embedding is best-effort: if the
+    local model is unavailable, documents are still searchable with BM25.
+    """
+    if os.getenv("KNOWLEDGE_SEED", "1") != "1":
+        return dict(ok=True, seeded=0, reason="KNOWLEDGE_SEED disabled")
+    existing = list_documents()
+    if existing:
+        return dict(ok=True, seeded=0, reason="already populated", n_docs=len(existing))
+    root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "knowledge_seed"))
+    if not os.path.isdir(root):
+        return dict(ok=False, error="knowledge_seed directory is missing", seeded=0)
+    docs, errors = [], []
+    for name in sorted(os.listdir(root)):
+        path = os.path.join(root, name)
+        if not os.path.isfile(path) or os.path.splitext(name)[1].lower() not in ALLOWED:
+            continue
+        try:
+            docs.append(add_document(path, name))
+        except Exception as e:
+            errors.append(dict(name=name, error=f"{type(e).__name__}: {e}"))
+    return dict(ok=not errors, seeded=len(docs), docs=docs, errors=errors)
+
 def delete_document(did):
     with _db() as c:
         r = c.execute("select path from docs where id=?", (did,)).fetchone()
