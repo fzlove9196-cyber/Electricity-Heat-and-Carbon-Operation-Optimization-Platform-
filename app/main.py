@@ -730,7 +730,7 @@ def config_validate(b: CfgIn):
 @app.get("/api/sessions/{sid}/config")
 def config_get(sid: str):
     from .tools import config_builder as B
-    s = get_session(sid); return {"spec": s.state.get("config_spec") or B.full_spec({}), "last_sweep": s.state.get("last_sweep", "foundation_context", "foundation_task_id", "foundation_model_hash", "foundation_results_stale")}
+    s = get_session(sid); return {"spec": s.state.get("config_spec") or B.full_spec({}), "last_sweep": s.state.get("last_sweep")}
 
 def _cfg_call(sid, name, args):
     from .tools import call_tool
